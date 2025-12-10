@@ -9,9 +9,9 @@ import video1 from "@assets/1_1765379246117.mp4";
 import video2 from "@assets/2_1765379246117.mp4";
 import mainVideo from "@assets/Enregistrement_2025-12-10_160009_1765379246118.mp4";
 import bojackBg from "@assets/ghqHldB__1765379246118.jpg";
+import dexscreenerLogo from "@assets/image_1765380251339.png";
 
-const CA = "GdUdQt5azLBAfVkaFbLYZnyjPSdH5zm6guDYNgbpump";
-const DEXSCREENER_LOGO = "https://avatars.githubusercontent.com/u/100616149?s=200&v=4";
+const CA = "7HXLm6Z9apvqimLksKPZPryve6goGDCo35GP9zFhpump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
@@ -76,7 +76,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden pb-20">
+    <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col">
       
       {/* BACKGROUND IMAGE - Fixed */}
       <div 
@@ -89,7 +89,7 @@ export default function Home() {
         <Marquee text="$BOJACK • DEPRESSED HORSE • TO THE MOON • " speed={30} />
       </div>
 
-      <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10">
+      <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow">
         
         {/* HERO HEADER */}
         <div className="text-center space-y-4">
@@ -194,7 +194,7 @@ export default function Home() {
             className="transform hover:scale-105 transition-transform"
           >
             <div className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg">
-              <img src={DEXSCREENER_LOGO} alt="DexScreener" className="w-6 h-6 object-contain rounded-full" />
+              <img src={dexscreenerLogo} alt="DexScreener" className="w-6 h-6 object-contain" />
               DexScreener
             </div>
           </a>
@@ -263,8 +263,8 @@ export default function Home() {
 
       </main>
 
-      {/* FOOTER MARQUEE - SAME AS HEADER */}
-      <div className="mt-8">
+      {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
+      <div className="mt-auto">
         <Marquee text="$BOJACK • DEPRESSED HORSE • TO THE MOON • " speed={30} />
       </div>
 
