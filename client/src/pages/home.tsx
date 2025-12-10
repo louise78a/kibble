@@ -90,14 +90,14 @@ export default function Home() {
         <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
           
           <motion.div 
-            className="w-full relative group cursor-pointer"
-            whileHover={{ scale: 1.1, rotate: [0, -2, 2, 0], transition: { duration: 0.3, repeat: Infinity } }}
+            className="relative group cursor-pointer inline-block"
+            whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0], transition: { duration: 0.4, repeat: Infinity, repeatType: "reverse" } }}
             whileTap={{ scale: 0.95 }}
           >
             <img 
               src={mainWojakImg}
               alt="Wojak enjoying Goyslop"
-              className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
+              className="h-auto max-h-[70vh] object-contain cursor-pointer block"
             />
           </motion.div>
 
