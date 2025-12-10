@@ -152,7 +152,7 @@ export default function Home() {
         </div>
 
         {/* SIDE IMAGES - MOVED BELOW */}
-        <div className="w-full max-w-4xl flex flex-col md:flex-row justify-center items-center gap-12 mt-8 mb-12 cursor-pointer mx-auto">
+        <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-24 mt-8 mb-12 cursor-pointer mx-auto">
           
           {/* LEFT IMAGE */}
           <motion.div 
