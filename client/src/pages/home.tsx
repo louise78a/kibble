@@ -79,7 +79,7 @@ export default function Home() {
         {/* MAIN IMAGE - BIGGER */}
         <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
           
-          <div className="w-full relative group border-4 border-slop-red bg-black shadow-[0_0_30px_rgba(255,0,0,0.5)] cursor-pointer transform hover:scale-[1.01] transition-transform duration-300">
+          <div className="w-full relative group cursor-pointer transform hover:scale-[1.01] transition-transform duration-300">
             <img 
               src={mainWojakImg}
               alt="Wojak enjoying Goyslop"
