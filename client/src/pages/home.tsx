@@ -44,7 +44,7 @@ export default function Home() {
     toast({
       title: "COPIED!",
       description: "CA copied to clipboard.",
-      className: "bg-meme-green border-2 border-black font-display text-xl",
+      className: "bg-white text-black border-2 border-black font-display text-xl",
     });
     setTimeout(() => setCopied(false), 2000);
   };
@@ -94,7 +94,7 @@ export default function Home() {
         {/* HERO HEADER */}
         <div className="text-center space-y-4 cursor-pointer">
           <motion.h1 
-            className="text-7xl md:text-9xl font-display text-meme-pink text-stroke drop-shadow-[0_10px_0_rgba(255,255,255,0.2)] cursor-pointer"
+            className="text-7xl md:text-9xl font-display text-meme-pink text-stroke cursor-pointer"
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
