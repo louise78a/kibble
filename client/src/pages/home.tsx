@@ -74,7 +74,7 @@ export default function Home() {
             className="text-7xl md:text-9xl font-display text-slop-red text-stroke cursor-pointer"
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            whileHover={{ scale: 1.15, rotate: 0 }}
+            whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
           >
             $GOYSLOP
           </motion.h1>
@@ -91,8 +91,8 @@ export default function Home() {
           
           <motion.div 
             className="w-full relative group cursor-pointer"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            whileHover={{ scale: 1.1, rotate: [0, -2, 2, 0], transition: { duration: 0.3, repeat: Infinity } }}
+            whileTap={{ scale: 0.95 }}
           >
             <img 
               src={mainWojakImg}
