@@ -11,6 +11,7 @@ import mainVideo from "@assets/Enregistrement_2025-12-10_160009_1765379246118.mp
 import bojackBg from "@assets/ghqHldB__1765379246118.jpg";
 
 const CA = "GdUdQt5azLBAfVkaFbLYZnyjPSdH5zm6guDYNgbpump";
+const DEXSCREENER_LOGO = "https://avatars.githubusercontent.com/u/100616149?s=200&v=4";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
@@ -133,7 +134,7 @@ export default function Home() {
               </button>
             </div>
             
-            {/* Play Button Center if paused - REPLACED PINK BUTTON WITH TRANSPARENT OVERLAY */}
+            {/* Play Button Center if paused */}
             {!isPlaying && (
               <div 
                 className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/40"
@@ -172,8 +173,49 @@ export default function Home() {
 
         </div>
 
+        {/* LINKS SECTION - BELOW VIDEOS */}
+        <div className="flex flex-wrap justify-center gap-4 w-full mt-8">
+          <a 
+            href="https://pump.fun/coin/7HXLm6Z9apvqimLksKPZPryve6goGDCo35GP9zFhpump" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transform hover:scale-105 transition-transform"
+          >
+            <div className="flex items-center gap-2 bg-[#87E4A6] hover:bg-[#6edc93] text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg">
+              <span className="text-xl">💊</span>
+              Buy on Pump.fun
+            </div>
+          </a>
+
+          <a 
+            href="https://dexscreener.com/solana/d5vwdbqyhwtmonnrezyjtlug9cgruhdfdfnofdvxdcb8" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transform hover:scale-105 transition-transform"
+          >
+            <div className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg">
+              <img src={DEXSCREENER_LOGO} alt="DexScreener" className="w-6 h-6 object-contain rounded-full" />
+              DexScreener
+            </div>
+          </a>
+
+          <a 
+            href="https://x.com/i/communities/1998747105406456040" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transform hover:scale-105 transition-transform"
+          >
+            <div className="flex items-center gap-2 bg-black hover:bg-gray-900 text-white border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(255,255,255,0.5)] font-display text-lg">
+              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+              Community X
+            </div>
+          </a>
+        </div>
+
         {/* SIDE VIDEOS - MOVED BELOW */}
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8">
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8 mb-12">
           
           {/* LEFT VIDEO */}
           <motion.div 
@@ -219,75 +261,12 @@ export default function Home() {
 
         </div>
 
-        {/* LINKS SECTION - BELOW VIDEOS */}
-        <div className="flex flex-wrap justify-center gap-4 w-full mt-8">
-          <a 
-            href="https://pump.fun/coin/7HXLm6Z9apvqimLksKPZPryve6goGDCo35GP9zFhpump" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="transform hover:scale-105 transition-transform"
-          >
-            <div className="flex items-center gap-2 bg-[#87E4A6] hover:bg-[#6edc93] text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg">
-              <span className="text-xl">💊</span>
-              Buy on Pump.fun
-            </div>
-          </a>
-
-          <a 
-            href="https://dexscreener.com/solana/d5vwdbqyhwtmonnrezyjtlug9cgruhdfdfnofdvxdcb8" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="transform hover:scale-105 transition-transform"
-          >
-            <div className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg">
-              <span className="text-xl">🦅</span>
-              DexScreener
-            </div>
-          </a>
-
-          <a 
-            href="https://x.com/i/communities/1998747105406456040" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="transform hover:scale-105 transition-transform"
-          >
-            <div className="flex items-center gap-2 bg-black hover:bg-gray-900 text-white border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(255,255,255,0.5)] font-display text-lg">
-              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-              </svg>
-              Community X
-            </div>
-          </a>
-        </div>
-
-        {/* JOKES / FILLER */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mt-8 mb-20 text-center">
-          <motion.div 
-            whileHover={{ scale: 1.1, rotate: 3 }}
-            className="bg-yellow-400 p-6 border-4 border-black rounded-lg shadow-[8px_8px_0_0_rgba(0,0,0,1)]"
-          >
-            <h3 className="text-3xl mb-2 text-black">DIET VODKA</h3>
-            <p className="text-black font-bold text-lg">"It tastes like water but it ruins your life!"</p>
-          </motion.div>
-          
-          <motion.div 
-            whileHover={{ scale: 1.1, rotate: -3 }}
-            className="bg-meme-pink p-6 border-4 border-black rounded-lg shadow-[8px_8px_0_0_rgba(0,0,0,1)]"
-          >
-            <h3 className="text-3xl mb-2 text-white text-stroke-sm">HOLLYWOO</h3>
-            <p className="text-white font-bold text-lg text-stroke-sm">"Nobody knows who I am anymore!"</p>
-          </motion.div>
-
-          <motion.div 
-            whileHover={{ scale: 1.1, rotate: 2 }}
-            className="bg-meme-green p-6 border-4 border-black rounded-lg shadow-[8px_8px_0_0_rgba(0,0,0,1)]"
-          >
-            <h3 className="text-3xl mb-2 text-black">HORSIN' AROUND</h3>
-            <p className="text-black font-bold text-lg">"Three orphans one horse? No problem!"</p>
-          </motion.div>
-        </div>
-
       </main>
+
+      {/* FOOTER MARQUEE - SAME AS HEADER */}
+      <div className="mt-8">
+        <Marquee text="$BOJACK • DEPRESSED HORSE • TO THE MOON • " speed={30} />
+      </div>
 
     </div>
   );
