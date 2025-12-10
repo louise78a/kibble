@@ -15,11 +15,12 @@ const CA = "3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
-    <div className="flex overflow-hidden bg-slop-yellow py-2 border-y-4 border-black">
+    <div className="flex overflow-hidden bg-slop-yellow py-2 border-y-4 border-black cursor-pointer">
       <motion.div
         className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-black font-bold uppercase"
         animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
         transition={{ repeat: Infinity, ease: "linear", duration: speed }}
+        whileHover={{ scale: 1.02 }}
       >
         {[...Array(10)].map((_, i) => (
           <span key={i} className="mx-8">
@@ -46,8 +47,13 @@ export default function Home() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const hoverEffect = {
+    whileHover: { scale: 1.05, transition: { duration: 0.2 } },
+    whileTap: { scale: 0.95 }
+  };
+
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col">
+    <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col cursor-pointer">
       
       {/* BACKGROUND IMAGE - Fixed */}
       <div 
@@ -68,30 +74,40 @@ export default function Home() {
             className="text-7xl md:text-9xl font-display text-slop-red text-stroke cursor-pointer"
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
+            whileHover={{ scale: 1.15, rotate: 0 }}
           >
             $GOYSLOP
           </motion.h1>
-          <p className="text-2xl md:text-4xl text-slop-yellow font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight">
+          <motion.p 
+            className="text-2xl md:text-4xl text-slop-yellow font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
+            whileHover={{ scale: 1.1, rotate: 0 }}
+          >
             "I LOVE EATING HIGH FRUCTOSE CORN SYRUP AND SEED OILS!"
-          </p>
+          </motion.p>
         </div>
 
         {/* MAIN IMAGE - BIGGER */}
         <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
           
-          <div className="w-full relative group cursor-pointer transform hover:scale-[1.01] transition-transform duration-300">
+          <motion.div 
+            className="w-full relative group cursor-pointer"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
             <img 
               src={mainWojakImg}
               alt="Wojak enjoying Goyslop"
               className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
             />
-          </div>
+          </motion.div>
 
           {/* CA SECTION */}
           <motion.div 
-            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#000000] transform transition-transform hover:-translate-y-1 cursor-pointer"
+            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#000000] cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05, y: -5 }}
+            whileTap={{ scale: 0.95 }}
           >
             <div className="flex items-center justify-between gap-2 cursor-pointer">
               <span className="font-display text-lg text-gray-500 whitespace-nowrap cursor-pointer">CA:</span>
@@ -112,35 +128,38 @@ export default function Home() {
 
         {/* LINKS SECTION - BELOW IMAGE */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
-          <a 
+          <motion.a 
             href="https://pump.fun/coin/3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="transform hover:scale-105 transition-transform cursor-pointer"
+            className="cursor-pointer"
+            {...hoverEffect}
           >
             <div className="flex items-center gap-2 bg-[#87E4A6] hover:bg-[#6edc93] text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
               <span className="text-xl">💊</span>
               Buy on Pump.fun
             </div>
-          </a>
+          </motion.a>
 
-          <a 
+          <motion.a 
             href="https://dexscreener.com/solana/3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="transform hover:scale-105 transition-transform cursor-pointer"
+            className="cursor-pointer"
+            {...hoverEffect}
           >
             <div className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
               <img src={dexscreenerLogo} alt="DexScreener" className="w-6 h-6 object-contain cursor-pointer" />
               DexScreener
             </div>
-          </a>
+          </motion.a>
 
-          <a 
+          <motion.a 
             href="https://x.com/i/communities/1998747105406456040" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="transform hover:scale-105 transition-transform cursor-pointer"
+            className="cursor-pointer"
+            {...hoverEffect}
           >
             <div className="flex items-center gap-2 bg-black hover:bg-gray-900 text-white border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
               <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
@@ -148,7 +167,7 @@ export default function Home() {
               </svg>
               Community X
             </div>
-          </a>
+          </motion.a>
         </div>
 
         {/* SIDE IMAGES - MOVED BELOW */}
@@ -156,12 +175,13 @@ export default function Home() {
           
           {/* LEFT IMAGE */}
           <motion.div 
-            className="flex justify-center"
+            className="flex justify-center cursor-pointer"
             animate={{
               y: [0, -10, 0],
               rotate: [0, 2, -2, 0],
               transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
             }}
+            whileHover={{ scale: 1.1, rotate: -5 }}
           >
             <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#FFC72C] cursor-pointer w-full max-w-sm">
               <img 
@@ -174,12 +194,13 @@ export default function Home() {
 
           {/* RIGHT IMAGE */}
           <motion.div 
-            className="flex justify-center"
+            className="flex justify-center cursor-pointer"
             animate={{
               y: [0, 10, 0],
               rotate: [0, -2, 2, 0],
               transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
             }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
           >
             <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#DA291C] cursor-pointer w-full max-w-sm">
               <img 
