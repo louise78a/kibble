@@ -5,10 +5,10 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-bojack-brown: #9E5828;
-  --color-bojack-blue: #234E84;
-  --color-meme-pink: #FF00FF;
-  --color-meme-green: #00FF00;
+  --color-slop-red: #DA291C;    /* McDonalds Red */
+  --color-slop-yellow: #FFC72C; /* McDonalds Yellow */
+  --color-slop-orange: #FF8200; /* Burger King Orange */
+  --color-slop-brown: #542300;  /* Burger Meat */
   --color-meme-yellow: #FFFF00;
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
@@ -24,9 +24,6 @@
 @layer base {
   body {
     @apply font-body bg-black text-white overflow-x-hidden;
-    background-image: 
-      radial-gradient(circle at 50% 50%, rgba(35, 78, 132, 0.2) 0%, transparent 50%),
-      repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 2px, transparent 2px, transparent 4px);
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -42,11 +39,11 @@
   background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-meme-green);
+  background: var(--color-slop-yellow);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-meme-pink);
+  background: var(--color-slop-red);
 }
 
 .marquee-container {
