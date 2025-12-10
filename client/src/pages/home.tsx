@@ -89,7 +89,7 @@ export default function Home() {
 
           {/* CA SECTION */}
           <motion.div 
-            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#DA291C] transform transition-transform hover:-translate-y-1 cursor-pointer"
+            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#000000] transform transition-transform hover:-translate-y-1 cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
           >
@@ -101,7 +101,7 @@ export default function Home() {
               <Button 
                 onClick={copyToClipboard}
                 size="sm"
-                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-slop-red transition-all shrink-0 cursor-pointer"
+                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-black transition-all shrink-0 cursor-pointer"
               >
                 {copied ? <Check size={16} /> : <Copy size={16} />}
               </Button>
@@ -152,18 +152,18 @@ export default function Home() {
         </div>
 
         {/* SIDE IMAGES - MOVED BELOW */}
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8 mb-12 cursor-pointer">
+        <div className="w-full max-w-4xl flex flex-col md:flex-row justify-center items-center gap-12 mt-8 mb-12 cursor-pointer mx-auto">
           
           {/* LEFT IMAGE */}
           <motion.div 
-            className="md:block cursor-pointer flex justify-center"
+            className="flex justify-center"
             animate={{
               y: [0, -10, 0],
               rotate: [0, 2, -2, 0],
               transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
             }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#FFC72C] cursor-pointer max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#FFC72C] cursor-pointer w-full max-w-sm">
               <img 
                 src={pepeImg} 
                 alt="Pepe eating"
@@ -174,14 +174,14 @@ export default function Home() {
 
           {/* RIGHT IMAGE */}
           <motion.div 
-            className="md:block cursor-pointer flex justify-center"
+            className="flex justify-center"
             animate={{
               y: [0, 10, 0],
               rotate: [0, -2, 2, 0],
               transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
             }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#DA291C] cursor-pointer max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#DA291C] cursor-pointer w-full max-w-sm">
               <img 
                 src={dogeImg} 
                 alt="Doge eating"
