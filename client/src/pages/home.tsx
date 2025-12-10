@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Copy, Check, Play, Pause, Maximize2 } from "lucide-react";
+import { Copy, Check, Play, Pause, Maximize2, Volume2, VolumeX } from "lucide-react";
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -34,6 +34,7 @@ export default function Home() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const copyToClipboard = () => {
@@ -58,19 +59,19 @@ export default function Home() {
     }
   };
 
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
   const goFullscreen = () => {
     if (videoRef.current) {
       if (videoRef.current.requestFullscreen) {
         videoRef.current.requestFullscreen();
       }
     }
-  };
-
-  // Video 1 and 2 styling - random movements
-  const floatAnim = {
-    y: [0, -20, 0],
-    rotate: [0, 5, -5, 0],
-    transition: { duration: 4, repeat: Infinity, ease: [0.42, 0, 0.58, 1] as const }
   };
 
   return (
@@ -103,157 +104,164 @@ export default function Home() {
           </p>
         </div>
 
-        {/* SIDE VIDEOS & MAIN CONTENT */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        {/* MAIN VIDEO PLAYER - BIGGER */}
+        <div className="w-full max-w-5xl flex flex-col items-center gap-6">
+          
+          <div className="w-full relative group border-4 border-meme-green bg-black shadow-[0_0_30px_rgba(0,255,0,0.3)]">
+            <video 
+              ref={videoRef}
+              src={mainVideo}
+              className="w-full h-auto max-h-[70vh] object-contain"
+              onClick={togglePlay}
+            />
+            
+            {/* Custom Controls Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex gap-4">
+                <button onClick={togglePlay} className="text-white hover:text-meme-green transition-colors">
+                  {isPlaying ? <Pause size={32} /> : <Play size={32} />}
+                </button>
+                <button onClick={toggleMute} className="text-white hover:text-meme-green transition-colors">
+                  {isMuted ? <VolumeX size={32} /> : <Volume2 size={32} />}
+                </button>
+              </div>
+              <div className="font-display text-xl tracking-widest text-white animate-pulse">
+                {isPlaying ? "NOW PLAYING: DEPRESSION" : "PAUSED"}
+              </div>
+              <button onClick={goFullscreen} className="text-white hover:text-meme-green transition-colors">
+                <Maximize2 size={32} />
+              </button>
+            </div>
+            
+            {/* Play Button Center if paused - REPLACED PINK BUTTON WITH TRANSPARENT OVERLAY */}
+            {!isPlaying && (
+              <div 
+                className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/40"
+                onClick={togglePlay}
+              >
+                <motion.div 
+                  whileHover={{ scale: 1.1 }}
+                  className="bg-black/50 p-6 rounded-full border-2 border-white text-white backdrop-blur-sm"
+                >
+                  <Play size={48} fill="currentColor" />
+                </motion.div>
+              </div>
+            )}
+          </div>
+
+          {/* CA SECTION */}
+          <motion.div 
+            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#9E5828] transform transition-transform hover:-translate-y-1"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            <div className="flex items-center justify-between gap-2">
+              <span className="font-display text-lg text-gray-500 whitespace-nowrap">CA:</span>
+              <code className="font-mono font-bold text-xs md:text-sm truncate bg-gray-100 p-1.5 rounded flex-1 text-center">
+                {CA}
+              </code>
+              <Button 
+                onClick={copyToClipboard}
+                size="sm"
+                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-meme-pink transition-all shrink-0"
+              >
+                {copied ? <Check size={16} /> : <Copy size={16} />}
+              </Button>
+            </div>
+          </motion.div>
+
+        </div>
+
+        {/* SIDE VIDEOS - MOVED BELOW */}
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8">
           
           {/* LEFT VIDEO */}
           <motion.div 
-            className="md:col-span-3 hidden md:block"
-            animate={floatAnim}
+            className="md:block"
+            animate={{
+              y: [0, -10, 0],
+              rotate: [0, 2, -2, 0],
+              transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+            }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-6deg] shadow-[10px_10px_0px_0px_rgba(255,0,255,1)]">
+            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_rgba(255,0,255,1)]">
               <video 
                 src={video1} 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                className="w-full h-auto aspect-[9/16] object-cover"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <p className="text-center mt-2 font-display text-xl text-yellow-400 rotate-[-6deg]">"What are YOU doing here?"</p>
           </motion.div>
-
-          {/* CENTER - MAIN VIDEO PLAYER */}
-          <div className="md:col-span-6 w-full flex flex-col items-center gap-6">
-            
-            <div className="w-full relative group border-4 border-meme-green bg-black shadow-[0_0_30px_rgba(0,255,0,0.3)]">
-              <video 
-                ref={videoRef}
-                src={mainVideo}
-                className="w-full h-auto max-h-[60vh] object-contain"
-                onClick={togglePlay}
-              />
-              
-              {/* Custom Controls Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <button onClick={togglePlay} className="text-white hover:text-meme-green transition-colors">
-                  {isPlaying ? <Pause size={32} /> : <Play size={32} />}
-                </button>
-                <div className="font-display text-xl tracking-widest text-white animate-pulse">
-                  {isPlaying ? "NOW PLAYING: DEPRESSION" : "PAUSED"}
-                </div>
-                <button onClick={goFullscreen} className="text-white hover:text-meme-green transition-colors">
-                  <Maximize2 size={32} />
-                </button>
-              </div>
-              
-              {/* Play Button Center if paused */}
-              {!isPlaying && (
-                <div 
-                  className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
-                  onClick={togglePlay}
-                >
-                  <motion.div 
-                    whileHover={{ scale: 1.2 }}
-                    className="bg-meme-pink p-6 rounded-full border-4 border-white text-white shadow-[8px_8px_0_0_rgba(0,0,0,1)]"
-                  >
-                    <Play size={48} fill="currentColor" />
-                  </motion.div>
-                </div>
-              )}
-            </div>
-
-            {/* CA SECTION - SMALLER */}
-            <motion.div 
-              className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#9E5828] transform transition-transform hover:-translate-y-1"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-            >
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-display text-lg text-gray-500 whitespace-nowrap">CA:</span>
-                <code className="font-mono font-bold text-xs md:text-sm truncate bg-gray-100 p-1.5 rounded flex-1 text-center">
-                  {CA}
-                </code>
-                <Button 
-                  onClick={copyToClipboard}
-                  size="sm"
-                  className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-meme-pink transition-all shrink-0"
-                >
-                  {copied ? <Check size={16} /> : <Copy size={16} />}
-                </Button>
-              </div>
-            </motion.div>
-
-            {/* LINKS SECTION - SMALLER BUTTONS */}
-            <div className="flex flex-wrap justify-center gap-4 w-full">
-              <a 
-                href="https://pump.fun/coin/7HXLm6Z9apvqimLksKPZPryve6goGDCo35GP9zFhpump" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="transform hover:scale-105 transition-transform"
-              >
-                <div className="flex items-center gap-2 bg-[#87E4A6] hover:bg-[#6edc93] text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg">
-                  <span className="text-xl">💊</span>
-                  Buy on Pump.fun
-                </div>
-              </a>
-
-              <a 
-                href="https://dexscreener.com/solana/d5vwdbqyhwtmonnrezyjtlug9cgruhdfdfnofdvxdcb8" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="transform hover:scale-105 transition-transform"
-              >
-                <div className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg">
-                  <span className="text-xl">🦅</span>
-                  DexScreener
-                </div>
-              </a>
-
-              <a 
-                href="https://x.com/i/communities/1998747105406456040" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="transform hover:scale-105 transition-transform"
-              >
-                <div className="flex items-center gap-2 bg-black hover:bg-gray-900 text-white border-2 border-white px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(255,255,255,0.5)] font-display text-lg">
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-                  </svg>
-                  Community X
-                </div>
-              </a>
-            </div>
-
-          </div>
 
           {/* RIGHT VIDEO */}
           <motion.div 
-            className="md:col-span-3 hidden md:block"
+            className="md:block"
             animate={{
-              y: [0, 20, 0],
-              rotate: [0, -5, 5, 0],
-              transition: { duration: 5, repeat: Infinity, ease: [0.42, 0, 0.58, 1] as const, delay: 1 }
+              y: [0, 10, 0],
+              rotate: [0, -2, 2, 0],
+              transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
             }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[6deg] shadow-[-10px_10px_0px_0px_rgba(0,255,255,1)]">
+            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_rgba(0,255,255,1)]">
               <video 
                 src={video2} 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                className="w-full h-auto aspect-[9/16] object-cover"
+                className="w-full h-auto object-contain"
               />
             </div>
-            <p className="text-center mt-2 font-display text-xl text-meme-pink rotate-[6deg]">"Am I a good boy?"</p>
           </motion.div>
 
         </div>
 
+        {/* LINKS SECTION - BELOW VIDEOS */}
+        <div className="flex flex-wrap justify-center gap-4 w-full mt-8">
+          <a 
+            href="https://pump.fun/coin/7HXLm6Z9apvqimLksKPZPryve6goGDCo35GP9zFhpump" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transform hover:scale-105 transition-transform"
+          >
+            <div className="flex items-center gap-2 bg-[#87E4A6] hover:bg-[#6edc93] text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg">
+              <span className="text-xl">💊</span>
+              Buy on Pump.fun
+            </div>
+          </a>
+
+          <a 
+            href="https://dexscreener.com/solana/d5vwdbqyhwtmonnrezyjtlug9cgruhdfdfnofdvxdcb8" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transform hover:scale-105 transition-transform"
+          >
+            <div className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg">
+              <span className="text-xl">🦅</span>
+              DexScreener
+            </div>
+          </a>
+
+          <a 
+            href="https://x.com/i/communities/1998747105406456040" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transform hover:scale-105 transition-transform"
+          >
+            <div className="flex items-center gap-2 bg-black hover:bg-gray-900 text-white border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(255,255,255,0.5)] font-display text-lg">
+              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+              Community X
+            </div>
+          </a>
+        </div>
+
         {/* JOKES / FILLER */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mt-8 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mt-8 mb-20 text-center">
           <motion.div 
             whileHover={{ scale: 1.1, rotate: 3 }}
             className="bg-yellow-400 p-6 border-4 border-black rounded-lg shadow-[8px_8px_0_0_rgba(0,0,0,1)]"
@@ -280,11 +288,6 @@ export default function Home() {
         </div>
 
       </main>
-
-      {/* FOOTER MARQUEE */}
-      <div className="mt-20">
-        <Marquee text="BUY $BOJACK • NO RUG • JUST DEPRESSION • " direction={-1} speed={25} />
-      </div>
 
     </div>
   );
