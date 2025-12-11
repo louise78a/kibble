@@ -155,7 +155,7 @@ export default function Home() {
           </motion.a>
 
           <motion.a 
-            href="https://x.com/i/communities/1998747105406456040" 
+            href="https://x.com/i/communities/1998869649987965022" 
             target="_blank" 
             rel="noopener noreferrer"
             className="cursor-pointer"
