@@ -10,6 +10,24 @@ import img2 from "@assets/2_1765459977197.jpg";
 import bgImage from "@assets/background_1765459977195.png";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
+// Gallery Assets
+import gallery1 from "@assets/735807360G7V3qpXXoAA4fLQ_1765460337650.jpeg";
+import gallery2 from "@assets/835521129G7XXSY2X0AABjkU_1765460337651.jpeg";
+import gallery3 from "@assets/51285841G7XX7yxXcAAJAiR_1765460337651.jpeg";
+import gallery4 from "@assets/949351125G7SO3Mcb0AAY-pv_1765460337651.jpeg";
+import gallery5 from "@assets/860926553G7b_Ygsb0AEoPzN_1765460337652.jpeg";
+import gallery6 from "@assets/133306736G679dwebsAAMP53_1765460337652.jpeg";
+import gallery7 from "@assets/604876577G7LcEzubQAArqc8_1765460337653.jpeg";
+import gallery8 from "@assets/228591629G7QcjchWEAA-sk3_1765460337653.jpeg";
+import gallery9 from "@assets/311091496G67mompbkAM29zs_1765460337653.png";
+import gallery10 from "@assets/971157866G676GZUbkBEBts5_1765460337654.jpeg";
+import gallery11 from "@assets/767119454G7RtJTibgAASXj2__1__1765460337654.jpeg";
+
+const galleryImages = [
+  gallery1, gallery2, gallery3, gallery4, gallery5, gallery6,
+  gallery7, gallery8, gallery9, gallery10, gallery11
+];
+
 const CA = "gAGQTXhFSydHCkYb1ipoybQykPitbGrHkx2jeXrpump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
@@ -85,8 +103,8 @@ export default function Home() {
           </motion.p>
         </div>
 
-        {/* MAIN IMAGE - REPLACED WITH DUAL IMAGES */}
-        <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-12 cursor-pointer">
+        {/* MAIN IMAGE - REPLACED WITH DUAL IMAGES (SMALLER) */}
+        <div className="w-full max-w-4xl flex flex-col md:flex-row justify-center items-center gap-8 cursor-pointer">
           
           {/* LEFT IMAGE */}
           <motion.div 
@@ -98,7 +116,7 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: -5 }}
           >
-            <div className="border-4 border-masked-primary bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#00FFFF] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-masked-primary bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#00FFFF] cursor-pointer w-64 md:w-72">
               <img 
                 src={img1} 
                 alt="Mask 1"
@@ -117,7 +135,7 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <div className="border-4 border-masked-secondary bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#FF0055] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-masked-secondary bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#FF0055] cursor-pointer w-64 md:w-72">
               <img 
                 src={img2} 
                 alt="Mask 2"
@@ -193,6 +211,40 @@ export default function Home() {
               Community X
             </div>
           </motion.a>
+        {/* GALLERY SECTION */}
+        <div className="w-full max-w-6xl mt-12 mb-12">
+          <motion.h2 
+            className="text-4xl md:text-6xl text-center font-display text-white text-stroke-sm mb-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+          >
+            THE MASQUERADE
+          </motion.h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 px-4">
+            {galleryImages.map((img, index) => (
+              <motion.div
+                key={index}
+                className="relative group cursor-pointer"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2, zIndex: 10 }}
+              >
+                <div className={`
+                  border-4 bg-black p-1 
+                  ${index % 2 === 0 ? 'border-masked-primary shadow-[4px_4px_0_0_#00FFFF]' : 'border-masked-secondary shadow-[4px_4px_0_0_#FF0055]'}
+                  rounded-lg overflow-hidden
+                `}>
+                  <img 
+                    src={img} 
+                    alt={`Gallery ${index + 1}`}
+                    className="w-full aspect-square object-cover hover:brightness-110 transition-all"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
       </main>
