@@ -85,45 +85,71 @@ export default function Home() {
           </motion.p>
         </div>
 
-        {/* MAIN IMAGE - BIGGER */}
-        <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
+        {/* MAIN IMAGE - REPLACED WITH DUAL IMAGES */}
+        <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-12 cursor-pointer">
           
+          {/* LEFT IMAGE */}
           <motion.div 
-            className="relative group cursor-pointer inline-block"
-            whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0], transition: { duration: 0.4, repeat: Infinity, repeatType: "reverse" } }}
-            whileTap={{ scale: 0.95 }}
+            className="flex justify-center cursor-pointer"
+            animate={{
+              y: [0, -10, 0],
+              rotate: [0, 2, -2, 0],
+              transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+            }}
+            whileHover={{ scale: 1.1, rotate: -5 }}
           >
-            <img 
-              src={img2}
-              alt="Masked Figure"
-              className="h-auto max-h-[70vh] object-contain cursor-pointer block border-4 border-masked-primary shadow-[0_0_20px_rgba(255,0,85,0.5)] rounded-lg"
-            />
+            <div className="border-4 border-masked-primary bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#00FFFF] cursor-pointer w-full max-w-sm">
+              <img 
+                src={img1} 
+                alt="Mask 1"
+                className="w-full h-auto object-contain cursor-pointer"
+              />
+            </div>
           </motion.div>
 
-          {/* CA SECTION */}
+          {/* RIGHT IMAGE */}
           <motion.div 
-            className="w-full max-w-lg bg-black text-white p-3 rounded-xl border-4 border-masked-secondary shadow-[6px_6px_0_0_#FF0055] cursor-pointer"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05, y: -5 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex justify-center cursor-pointer"
+            animate={{
+              y: [0, 10, 0],
+              rotate: [0, -2, 2, 0],
+              transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
+            }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <div className="flex items-center justify-between gap-2 cursor-pointer">
-              <span className="font-display text-lg text-gray-400 whitespace-nowrap cursor-pointer">CA:</span>
-              <code className="font-mono font-bold text-xs md:text-sm truncate bg-gray-900 p-1.5 rounded flex-1 text-center cursor-pointer text-masked-secondary">
-                {CA}
-              </code>
-              <Button 
-                onClick={copyToClipboard}
-                size="sm"
-                className="bg-masked-primary hover:bg-red-600 text-white font-display px-4 h-8 border-2 border-transparent hover:border-white transition-all shrink-0 cursor-pointer"
-              >
-                {copied ? <Check size={16} /> : <Copy size={16} />}
-              </Button>
+            <div className="border-4 border-masked-secondary bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#FF0055] cursor-pointer w-full max-w-sm">
+              <img 
+                src={img2} 
+                alt="Mask 2"
+                className="w-full h-auto object-contain cursor-pointer"
+              />
             </div>
           </motion.div>
 
         </div>
+
+        {/* CA SECTION - MOVED BELOW IMAGES */}
+        <motion.div 
+          className="w-full max-w-lg bg-black text-white p-3 rounded-xl border-4 border-masked-secondary shadow-[6px_6px_0_0_#FF0055] cursor-pointer"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.05, y: -5 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="flex items-center justify-between gap-2 cursor-pointer">
+            <span className="font-display text-lg text-gray-400 whitespace-nowrap cursor-pointer">CA:</span>
+            <code className="font-mono font-bold text-xs md:text-sm truncate bg-gray-900 p-1.5 rounded flex-1 text-center cursor-pointer text-masked-secondary">
+              {CA}
+            </code>
+            <Button 
+              onClick={copyToClipboard}
+              size="sm"
+              className="bg-masked-primary hover:bg-red-600 text-white font-display px-4 h-8 border-2 border-transparent hover:border-white transition-all shrink-0 cursor-pointer"
+            >
+              {copied ? <Check size={16} /> : <Copy size={16} />}
+            </Button>
+          </div>
+        </motion.div>
 
         {/* LINKS SECTION - BELOW IMAGE */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
@@ -167,49 +193,6 @@ export default function Home() {
               Community X
             </div>
           </motion.a>
-        </div>
-
-        {/* SIDE IMAGES - MOVED BELOW */}
-        <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-24 mt-8 mb-12 cursor-pointer mx-auto">
-          
-          {/* LEFT IMAGE */}
-          <motion.div 
-            className="flex justify-center cursor-pointer"
-            animate={{
-              y: [0, -10, 0],
-              rotate: [0, 2, -2, 0],
-              transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-            whileHover={{ scale: 1.1, rotate: -5 }}
-          >
-            <div className="border-4 border-masked-primary bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#00FFFF] cursor-pointer w-full max-w-sm">
-              <img 
-                src={img1} 
-                alt="Mask 1"
-                className="w-full h-auto object-contain cursor-pointer"
-              />
-            </div>
-          </motion.div>
-
-          {/* RIGHT IMAGE */}
-          <motion.div 
-            className="flex justify-center cursor-pointer"
-            animate={{
-              y: [0, 10, 0],
-              rotate: [0, -2, 2, 0],
-              transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
-            }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-          >
-            <div className="border-4 border-masked-secondary bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#FF0055] cursor-pointer w-full max-w-sm">
-              <img 
-                src={img2} 
-                alt="Mask 2"
-                className="w-full h-auto object-contain cursor-pointer"
-              />
-            </div>
-          </motion.div>
-
         </div>
 
       </main>
