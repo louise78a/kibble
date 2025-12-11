@@ -211,6 +211,8 @@ export default function Home() {
               Community X
             </div>
           </motion.a>
+        </div>
+
         {/* GALLERY SECTION */}
         <div className="w-full max-w-6xl mt-12 mb-12">
           <motion.h2 
