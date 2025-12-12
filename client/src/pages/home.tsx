@@ -9,6 +9,7 @@ import mainCardImg from "@assets/img_1765547647125.png";
 import yesImg from "@assets/yes_1765547647125.png";
 import noImg from "@assets/no_1765547647123.png";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
+import bgVideo from "@assets/Enregistrement_2025-12-12_150110_1765548162185.mp4";
 
 const YES_CA = "CmmabyBWhZCctBcWjP6UknTfZrTBRBosgLmbAJHxpump";
 const NO_CA = "3VLNHCqr8AXyy886tBkCTcDZcyDTkwkZhBDVg6fZpump";
@@ -59,8 +60,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-pm-bg text-white overflow-hidden pb-0 flex flex-col cursor-pointer font-body">
+    <div className="min-h-screen bg-pm-bg text-white overflow-hidden pb-0 flex flex-col cursor-pointer font-body relative">
       
+      {/* BACKGROUND VIDEO */}
+      <video 
+        autoPlay 
+        loop 
+        muted 
+        playsInline 
+        className="fixed inset-0 w-full h-full object-cover opacity-40 z-0 pointer-events-none"
+      >
+        <source src={bgVideo} type="video/mp4" />
+      </video>
+
       {/* MARQUEE TOP */}
       <div className="relative z-10">
         <Marquee text="$YES or $NO • WILL THIS COIN RUN? • MAKE YOUR PREDICTION • " speed={30} className="bg-blue-600" />
@@ -74,6 +86,11 @@ export default function Home() {
             className="text-7xl md:text-9xl font-display text-white text-stroke cursor-pointer drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]"
             animate={{ scale: [1, 1.02, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
+            whileHover={{ 
+              scale: 1.1, 
+              rotate: [0, -2, 2, -2, 2, 0],
+              transition: { duration: 0.5 }
+            }}
           >
             <span className="text-yes-green">$YES</span> <span className="text-white">OR</span> <span className="text-no-red">$NO</span>
           </motion.h1>
@@ -119,12 +136,12 @@ export default function Home() {
             <div className="flex gap-3 w-full justify-center flex-wrap">
               <motion.a href="https://pump.fun/coin/CmmabyBWhZCctBcWjP6UknTfZrTBRBosgLmbAJHxpump" target="_blank" className="flex-1 min-w-[140px]" {...hoverEffect}>
                 <div className="bg-yes-green text-black font-display text-xl py-2 px-4 rounded-lg text-center border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_rgba(0,0,0,1)] transition-all flex items-center justify-center gap-2">
-                  💊 PUMP
+                  💊 Pump.fun
                 </div>
               </motion.a>
               <motion.a href="https://dexscreener.com/solana/badt56sb4cqzee7yrxkvntslhoq1aqxwaqvass7d528r" target="_blank" className="flex-1 min-w-[140px]" {...hoverEffect}>
                 <div className="bg-slate-800 text-white font-display text-xl py-2 px-4 rounded-lg text-center border-2 border-yes-green shadow-[4px_4px_0_0_#22c55e] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_#22c55e] transition-all flex items-center justify-center gap-2">
-                   <img src={dexscreenerLogo} className="w-5 h-5" /> DEX
+                   <img src={dexscreenerLogo} className="w-5 h-5" /> DexScreener
                 </div>
               </motion.a>
             </div>
@@ -153,12 +170,12 @@ export default function Home() {
             <div className="flex gap-3 w-full justify-center flex-wrap">
               <motion.a href="https://pump.fun/coin/3VLNHCqr8AXyy886tBkCTcDZcyDTkwkZhBDVg6fZpump" target="_blank" className="flex-1 min-w-[140px]" {...hoverEffect}>
                 <div className="bg-no-red text-black font-display text-xl py-2 px-4 rounded-lg text-center border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_rgba(0,0,0,1)] transition-all flex items-center justify-center gap-2">
-                  💊 PUMP
+                  💊 Pump.fun
                 </div>
               </motion.a>
               <motion.a href="https://dexscreener.com/solana/c2hlnauyettpjuphsqvkyragjnrq2m9yzw4wsfhuzmn" target="_blank" className="flex-1 min-w-[140px]" {...hoverEffect}>
                 <div className="bg-slate-800 text-white font-display text-xl py-2 px-4 rounded-lg text-center border-2 border-no-red shadow-[4px_4px_0_0_#ef4444] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_#ef4444] transition-all flex items-center justify-center gap-2">
-                   <img src={dexscreenerLogo} className="w-5 h-5" /> DEX
+                   <img src={dexscreenerLogo} className="w-5 h-5" /> DexScreener
                 </div>
               </motion.a>
             </div>
