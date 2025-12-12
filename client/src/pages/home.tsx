@@ -106,7 +106,7 @@ export default function Home() {
             className="text-2xl md:text-3xl text-gray-300 font-bold text-center max-w-2xl mx-auto leading-relaxed border-2 border-white/10 bg-black/30 p-4 rounded-xl backdrop-blur-sm"
             whileHover={{ scale: 1.02 }}
           >
-            "Phantom launched prediction markets. Normies are aping. We put two coins in one dev wallet. Will it run? Make your choice."
+            "We have launched 2 coins in one dev wallet. It's simple make your prediction."
           </motion.p>
         </div>
 
