@@ -5,11 +5,10 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-reze-purple: #4A3B52;    /* Reze hair color tone */
-  --color-reze-pink: #F8B4C4;      /* Soft pink */
-  --color-reze-dark: #1A1A1A;      /* Dark outfit */
-  --color-reze-white: #FFFFFF;     /* Shirt white */
-  --color-reze-blue: #89A7B1;      /* Eye colorish/accent */
+  --color-stop-blue: #3757E9;      /* Blue from Pepe's shirt/background */
+  --color-stop-gold: #D4AF37;      /* Gold from dress/doge */
+  --color-stop-dark: #1A1A1A;      /* Dark outfit */
+  --color-stop-white: #FFFFFF;     /* Shirt white */
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
   
@@ -39,11 +38,11 @@
   background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-reze-purple);
+  background: var(--color-stop-blue);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-reze-pink);
+  background: var(--color-stop-gold);
 }
 
 .marquee-container {
