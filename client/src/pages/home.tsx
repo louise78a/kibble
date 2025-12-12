@@ -116,13 +116,13 @@ export default function Home() {
         </div>
 
         {/* MAIN VIDEO PLAYER */}
-        <div className="w-full max-w-3xl flex flex-col items-center gap-6 cursor-pointer">
+        <div className="w-full flex flex-col items-center gap-6 cursor-pointer">
           
-          <div className="w-full relative group border-4 border-reze-purple bg-black shadow-[0_0_30px_rgba(74,59,82,0.5)] cursor-pointer">
+          <div className="relative group border-4 border-reze-purple bg-black shadow-[0_0_30px_rgba(74,59,82,0.5)] cursor-pointer inline-block">
             <video 
               ref={videoRef}
               src={rezeVideo}
-              className="w-full aspect-video object-cover cursor-pointer"
+              className="h-auto max-h-[75vh] max-w-full object-contain cursor-pointer block"
               onClick={togglePlay}
             />
             
