@@ -116,13 +116,13 @@ export default function Home() {
         </div>
 
         {/* MAIN VIDEO PLAYER */}
-        <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
+        <div className="w-full max-w-3xl flex flex-col items-center gap-6 cursor-pointer">
           
           <div className="w-full relative group border-4 border-reze-purple bg-black shadow-[0_0_30px_rgba(74,59,82,0.5)] cursor-pointer">
             <video 
               ref={videoRef}
               src={rezeVideo}
-              className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
+              className="w-full aspect-video object-cover cursor-pointer"
               onClick={togglePlay}
             />
             
@@ -242,11 +242,11 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: -5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#F8B4C4] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#F8B4C4] cursor-pointer w-80 h-80 flex items-center justify-center">
               <img 
                 src={rezeImg1} 
                 alt="Reze Cute"
-                className="w-full h-auto object-contain cursor-pointer"
+                className="w-full h-full object-cover cursor-pointer"
               />
             </div>
           </motion.div>
@@ -261,11 +261,11 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#4A3B52] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#4A3B52] cursor-pointer w-80 h-80 flex items-center justify-center">
               <img 
                 src={rezeImg2} 
                 alt="Reze Expressions"
-                className="w-full h-auto object-contain cursor-pointer"
+                className="w-full h-full object-cover cursor-pointer"
               />
             </div>
           </motion.div>
