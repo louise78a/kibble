@@ -5,11 +5,11 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-slop-red: #DA291C;    /* McDonalds Red */
-  --color-slop-yellow: #FFC72C; /* McDonalds Yellow */
-  --color-slop-orange: #FF8200; /* Burger King Orange */
-  --color-slop-brown: #542300;  /* Burger Meat */
-  --color-meme-yellow: #FFFF00;
+  --color-reze-purple: #4A3B52;    /* Reze hair color tone */
+  --color-reze-pink: #F8B4C4;      /* Soft pink */
+  --color-reze-dark: #1A1A1A;      /* Dark outfit */
+  --color-reze-white: #FFFFFF;     /* Shirt white */
+  --color-reze-blue: #89A7B1;      /* Eye colorish/accent */
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
   
@@ -39,11 +39,11 @@
   background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-slop-yellow);
+  background: var(--color-reze-purple);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-slop-red);
+  background: var(--color-reze-pink);
 }
 
 .marquee-container {

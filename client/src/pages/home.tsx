@@ -1,23 +1,23 @@
 import { motion } from "framer-motion";
-import { Copy, Check } from "lucide-react";
-import { useState } from "react";
+import { Copy, Check, Play, Pause, Maximize2, Volume2, VolumeX } from "lucide-react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
-import pepeImg from "@assets/pepe_1765405419577.png";
-import dogeImg from "@assets/doge_1765405419577.png";
-import mainWojakImg from "@assets/wojak_1765405419576.png";
-import bgImage from "@assets/grand_image_1765405419576.png";
+import rezeImg1 from "@assets/1_1765570458845.png";
+import rezeImg2 from "@assets/2_1765570458844.png";
+import rezeVideo from "@assets/vid_1765570458846.mp4";
+import bgImage from "@assets/background_1765570458845.png";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
-const CA = "3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump";
+const CA = "5RncjvjvLkVVHDCaKrPvvSDQofxJmZyhcJaRsmNopump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
-    <div className="flex overflow-hidden bg-slop-yellow py-2 border-y-4 border-black cursor-pointer">
+    <div className="flex overflow-hidden bg-reze-purple py-2 border-y-4 border-black cursor-pointer">
       <motion.div
-        className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-black font-bold uppercase"
+        className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-white font-bold uppercase"
         animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
         transition={{ repeat: Infinity, ease: "linear", duration: speed }}
         whileHover={{ scale: 1.02 }}
@@ -35,6 +35,9 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
 export default function Home() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(CA);
@@ -45,6 +48,32 @@ export default function Home() {
       className: "bg-white text-black border-2 border-black font-display text-xl",
     });
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const goFullscreen = () => {
+    if (videoRef.current) {
+      if (videoRef.current.requestFullscreen) {
+        videoRef.current.requestFullscreen();
+      }
+    }
   };
 
   const hoverEffect = {
@@ -63,7 +92,7 @@ export default function Home() {
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
-        <Marquee text="$GOYSLOP • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
+        <Marquee text="$REZE • BOMB DEVIL • EXPLOSIVE GAINS • BEST GIRL • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -71,39 +100,69 @@ export default function Home() {
         {/* HERO HEADER */}
         <div className="text-center space-y-4 cursor-pointer">
           <motion.h1 
-            className="text-7xl md:text-9xl font-display text-slop-red text-stroke cursor-pointer"
+            className="text-7xl md:text-9xl font-display text-reze-pink text-stroke cursor-pointer"
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
           >
-            $GOYSLOP
+            $REZE
           </motion.h1>
           <motion.p 
-            className="text-2xl md:text-4xl text-slop-yellow font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
+            className="text-2xl md:text-4xl text-reze-blue font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
             whileHover={{ scale: 1.1, rotate: 0 }}
           >
-            "I LOVE EATING HIGH FRUCTOSE CORN SYRUP AND SEED OILS!"
+            "TEACH ME HOW TO SWIM, DENJI-KUN!"
           </motion.p>
         </div>
 
-        {/* MAIN IMAGE - BIGGER */}
+        {/* MAIN VIDEO PLAYER */}
         <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
           
-          <motion.div 
-            className="relative group cursor-pointer inline-block"
-            whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0], transition: { duration: 0.4, repeat: Infinity, repeatType: "reverse" } }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <img 
-              src={mainWojakImg}
-              alt="Wojak enjoying Goyslop"
-              className="h-auto max-h-[70vh] object-contain cursor-pointer block"
+          <div className="w-full relative group border-4 border-reze-purple bg-black shadow-[0_0_30px_rgba(74,59,82,0.5)] cursor-pointer">
+            <video 
+              ref={videoRef}
+              src={rezeVideo}
+              className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
+              onClick={togglePlay}
             />
-          </motion.div>
+            
+            {/* Custom Controls Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+              <div className="flex gap-4">
+                <button onClick={togglePlay} className="text-white hover:text-reze-pink transition-colors cursor-pointer">
+                  {isPlaying ? <Pause size={32} /> : <Play size={32} />}
+                </button>
+                <button onClick={toggleMute} className="text-white hover:text-reze-pink transition-colors cursor-pointer">
+                  {isMuted ? <VolumeX size={32} /> : <Volume2 size={32} />}
+                </button>
+              </div>
+              <div className="font-display text-xl tracking-widest text-white animate-pulse cursor-pointer">
+                {isPlaying ? "NOW PLAYING: BOMB GIRL" : "PAUSED"}
+              </div>
+              <button onClick={goFullscreen} className="text-white hover:text-reze-pink transition-colors cursor-pointer">
+                <Maximize2 size={32} />
+              </button>
+            </div>
+            
+            {/* Play Button Center if paused */}
+            {!isPlaying && (
+              <div 
+                className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/40"
+                onClick={togglePlay}
+              >
+                <motion.div 
+                  whileHover={{ scale: 1.1 }}
+                  className="bg-black/50 p-6 rounded-full border-2 border-white text-white backdrop-blur-sm cursor-pointer"
+                >
+                  <Play size={48} fill="currentColor" />
+                </motion.div>
+              </div>
+            )}
+          </div>
 
           {/* CA SECTION */}
           <motion.div 
-            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#000000] cursor-pointer"
+            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#4A3B52] cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.05, y: -5 }}
@@ -117,7 +176,7 @@ export default function Home() {
               <Button 
                 onClick={copyToClipboard}
                 size="sm"
-                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-black transition-all shrink-0 cursor-pointer"
+                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-reze-purple transition-all shrink-0 cursor-pointer"
               >
                 {copied ? <Check size={16} /> : <Copy size={16} />}
               </Button>
@@ -129,7 +188,7 @@ export default function Home() {
         {/* LINKS SECTION - BELOW IMAGE */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
           <motion.a 
-            href="https://pump.fun/coin/3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump" 
+            href="https://pump.fun/coin/5RncjvjvLkVVHDCaKrPvvSDQofxJmZyhcJaRsmNopump" 
             target="_blank" 
             rel="noopener noreferrer"
             className="cursor-pointer"
@@ -142,7 +201,7 @@ export default function Home() {
           </motion.a>
 
           <motion.a 
-            href="https://dexscreener.com/solana/3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump" 
+            href="https://dexscreener.com/solana/8baek5ru3wdrx9lemsa3cs3xzkjapqnhcqkus9ibovsj" 
             target="_blank" 
             rel="noopener noreferrer"
             className="cursor-pointer"
@@ -155,7 +214,7 @@ export default function Home() {
           </motion.a>
 
           <motion.a 
-            href="https://x.com/i/communities/1998869649987965022" 
+            href="https://x.com/i/communities/1999554910652891609" 
             target="_blank" 
             rel="noopener noreferrer"
             className="cursor-pointer"
@@ -183,10 +242,10 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: -5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#FFC72C] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#F8B4C4] cursor-pointer w-full max-w-sm">
               <img 
-                src={pepeImg} 
-                alt="Pepe eating"
+                src={rezeImg1} 
+                alt="Reze Cute"
                 className="w-full h-auto object-contain cursor-pointer"
               />
             </div>
@@ -202,10 +261,10 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#DA291C] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#4A3B52] cursor-pointer w-full max-w-sm">
               <img 
-                src={dogeImg} 
-                alt="Doge eating"
+                src={rezeImg2} 
+                alt="Reze Expressions"
                 className="w-full h-auto object-contain cursor-pointer"
               />
             </div>
@@ -216,8 +275,8 @@ export default function Home() {
       </main>
 
       {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
-      <div className="mt-auto relative z-10 bg-slop-yellow cursor-pointer">
-        <Marquee text="$GOYSLOP • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
+      <div className="mt-auto relative z-10 bg-reze-purple cursor-pointer">
+        <Marquee text="$REZE • BOMB DEVIL • EXPLOSIVE GAINS • BEST GIRL • " speed={30} />
       </div>
 
     </div>
