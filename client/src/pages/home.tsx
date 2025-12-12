@@ -8,7 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import stopImg1 from "@assets/1_1765581664627.png";
 import stopImg2 from "@assets/2_1765581664625.png";
 import stopVideo from "@assets/video_1765581664626.mp4";
-import bgImage from "@assets/background_1765570458845.png"; // Reusing background for now or should remove if it clashes
+import backgroundVideo from "@assets/background_1765581906530.mp4";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
 const CA = "GEsgB84v2UdxubUswxmtmZRL9hACoEnpAxprHjrqpump";
@@ -84,12 +84,20 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col cursor-pointer">
       
-      {/* BACKGROUND IMAGE - Keeping vague or removing specific char refs if needed. 
-          Since no new BG was provided, I'll keep the previous one but maybe darken it more or remove if it has REZE text.
-          The user didn't ask to remove it, but it might look weird. I'll comment it out for now to be safe and use a solid color fallback or keep it if it's abstract enough.
-          Actually, let's just use a dark gradient to be safe.
-      */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-b from-gray-900 to-black pointer-events-none" />
+      {/* BACKGROUND VIDEO - Fixed */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="w-full h-full object-cover opacity-40"
+        >
+          <source src={backgroundVideo} type="video/mp4" />
+        </video>
+        {/* Overlay gradient to ensure text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
+      </div>
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
