@@ -5,11 +5,11 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-bojack-brown: #9E5828;
-  --color-bojack-blue: #234E84;
-  --color-meme-pink: #FF00FF;
-  --color-meme-green: #00FF00;
-  --color-meme-yellow: #FFFF00;
+  --color-reze-purple: #4A3B52;    /* Reze hair color tone */
+  --color-reze-pink: #F8B4C4;      /* Soft pink */
+  --color-reze-dark: #1A1A1A;      /* Dark outfit */
+  --color-reze-white: #FFFFFF;     /* Shirt white */
+  --color-reze-blue: #89A7B1;      /* Eye colorish/accent */
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
   
@@ -24,9 +24,6 @@
 @layer base {
   body {
     @apply font-body bg-black text-white overflow-x-hidden;
-    background-image: 
-      radial-gradient(circle at 50% 50%, rgba(35, 78, 132, 0.2) 0%, transparent 50%),
-      repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 2px, transparent 2px, transparent 4px);
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -42,11 +39,11 @@
   background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-meme-green);
+  background: var(--color-reze-purple);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-meme-pink);
+  background: var(--color-reze-pink);
 }
 
 .marquee-container {
