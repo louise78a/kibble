@@ -20,6 +20,7 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
         className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-black font-bold uppercase cursor-pointer"
         animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
         transition={{ repeat: Infinity, ease: "linear", duration: speed }}
+        whileHover={{ scale: 1.02 }}
       >
         {[...Array(10)].map((_, i) => (
           <span key={i} className="mx-8 cursor-pointer">
@@ -68,30 +69,39 @@ export default function Home() {
             className="text-7xl md:text-9xl font-display text-meme-pink text-stroke cursor-pointer"
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
+            whileHover={{ scale: 1.1, rotate: 5, color: "#FFFF00" }}
           >
             $Landwolf
           </motion.h1>
-          <p className="text-2xl md:text-4xl text-meme-green font-bold text-stroke-sm -rotate-2 cursor-pointer">
-            "Party animal of the Boys Club"
-          </p>
+          <motion.p 
+            className="text-2xl md:text-4xl text-meme-green font-bold text-stroke-sm -rotate-2 cursor-pointer"
+            whileHover={{ scale: 1.1, rotate: -5, color: "#FF00FF" }}
+          >
+            "THE LEGENDARY WOLF OF THE BOYS CLUB"
+          </motion.p>
         </div>
 
         {/* MAIN IMAGE - REPLACES VIDEO */}
         <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
           
-          <div className="w-full relative group border-4 border-meme-green bg-black shadow-[0_0_30px_rgba(0,255,0,0.3)] cursor-pointer">
+          {/* Main Image without borders and natural size */}
+          <motion.div 
+            className="w-full flex justify-center cursor-pointer"
+            whileHover={{ scale: 1.05, rotate: 1 }}
+          >
             <img 
               src={mainImage}
               alt="Landwolf Main"
-              className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
+              className="w-auto h-auto max-h-[70vh] max-w-full object-contain cursor-pointer drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)]"
             />
-          </div>
+          </motion.div>
 
           {/* CA SECTION */}
           <motion.div 
-            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#9E5828] transform transition-transform hover:-translate-y-1 cursor-pointer"
+            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#9E5828] transform transition-transform cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ scale: 1.05, rotate: -1, y: -5 }}
           >
             <div className="flex items-center justify-between gap-2 cursor-pointer">
               <span className="font-display text-lg text-gray-500 whitespace-nowrap cursor-pointer">CA:</span>
@@ -112,35 +122,41 @@ export default function Home() {
 
         {/* LINKS SECTION */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
-          <a 
+          <motion.a 
             href="https://pump.fun/coin/6C7PvptCzRMhcd7PdYX49cHsZfYTA5Ubo7wfMvcupump" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="transform hover:scale-105 transition-transform cursor-pointer"
+            className="cursor-pointer"
+            whileHover={{ scale: 1.1, rotate: 3 }}
+            whileTap={{ scale: 0.95 }}
           >
             <div className="flex items-center gap-2 bg-[#87E4A6] hover:bg-[#6edc93] text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
               <span className="text-xl">💊</span>
               Buy on Pump.fun
             </div>
-          </a>
+          </motion.a>
 
-          <a 
+          <motion.a 
             href="https://dexscreener.com/solana/ehkjnibmbtnappuwx4ksjhydqy6zc5byjealnpenpssy" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="transform hover:scale-105 transition-transform cursor-pointer"
+            className="cursor-pointer"
+            whileHover={{ scale: 1.1, rotate: -3 }}
+            whileTap={{ scale: 0.95 }}
           >
             <div className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
               <img src={dexscreenerLogo} alt="DexScreener" className="w-6 h-6 object-contain cursor-pointer" />
               DexScreener
             </div>
-          </a>
+          </motion.a>
 
-          <a 
+          <motion.a 
             href="https://x.com/i/communities/1999617510073860580" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="transform hover:scale-105 transition-transform cursor-pointer"
+            className="cursor-pointer"
+            whileHover={{ scale: 1.1, rotate: 3 }}
+            whileTap={{ scale: 0.95 }}
           >
             <div className="flex items-center gap-2 bg-black hover:bg-gray-900 text-white border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
               <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
@@ -148,11 +164,11 @@ export default function Home() {
               </svg>
               Community X
             </div>
-          </a>
+          </motion.a>
         </div>
 
-        {/* SIDE VIDEOS - MOVED BELOW */}
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8 mb-12 cursor-pointer">
+        {/* SIDE VIDEOS - MOVED BELOW - REDUCED SIZE */}
+        <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8 mb-12 cursor-pointer">
           
           {/* LEFT VIDEO */}
           <motion.div 
@@ -162,6 +178,7 @@ export default function Home() {
               rotate: [0, 2, -2, 0],
               transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
             }}
+            whileHover={{ scale: 1.1, rotate: -5 }}
           >
             <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_rgba(255,0,255,1)] cursor-pointer">
               <video 
@@ -183,6 +200,7 @@ export default function Home() {
               rotate: [0, -2, 2, 0],
               transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
             }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
           >
             <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_rgba(0,255,255,1)] cursor-pointer">
               <video 
