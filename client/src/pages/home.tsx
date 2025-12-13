@@ -20,8 +20,10 @@ import vid7 from "@assets/Enregistrement_2025-12-13_212454_1765658049284.mp4";
 import vid8 from "@assets/Enregistrement_2025-12-13_212418_1765658049285.mp4";
 import vid9 from "@assets/Enregistrement_2025-12-13_212322_1765658049285.mp4";
 import vid10 from "@assets/Enregistrement_2025-12-13_212247_1765658049285.mp4";
+import vid11 from "@assets/Enregistrement_2025-12-13_214650_1765658830805.mp4";
+import vid12 from "@assets/Enregistrement_2025-12-13_214608_1765658830806.mp4";
 
-const galleryVideos = [vid1, vid2, vid3, vid4, vid5, vid6, vid7, vid8, vid9, vid10];
+const galleryVideos = [vid1, vid2, vid3, vid4, vid5, vid6, vid7, vid8, vid9, vid10, vid11, vid12];
 
 const CA = "5RncjvjvLkVVHDCaKrPvvSDQofxJmZyhcJaRsmNopump";
 
