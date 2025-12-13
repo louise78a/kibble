@@ -45,41 +45,19 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
 };
 
 const VideoCard = ({ src, index }: { src: string; index: number }) => {
-  const vidRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const togglePlay = () => {
-    if (vidRef.current) {
-      if (isPlaying) {
-        vidRef.current.pause();
-      } else {
-        vidRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
   return (
     <motion.div 
       className="relative group border-4 border-white bg-black p-2 shadow-[8px_8px_0_0_#4A3B52] cursor-pointer"
       whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2, zIndex: 10 }}
     >
       <video 
-        ref={vidRef}
         src={src}
         className="w-full aspect-square object-cover cursor-pointer"
+        autoPlay
+        muted
         loop
         playsInline
-        onClick={togglePlay}
       />
-      {!isPlaying && (
-        <div 
-          className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer group-hover:bg-black/10 transition-colors"
-          onClick={togglePlay}
-        >
-          <Play size={32} className="text-white drop-shadow-md" fill="currentColor" />
-        </div>
-      )}
     </motion.div>
   );
 };
@@ -289,11 +267,8 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-display text-reze-pink text-stroke">
-              VIRAL DOMINATION 💣
-            </h2>
-            <p className="text-xl md:text-2xl text-white font-bold max-w-4xl mx-auto leading-relaxed">
-              "Generating over a <span className="text-reze-pink">100 Million views</span> through various platforms and Millions of likes, spawning <span className="text-reze-pink">THREE separate trending pages</span>, and officially becoming the <span className="text-reze-pink">most-liked anime tweet</span> of all time."
+            <p className="text-xl md:text-3xl text-white font-bold max-w-4xl mx-auto leading-relaxed italic">
+              "Just casually generating over <span className="text-reze-pink">100 Million views</span>, spawning <span className="text-reze-pink">THREE trending pages</span>, and becoming the <span className="text-reze-pink">most-liked anime tweet</span> of all time. No big deal. 💅"
             </p>
           </motion.div>
 
