@@ -1,28 +1,28 @@
 import { motion } from "framer-motion";
-import { Copy, Check, Play, Pause, Maximize2, Volume2, VolumeX } from "lucide-react";
-import { useState, useRef } from "react";
+import { Copy, Check } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
-import video1 from "@assets/1_1765379246117.mp4";
-import video2 from "@assets/2_1765379246117.mp4";
-import mainVideo from "@assets/Enregistrement_2025-12-10_160009_1765379246118.mp4";
-import bojackBg from "@assets/ghqHldB__1765379246118.jpg";
+import video1 from "@assets/1_1765584647864.mp4";
+import video2 from "@assets/2_1765584647864.mp4";
+import mainImage from "@assets/img_1765584647863.jpg";
+import landwolfBg from "@assets/background_1765584647863.png";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
-const CA = "7HXLm6Z9apvqimLksKPZPryve6goGDCo35GP9zFhpump";
+const CA = "6C7PvptCzRMhcd7PdYX49cHsZfYTA5Ubo7wfMvcupump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
-    <div className="flex overflow-hidden bg-meme-yellow py-2 border-y-4 border-black">
+    <div className="flex overflow-hidden bg-meme-yellow py-2 border-y-4 border-black cursor-pointer">
       <motion.div
-        className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-black font-bold uppercase"
+        className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-black font-bold uppercase cursor-pointer"
         animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
         transition={{ repeat: Infinity, ease: "linear", duration: speed }}
       >
         {[...Array(10)].map((_, i) => (
-          <span key={i} className="mx-8">
+          <span key={i} className="mx-8 cursor-pointer">
             {text}
           </span>
         ))}
@@ -34,9 +34,6 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
 export default function Home() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(CA);
@@ -49,44 +46,18 @@ export default function Home() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const goFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      }
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col">
+    <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col cursor-pointer">
       
       {/* BACKGROUND IMAGE - Fixed */}
       <div 
-        className="fixed inset-0 z-0 opacity-30 pointer-events-none bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bojackBg})` }}
+        className="fixed inset-0 z-0 opacity-40 pointer-events-none bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${landwolfBg})` }}
       />
 
       {/* MARQUEE TOP */}
-      <div className="relative z-10">
-        <Marquee text="$BOJACK • DEPRESSED HORSE • TO THE MOON • " speed={30} />
+      <div className="relative z-10 cursor-pointer">
+        <Marquee text="$Landwolf • THE BOYS CLUB • LEGENDARY • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -98,56 +69,22 @@ export default function Home() {
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            $BOJACK
+            $Landwolf
           </motion.h1>
           <p className="text-2xl md:text-4xl text-meme-green font-bold text-stroke-sm -rotate-2 cursor-pointer">
-            "Back in the 90s I was in a very famous TV show..."
+            "Party animal of the Boys Club"
           </p>
         </div>
 
-        {/* MAIN VIDEO PLAYER - BIGGER */}
+        {/* MAIN IMAGE - REPLACES VIDEO */}
         <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
           
           <div className="w-full relative group border-4 border-meme-green bg-black shadow-[0_0_30px_rgba(0,255,0,0.3)] cursor-pointer">
-            <video 
-              ref={videoRef}
-              src={mainVideo}
+            <img 
+              src={mainImage}
+              alt="Landwolf Main"
               className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
-              onClick={togglePlay}
             />
-            
-            {/* Custom Controls Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-              <div className="flex gap-4">
-                <button onClick={togglePlay} className="text-white hover:text-meme-green transition-colors cursor-pointer">
-                  {isPlaying ? <Pause size={32} /> : <Play size={32} />}
-                </button>
-                <button onClick={toggleMute} className="text-white hover:text-meme-green transition-colors cursor-pointer">
-                  {isMuted ? <VolumeX size={32} /> : <Volume2 size={32} />}
-                </button>
-              </div>
-              <div className="font-display text-xl tracking-widest text-white animate-pulse cursor-pointer">
-                {isPlaying ? "NOW PLAYING: DEPRESSION" : "PAUSED"}
-              </div>
-              <button onClick={goFullscreen} className="text-white hover:text-meme-green transition-colors cursor-pointer">
-                <Maximize2 size={32} />
-              </button>
-            </div>
-            
-            {/* Play Button Center if paused */}
-            {!isPlaying && (
-              <div 
-                className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/40"
-                onClick={togglePlay}
-              >
-                <motion.div 
-                  whileHover={{ scale: 1.1 }}
-                  className="bg-black/50 p-6 rounded-full border-2 border-white text-white backdrop-blur-sm cursor-pointer"
-                >
-                  <Play size={48} fill="currentColor" />
-                </motion.div>
-              </div>
-            )}
           </div>
 
           {/* CA SECTION */}
@@ -173,10 +110,10 @@ export default function Home() {
 
         </div>
 
-        {/* LINKS SECTION - BELOW VIDEOS */}
+        {/* LINKS SECTION */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
           <a 
-            href="https://pump.fun/coin/7HXLm6Z9apvqimLksKPZPryve6goGDCo35GP9zFhpump" 
+            href="https://pump.fun/coin/6C7PvptCzRMhcd7PdYX49cHsZfYTA5Ubo7wfMvcupump" 
             target="_blank" 
             rel="noopener noreferrer"
             className="transform hover:scale-105 transition-transform cursor-pointer"
@@ -188,7 +125,7 @@ export default function Home() {
           </a>
 
           <a 
-            href="https://dexscreener.com/solana/d5vwdbqyhwtmonnrezyjtlug9cgruhdfdfnofdvxdcb8" 
+            href="https://dexscreener.com/solana/ehkjnibmbtnappuwx4ksjhydqy6zc5byjealnpenpssy" 
             target="_blank" 
             rel="noopener noreferrer"
             className="transform hover:scale-105 transition-transform cursor-pointer"
@@ -200,7 +137,7 @@ export default function Home() {
           </a>
 
           <a 
-            href="https://x.com/i/communities/1998747105406456040" 
+            href="https://x.com/i/communities/1999617510073860580" 
             target="_blank" 
             rel="noopener noreferrer"
             className="transform hover:scale-105 transition-transform cursor-pointer"
@@ -265,7 +202,7 @@ export default function Home() {
 
       {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
       <div className="mt-auto relative z-10 bg-meme-yellow cursor-pointer">
-        <Marquee text="$BOJACK • DEPRESSED HORSE • TO THE MOON • " speed={30} />
+        <Marquee text="$Landwolf • THE BOYS CLUB • LEGENDARY • " speed={30} />
       </div>
 
     </div>
