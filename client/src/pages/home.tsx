@@ -5,22 +5,21 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
-import stopImg1 from "@assets/1_1765581664627.png";
-import stopImg2 from "@assets/2_1765581664625.png";
-import stopVideo from "@assets/video_1765581664626.mp4";
-import backgroundVideo from "@assets/background_1765581906530.mp4";
+import video1 from "@assets/1_1765379246117.mp4";
+import video2 from "@assets/2_1765379246117.mp4";
+import mainVideo from "@assets/Enregistrement_2025-12-10_160009_1765379246118.mp4";
+import bojackBg from "@assets/ghqHldB__1765379246118.jpg";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
-const CA = "GEsgB84v2UdxubUswxmtmZRL9hACoEnpAxprHjrqpump";
+const CA = "7HXLm6Z9apvqimLksKPZPryve6goGDCo35GP9zFhpump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
-    <div className="flex overflow-hidden bg-stop-blue py-2 border-y-4 border-black cursor-pointer">
+    <div className="flex overflow-hidden bg-meme-yellow py-2 border-y-4 border-black">
       <motion.div
-        className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-white font-bold uppercase"
+        className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-black font-bold uppercase"
         animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
         transition={{ repeat: Infinity, ease: "linear", duration: speed }}
-        whileHover={{ scale: 1.02 }}
       >
         {[...Array(10)].map((_, i) => (
           <span key={i} className="mx-8">
@@ -76,32 +75,18 @@ export default function Home() {
     }
   };
 
-  const hoverEffect = {
-    whileHover: { scale: 1.05, transition: { duration: 0.2 } },
-    whileTap: { scale: 0.95 }
-  };
-
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col cursor-pointer">
+    <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col">
       
-      {/* BACKGROUND VIDEO - Fixed */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
-          className="w-full h-full object-cover opacity-40"
-        >
-          <source src={backgroundVideo} type="video/mp4" />
-        </video>
-        {/* Overlay gradient to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60" />
-      </div>
+      {/* BACKGROUND IMAGE - Fixed */}
+      <div 
+        className="fixed inset-0 z-0 opacity-30 pointer-events-none bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bojackBg})` }}
+      />
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
-        <Marquee text="$STOP • ERIKA KIRK SAY STOP • MAKE MEMES GREAT AGAIN • " speed={30} />
+        <Marquee text="$BOJACK • DEPRESSED HORSE • TO THE MOON • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -109,46 +94,42 @@ export default function Home() {
         {/* HERO HEADER */}
         <div className="text-center space-y-4 cursor-pointer">
           <motion.h1 
-            className="text-7xl md:text-9xl font-display text-stop-gold text-stroke cursor-pointer"
+            className="text-7xl md:text-9xl font-display text-meme-pink text-stroke cursor-pointer"
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
           >
-            $STOP
+            $BOJACK
           </motion.h1>
-          <motion.p 
-            className="text-2xl md:text-4xl text-stop-blue font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
-            whileHover={{ scale: 1.1, rotate: 0 }}
-          >
-            "Erika Kirk say STOP"
-          </motion.p>
+          <p className="text-2xl md:text-4xl text-meme-green font-bold text-stroke-sm -rotate-2 cursor-pointer">
+            "Back in the 90s I was in a very famous TV show..."
+          </p>
         </div>
 
-        {/* MAIN VIDEO PLAYER */}
-        <div className="w-full flex flex-col items-center gap-6 cursor-pointer">
+        {/* MAIN VIDEO PLAYER - BIGGER */}
+        <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
           
-          <div className="relative group border-4 border-stop-blue bg-black shadow-[0_0_30px_rgba(55,87,233,0.5)] cursor-pointer inline-block">
+          <div className="w-full relative group border-4 border-meme-green bg-black shadow-[0_0_30px_rgba(0,255,0,0.3)] cursor-pointer">
             <video 
               ref={videoRef}
-              src={stopVideo}
-              className="h-auto max-h-[75vh] max-w-full object-contain cursor-pointer block"
+              src={mainVideo}
+              className="w-full h-auto max-h-[70vh] object-contain cursor-pointer"
               onClick={togglePlay}
             />
             
             {/* Custom Controls Overlay */}
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
               <div className="flex gap-4">
-                <button onClick={togglePlay} className="text-white hover:text-stop-gold transition-colors cursor-pointer">
+                <button onClick={togglePlay} className="text-white hover:text-meme-green transition-colors cursor-pointer">
                   {isPlaying ? <Pause size={32} /> : <Play size={32} />}
                 </button>
-                <button onClick={toggleMute} className="text-white hover:text-stop-gold transition-colors cursor-pointer">
+                <button onClick={toggleMute} className="text-white hover:text-meme-green transition-colors cursor-pointer">
                   {isMuted ? <VolumeX size={32} /> : <Volume2 size={32} />}
                 </button>
               </div>
               <div className="font-display text-xl tracking-widest text-white animate-pulse cursor-pointer">
-                {isPlaying ? "NOW PLAYING" : "PAUSED"}
+                {isPlaying ? "NOW PLAYING: DEPRESSION" : "PAUSED"}
               </div>
-              <button onClick={goFullscreen} className="text-white hover:text-stop-gold transition-colors cursor-pointer">
+              <button onClick={goFullscreen} className="text-white hover:text-meme-green transition-colors cursor-pointer">
                 <Maximize2 size={32} />
               </button>
             </div>
@@ -171,11 +152,9 @@ export default function Home() {
 
           {/* CA SECTION */}
           <motion.div 
-            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#3757E9] cursor-pointer"
+            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#9E5828] transform transition-transform hover:-translate-y-1 cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05, y: -5 }}
-            whileTap={{ scale: 0.95 }}
           >
             <div className="flex items-center justify-between gap-2 cursor-pointer">
               <span className="font-display text-lg text-gray-500 whitespace-nowrap cursor-pointer">CA:</span>
@@ -185,7 +164,7 @@ export default function Home() {
               <Button 
                 onClick={copyToClipboard}
                 size="sm"
-                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-stop-blue transition-all shrink-0 cursor-pointer"
+                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-meme-pink transition-all shrink-0 cursor-pointer"
               >
                 {copied ? <Check size={16} /> : <Copy size={16} />}
               </Button>
@@ -194,40 +173,37 @@ export default function Home() {
 
         </div>
 
-        {/* LINKS SECTION - BELOW IMAGE */}
+        {/* LINKS SECTION - BELOW VIDEOS */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
-          <motion.a 
-            href="https://pump.fun/coin/GEsgB84v2UdxubUswxmtmZRL9hACoEnpAxprHjrqpump" 
+          <a 
+            href="https://pump.fun/coin/7HXLm6Z9apvqimLksKPZPryve6goGDCo35GP9zFhpump" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="cursor-pointer"
-            {...hoverEffect}
+            className="transform hover:scale-105 transition-transform cursor-pointer"
           >
             <div className="flex items-center gap-2 bg-[#87E4A6] hover:bg-[#6edc93] text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
               <span className="text-xl">💊</span>
               Buy on Pump.fun
             </div>
-          </motion.a>
+          </a>
 
-          <motion.a 
-            href="https://dexscreener.com/solana/7hddmrhcfbbyykvffgzidtaiqwsrmv4mkjq6u2cycvo8" 
+          <a 
+            href="https://dexscreener.com/solana/d5vwdbqyhwtmonnrezyjtlug9cgruhdfdfnofdvxdcb8" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="cursor-pointer"
-            {...hoverEffect}
+            className="transform hover:scale-105 transition-transform cursor-pointer"
           >
             <div className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
               <img src={dexscreenerLogo} alt="DexScreener" className="w-6 h-6 object-contain cursor-pointer" />
               DexScreener
             </div>
-          </motion.a>
+          </a>
 
-          <motion.a 
-            href="https://x.com/i/communities/1999591958940184770" 
+          <a 
+            href="https://x.com/i/communities/1998747105406456040" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="cursor-pointer"
-            {...hoverEffect}
+            className="transform hover:scale-105 transition-transform cursor-pointer"
           >
             <div className="flex items-center gap-2 bg-black hover:bg-gray-900 text-white border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
               <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
@@ -235,46 +211,50 @@ export default function Home() {
               </svg>
               Community X
             </div>
-          </motion.a>
+          </a>
         </div>
 
-        {/* SIDE IMAGES - MOVED BELOW */}
-        <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-24 mt-8 mb-12 cursor-pointer mx-auto">
+        {/* SIDE VIDEOS - MOVED BELOW */}
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-8 mb-12 cursor-pointer">
           
-          {/* LEFT IMAGE */}
+          {/* LEFT VIDEO */}
           <motion.div 
-            className="flex justify-center cursor-pointer"
+            className="md:block cursor-pointer"
             animate={{
               y: [0, -10, 0],
               rotate: [0, 2, -2, 0],
               transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
             }}
-            whileHover={{ scale: 1.1, rotate: -5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#D4AF37] cursor-pointer w-80 h-80 flex items-center justify-center">
-              <img 
-                src={stopImg1} 
-                alt="Pepe Stop"
-                className="w-full h-full object-cover cursor-pointer"
+            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_rgba(255,0,255,1)] cursor-pointer">
+              <video 
+                src={video1} 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-auto object-contain cursor-pointer"
               />
             </div>
           </motion.div>
 
-          {/* RIGHT IMAGE */}
+          {/* RIGHT VIDEO */}
           <motion.div 
-            className="flex justify-center cursor-pointer"
+            className="md:block cursor-pointer"
             animate={{
               y: [0, 10, 0],
               rotate: [0, -2, 2, 0],
               transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
             }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#3757E9] cursor-pointer w-80 h-80 flex items-center justify-center">
-              <img 
-                src={stopImg2} 
-                alt="Doge Stop"
-                className="w-full h-full object-cover cursor-pointer"
+            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_rgba(0,255,255,1)] cursor-pointer">
+              <video 
+                src={video2} 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+                className="w-full h-auto object-contain cursor-pointer"
               />
             </div>
           </motion.div>
@@ -284,8 +264,8 @@ export default function Home() {
       </main>
 
       {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
-      <div className="mt-auto relative z-10 bg-stop-blue cursor-pointer">
-        <Marquee text="$STOP • ERIKA KIRK SAY STOP • MAKE MEMES GREAT AGAIN • " speed={30} />
+      <div className="mt-auto relative z-10 bg-meme-yellow cursor-pointer">
+        <Marquee text="$BOJACK • DEPRESSED HORSE • TO THE MOON • " speed={30} />
       </div>
 
     </div>
