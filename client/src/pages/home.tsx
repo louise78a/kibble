@@ -122,7 +122,7 @@ export default function Home() {
             <video 
               ref={videoRef}
               src={rezeVideo}
-              className="h-auto max-h-[75vh] max-w-full object-contain cursor-pointer block"
+              className="h-auto max-h-[75vh] w-auto max-w-full block cursor-pointer"
               onClick={togglePlay}
             />
             
