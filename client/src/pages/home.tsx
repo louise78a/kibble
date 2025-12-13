@@ -130,31 +130,31 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
               <div className="flex gap-4">
                 <button onClick={togglePlay} className="text-white hover:text-reze-pink transition-colors cursor-pointer">
-                  {isPlaying ? <Pause size={32} /> : <Play size={32} />}
+                  {isPlaying ? <Pause size={24} /> : <Play size={24} />}
                 </button>
                 <button onClick={toggleMute} className="text-white hover:text-reze-pink transition-colors cursor-pointer">
-                  {isMuted ? <VolumeX size={32} /> : <Volume2 size={32} />}
+                  {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
                 </button>
               </div>
-              <div className="font-display text-xl tracking-widest text-white animate-pulse cursor-pointer">
+              <div className="font-display text-lg tracking-widest text-white animate-pulse cursor-pointer">
                 {isPlaying ? "NOW PLAYING: BOMB GIRL" : "PAUSED"}
               </div>
               <button onClick={goFullscreen} className="text-white hover:text-reze-pink transition-colors cursor-pointer">
-                <Maximize2 size={32} />
+                <Maximize2 size={24} />
               </button>
             </div>
             
             {/* Play Button Center if paused */}
             {!isPlaying && (
               <div 
-                className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/40"
+                className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
                 onClick={togglePlay}
               >
                 <motion.div 
                   whileHover={{ scale: 1.1 }}
-                  className="bg-black/50 p-6 rounded-full border-2 border-white text-white backdrop-blur-sm cursor-pointer"
+                  className="bg-black/40 p-3 rounded-full text-white backdrop-blur-sm cursor-pointer"
                 >
-                  <Play size={48} fill="currentColor" />
+                  <Play size={24} fill="currentColor" />
                 </motion.div>
               </div>
             )}
