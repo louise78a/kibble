@@ -47,7 +47,7 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
 const VideoCard = ({ src, index }: { src: string; index: number }) => {
   return (
     <motion.div 
-      className="relative group border-4 border-white bg-black p-2 shadow-[8px_8px_0_0_#4A3B52] cursor-pointer"
+      className="relative group border-4 border-white shadow-[8px_8px_0_0_#4A3B52] cursor-pointer"
       whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2, zIndex: 10 }}
     >
       <video 
@@ -268,11 +268,11 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <p className="text-xl md:text-3xl text-white font-bold max-w-4xl mx-auto leading-relaxed italic">
-              "Just casually generating over <span className="text-reze-pink">100 Million views</span>, spawning <span className="text-reze-pink">THREE trending pages</span>, and becoming the <span className="text-reze-pink">most-liked anime tweet</span> of all time. No big deal. 💅"
+              "Just literally generating over <span className="text-reze-pink">100 Million views</span>, spawning <span className="text-reze-pink">THREE trending pages</span>, and becoming the <span className="text-reze-pink">most-liked anime tweet</span> of all time. No big deal. 💅"
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {galleryVideos.map((video, idx) => (
               <VideoCard key={idx} src={video} index={idx} />
             ))}
