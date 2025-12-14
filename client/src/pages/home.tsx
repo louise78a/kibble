@@ -1,21 +1,19 @@
 import { motion } from "framer-motion";
-import { Copy, Check, Play, Pause, Maximize2, Volume2, VolumeX } from "lucide-react";
-import { useState, useRef } from "react";
+import { Copy, Check } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
-import mikuImg1 from "@assets/1_1765698527521.jpg";
-import mikuImg2 from "@assets/2_1765698527522.jpg";
-import mikuVideo from "@assets/vid_1765698527521.mp4";
-import bgImage from "@assets/background_1765698527522.jpg";
+import hamieMain from "@assets/basic_1765734286168.jpeg";
+import bgImage from "@assets/background_1765698527522.jpg"; // Keeping previous bg for now as none provided, or maybe we just don't use it or blur it.
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
 const CA = "J6YgxqwPp3GFvGMNvxgQNRK8qSmtvvTK2wgfuUs1pump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
-    <div className="flex overflow-hidden bg-miku-teal py-2 border-y-4 border-black cursor-pointer">
+    <div className="flex overflow-hidden bg-hamie-orange py-2 border-y-4 border-black cursor-pointer">
       <motion.div
         className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-white font-bold uppercase"
         animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
@@ -35,9 +33,6 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
 export default function Home() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(CA);
@@ -50,32 +45,6 @@ export default function Home() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const goFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      }
-    }
-  };
-
   const hoverEffect = {
     whileHover: { scale: 1.05, transition: { duration: 0.2 } },
     whileTap: { scale: 0.95 }
@@ -84,15 +53,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col cursor-pointer">
       
-      {/* BACKGROUND IMAGE - Fixed */}
+      {/* BACKGROUND IMAGE - Fixed (Blurred Miku bg as fallback or maybe just remove it? The prompt didn't specify a new BG, just said "remplace la video du haut par cette image". I'll keep the bg image reference but maybe we should just use a solid color if it clashes. Let's keep it for now but maybe assume the user will provide one later. Or actually, looking at the image, it's a hamster in a room. I'll just use the old BG for now as I wasn't given a new one, but maybe I should remove it if it's too clashing. The user said "jtai donné l'img background à mettre en fond" in the PREVIOUS turn for Miku. This turn they did NOT provide a background. I will reuse the previous one or maybe just no background? Let's stick to the previous one as a placeholder or maybe just use a dark color. Actually, the hamster image is quite bright. I'll comment out the BG image to be safe and let the black shine through, or better, use the hamster image blurred as BG? No, that's complex. I'll just keep the previous BG logic but maybe the user intended to keep the Miku BG? Unlikely. I'll just remove the background image style to be safe and neutral, or better, use the previous one. I'll keep the code structure but maybe remove the bg image source if it's Miku specific. Wait, the user said "remplace $Miku par $Hamie-Chan". It implies a full rebrand. Miku BG would look weird. I'll use the main image as a blurred background! That's a good trick.) */}
       <div 
-        className="fixed inset-0 z-0 opacity-40 pointer-events-none bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bgImage})` }}
+        className="fixed inset-0 z-0 opacity-30 pointer-events-none bg-cover bg-center bg-no-repeat blur-xl"
+        style={{ backgroundImage: `url(${hamieMain})` }}
       />
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
-        <Marquee text="$Miku • WORLD IS MINE • VIRTUAL DIVA • HATSUNE MIKU • " speed={30} />
+        <Marquee text="$Hamie-Chan • KUNG FU HAMSTER • SMALL BUT MIGHTY • CUTE BUT DEADLY • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -100,69 +69,37 @@ export default function Home() {
         {/* HERO HEADER */}
         <div className="text-center space-y-4 cursor-pointer">
           <motion.h1 
-            className="text-7xl md:text-9xl font-display text-miku-teal text-stroke cursor-pointer"
+            className="text-7xl md:text-9xl font-display text-hamie-orange text-stroke cursor-pointer"
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
           >
-            $Miku
+            $Hamie-Chan
           </motion.h1>
           <motion.p 
-            className="text-2xl md:text-4xl text-miku-pink font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
+            className="text-2xl md:text-4xl text-hamie-cream font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
             whileHover={{ scale: 1.1, rotate: 0 }}
           >
-            "THE WORLD IS MINE!"
+            "SMALL BUT MIGHTY!"
           </motion.p>
         </div>
 
-        {/* MAIN VIDEO PLAYER */}
+        {/* MAIN IMAGE (REPLACES VIDEO) */}
         <div className="w-full flex flex-col items-center gap-6 cursor-pointer">
           
-          <div className="relative group border-4 border-miku-teal bg-black shadow-[0_0_30px_rgba(57,197,187,0.5)] cursor-pointer inline-block overflow-hidden">
-            <video 
-              ref={videoRef}
-              src={mikuVideo}
-              className="h-auto max-h-[75vh] w-auto max-w-full block cursor-pointer scale-[1.02]"
-              onClick={togglePlay}
+          <div className="relative group border-4 border-hamie-orange bg-black shadow-[0_0_30px_rgba(244,164,96,0.5)] cursor-pointer inline-block overflow-hidden rounded-lg">
+            <motion.img 
+              src={hamieMain}
+              alt="Hamie Chan Kung Fu"
+              className="h-auto max-h-[75vh] w-auto max-w-full block cursor-pointer object-contain"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             />
-            
-            {/* Custom Controls Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-              <div className="flex gap-4">
-                <button onClick={togglePlay} className="text-white hover:text-miku-teal transition-colors cursor-pointer">
-                  {isPlaying ? <Pause size={24} /> : <Play size={24} />}
-                </button>
-                <button onClick={toggleMute} className="text-white hover:text-miku-teal transition-colors cursor-pointer">
-                  {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
-                </button>
-              </div>
-              <div className="font-display text-lg tracking-widest text-white animate-pulse cursor-pointer">
-                {isPlaying ? "NOW PLAYING: MIKU" : "PAUSED"}
-              </div>
-              <button onClick={goFullscreen} className="text-white hover:text-miku-teal transition-colors cursor-pointer">
-                <Maximize2 size={24} />
-              </button>
-            </div>
-            
-            {/* Play Button Center if paused */}
-            {!isPlaying && (
-              <div 
-                className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
-                onClick={togglePlay}
-              >
-                <motion.div 
-                  whileHover={{ scale: 1.1 }}
-                  className="bg-black/40 p-3 rounded-full text-white backdrop-blur-sm cursor-pointer"
-                >
-                  <Play size={24} fill="currentColor" />
-                </motion.div>
-              </div>
-            )}
           </div>
 
           {/* CA SECTION */}
           <motion.div 
-            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#39C5BB] cursor-pointer"
+            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#F4A460] cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.05, y: -5 }}
@@ -176,7 +113,7 @@ export default function Home() {
               <Button 
                 onClick={copyToClipboard}
                 size="sm"
-                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-miku-teal transition-all shrink-0 cursor-pointer"
+                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-hamie-orange transition-all shrink-0 cursor-pointer"
               >
                 {copied ? <Check size={16} /> : <Copy size={16} />}
               </Button>
@@ -185,7 +122,7 @@ export default function Home() {
 
         </div>
 
-        {/* LINKS SECTION - BELOW IMAGE */}
+        {/* LINKS SECTION */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
           <motion.a 
             href="https://pump.fun/coin/J6YgxqwPp3GFvGMNvxgQNRK8qSmtvvTK2wgfuUs1pump" 
@@ -229,54 +166,13 @@ export default function Home() {
           </motion.a>
         </div>
 
-        {/* SIDE IMAGES - MOVED BELOW */}
-        <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-24 mt-8 mb-12 cursor-pointer mx-auto">
-          
-          {/* LEFT IMAGE */}
-          <motion.div 
-            className="flex justify-center cursor-pointer"
-            animate={{
-              y: [0, -10, 0],
-              rotate: [0, 2, -2, 0],
-              transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-            whileHover={{ scale: 1.1, rotate: -5 }}
-          >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#39C5BB] cursor-pointer w-80 h-80 flex items-center justify-center">
-              <img 
-                src={mikuImg1} 
-                alt="Miku Cute"
-                className="w-full h-full object-cover cursor-pointer"
-              />
-            </div>
-          </motion.div>
-
-          {/* RIGHT IMAGE */}
-          <motion.div 
-            className="flex justify-center cursor-pointer"
-            animate={{
-              y: [0, 10, 0],
-              rotate: [0, -2, 2, 0],
-              transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
-            }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-          >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#E5007F] cursor-pointer w-80 h-80 flex items-center justify-center">
-              <img 
-                src={mikuImg2} 
-                alt="Miku Digital"
-                className="w-full h-full object-cover cursor-pointer"
-              />
-            </div>
-          </motion.div>
-
-        </div>
+        {/* SIDE IMAGES REMOVED as requested */}
 
       </main>
 
-      {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
-      <div className="mt-auto relative z-10 bg-miku-teal cursor-pointer">
-        <Marquee text="$Miku • WORLD IS MINE • VIRTUAL DIVA • HATSUNE MIKU • " speed={30} />
+      {/* FOOTER MARQUEE */}
+      <div className="mt-auto relative z-10 bg-hamie-orange cursor-pointer">
+        <Marquee text="$Hamie-Chan • KUNG FU HAMSTER • SMALL BUT MIGHTY • CUTE BUT DEADLY • " speed={30} />
       </div>
 
     </div>
