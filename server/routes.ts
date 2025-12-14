@@ -26,7 +26,7 @@ export async function registerRoutes(
       const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style.`;
 
       const baseImagePath = path.join(process.cwd(), "client/src/assets/hamie_pfp_base.jpg");
-      const imageFile = await toFile(fs.createReadStream(baseImagePath), "hamie.jpg");
+      const imageFile = await toFile(fs.createReadStream(baseImagePath), "hamie.jpg", { type: "image/jpeg" });
 
       const response = await openai.images.edit({
         model: "gpt-image-1",
