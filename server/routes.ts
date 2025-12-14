@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { geminiClient, IMAGE_MODEL } from "../replit_integrations/image";
 import fs from "fs";
 import path from "path";
 
@@ -27,51 +28,34 @@ export async function registerRoutes(
       const imageBuffer = fs.readFileSync(baseImagePath);
       const base64Image = imageBuffer.toString("base64");
 
-      console.log("Calling Gemini 2.5 Flash Image API directly...");
+      console.log("Calling Gemini 2.5 Flash Image via Replit AI Integrations...");
 
-      const apiKey = process.env.AI_INTEGRATIONS_GEMINI_API_KEY;
-      
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-goog-api-key": apiKey!,
-          },
-          body: JSON.stringify({
-            contents: [
+      const response = await geminiClient.models.generateContent({
+        model: IMAGE_MODEL,
+        contents: [
+          {
+            role: "user",
+            parts: [
               {
-                parts: [
-                  {
-                    text: fullPrompt,
-                  },
-                  {
-                    inline_data: {
-                      mime_type: "image/jpeg",
-                      data: base64Image,
-                    },
-                  },
-                ],
+                inlineData: {
+                  mimeType: "image/jpeg",
+                  data: base64Image,
+                },
+              },
+              {
+                text: fullPrompt,
               },
             ],
-            generationConfig: {
-              responseModalities: ["IMAGE", "TEXT"],
-            },
-          }),
-        }
-      );
+          },
+        ],
+        config: {
+          responseModalities: ["IMAGE", "TEXT"],
+        },
+      });
 
-      const data = await response.json();
-      console.log("Gemini response status:", response.status);
-      console.log("Full response:", JSON.stringify(data, null, 2).substring(0, 1000));
+      console.log("Gemini response received");
 
-      if (!response.ok) {
-        console.error("API Error:", data);
-        return res.status(500).json({ error: data.error?.message || "API request failed" });
-      }
-
-      const parts = data.candidates?.[0]?.content?.parts;
+      const parts = response.candidates?.[0]?.content?.parts;
       if (!parts) {
         console.error("No parts in response");
         return res.status(500).json({ error: "Failed to generate image" });
@@ -87,7 +71,7 @@ export async function registerRoutes(
 
       const textPart = parts.find((part: any) => part.text);
       console.log("Response was text only:", textPart?.text?.substring(0, 500));
-      return res.status(500).json({ error: "Model did not generate an image. Response: " + (textPart?.text?.substring(0, 100) || "No text") });
+      return res.status(500).json({ error: "Model did not generate an image. Try a different prompt." });
       
     } catch (error: any) {
       console.error("Image generation error:", error);
