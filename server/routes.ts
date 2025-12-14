@@ -1,14 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
 import path from "path";
-
-const ai = new GoogleGenAI({
-  apiKey: process.env.AI_INTEGRATIONS_GEMINI_API_KEY!,
-  httpOptions: { baseUrl: process.env.AI_INTEGRATIONS_GEMINI_BASE_URL! },
-});
 
 export async function registerRoutes(
   httpServer: Server,
@@ -25,7 +19,7 @@ export async function registerRoutes(
 
       console.log("Starting image generation with prompt:", prompt);
 
-      const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style. Generate a new image based on this.`;
+      const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style. Generate an image.`;
 
       const baseImagePath = path.join(process.cwd(), "client/src/assets/hamie_pfp_base.jpg");
       console.log("Reading image from:", baseImagePath);
@@ -33,35 +27,51 @@ export async function registerRoutes(
       const imageBuffer = fs.readFileSync(baseImagePath);
       const base64Image = imageBuffer.toString("base64");
 
-      console.log("Calling Gemini 2.5 Flash API...");
+      console.log("Calling Gemini 2.5 Flash Image API directly...");
 
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: [
-          {
-            role: "user",
-            parts: [
+      const apiKey = process.env.AI_INTEGRATIONS_GEMINI_API_KEY;
+      
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey!,
+          },
+          body: JSON.stringify({
+            contents: [
               {
-                inlineData: {
-                  mimeType: "image/jpeg",
-                  data: base64Image,
-                },
-              },
-              {
-                text: fullPrompt,
+                parts: [
+                  {
+                    text: fullPrompt,
+                  },
+                  {
+                    inline_data: {
+                      mime_type: "image/jpeg",
+                      data: base64Image,
+                    },
+                  },
+                ],
               },
             ],
-          },
-        ],
-        config: {
-          responseModalities: ["IMAGE", "TEXT"],
-        },
-      });
+            generationConfig: {
+              responseModalities: ["IMAGE", "TEXT"],
+            },
+          }),
+        }
+      );
 
-      console.log("Gemini response received");
-      console.log("Full response:", JSON.stringify(response, null, 2).substring(0, 500));
+      const data = await response.json();
+      console.log("Gemini response status:", response.status);
+      console.log("Full response:", JSON.stringify(data, null, 2).substring(0, 1000));
 
-      const parts = response.candidates?.[0]?.content?.parts;
+      if (!response.ok) {
+        console.error("API Error:", data);
+        return res.status(500).json({ error: data.error?.message || "API request failed" });
+      }
+
+      const parts = data.candidates?.[0]?.content?.parts;
       if (!parts) {
         console.error("No parts in response");
         return res.status(500).json({ error: "Failed to generate image" });
