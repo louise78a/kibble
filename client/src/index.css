@@ -5,11 +5,11 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-reze-purple: #4A3B52;    /* Reze hair color tone */
-  --color-reze-pink: #F8B4C4;      /* Soft pink */
-  --color-reze-dark: #1A1A1A;      /* Dark outfit */
-  --color-reze-white: #FFFFFF;     /* Shirt white */
-  --color-reze-blue: #89A7B1;      /* Eye colorish/accent */
+  --color-miku-teal: #39C5BB;      /* Signature Miku Teal */
+  --color-miku-dark: #13152C;      /* Dark outfit/cyber background */
+  --color-miku-pink: #E5007F;      /* Accent pink */
+  --color-miku-white: #FFFFFF;
+  --color-miku-blue: #235574;      /* Darker blue accent */
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
   
@@ -39,11 +39,11 @@
   background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-reze-purple);
+  background: var(--color-miku-teal);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-reze-pink);
+  background: var(--color-miku-pink);
 }
 
 .marquee-container {
