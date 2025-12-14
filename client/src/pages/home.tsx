@@ -5,17 +5,31 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
-import mikuImg1 from "@assets/1_1765698527521.jpg";
-import mikuImg2 from "@assets/2_1765698527522.jpg";
-import mikuVideo from "@assets/vid_1765698527521.mp4";
-import bgImage from "@assets/background_1765698527522.jpg";
+import rezeVideo from "@assets/vid_1765570458846.mp4";
+import bgImage from "@assets/background_1765570458845.png";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
-const CA = "J6YgxqwPp3GFvGMNvxgQNRK8qSmtvvTK2wgfuUs1pump";
+// Gallery Videos
+import vid1 from "@assets/Enregistrement_2025-12-13_212121_1765658049281.mp4";
+import vid2 from "@assets/Enregistrement_2025-12-13_212000_1765658049282.mp4";
+import vid3 from "@assets/Enregistrement_2025-12-13_211602_1765658049282.mp4";
+import vid4 from "@assets/Enregistrement_2025-12-13_212657_1765658049283.mp4";
+import vid5 from "@assets/Enregistrement_2025-12-13_212610_1765658049283.mp4";
+import vid6 from "@assets/Enregistrement_2025-12-13_212535_1765658049284.mp4";
+import vid7 from "@assets/Enregistrement_2025-12-13_212454_1765658049284.mp4";
+import vid8 from "@assets/Enregistrement_2025-12-13_212418_1765658049285.mp4";
+import vid9 from "@assets/Enregistrement_2025-12-13_212322_1765658049285.mp4";
+import vid10 from "@assets/Enregistrement_2025-12-13_212247_1765658049285.mp4";
+import vid11 from "@assets/Enregistrement_2025-12-13_214650_1765658830805.mp4";
+import vid12 from "@assets/Enregistrement_2025-12-13_214608_1765658830806.mp4";
+
+const galleryVideos = [vid1, vid2, vid3, vid4, vid5, vid6, vid7, vid8, vid9, vid10, vid11, vid12];
+
+const CA = "5RncjvjvLkVVHDCaKrPvvSDQofxJmZyhcJaRsmNopump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
-    <div className="flex overflow-hidden bg-miku-teal py-2 border-y-4 border-black cursor-pointer">
+    <div className="flex overflow-hidden bg-reze-purple py-2 border-y-4 border-black cursor-pointer">
       <motion.div
         className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-white font-bold uppercase"
         animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
@@ -29,6 +43,24 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
         ))}
       </motion.div>
     </div>
+  );
+};
+
+const VideoCard = ({ src, index }: { src: string; index: number }) => {
+  return (
+    <motion.div 
+      className="relative group border-4 border-white shadow-[8px_8px_0_0_#4A3B52] cursor-pointer"
+      whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2, zIndex: 10 }}
+    >
+      <video 
+        src={src}
+        className="w-full aspect-square object-cover cursor-pointer"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
+    </motion.div>
   );
 };
 
@@ -92,7 +124,7 @@ export default function Home() {
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
-        <Marquee text="$Miku • WORLD IS MINE • VIRTUAL DIVA • HATSUNE MIKU • " speed={30} />
+        <Marquee text="$REZE • BOMB DEVIL • EXPLOSIVE GAINS • BEST GIRL • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -100,28 +132,28 @@ export default function Home() {
         {/* HERO HEADER */}
         <div className="text-center space-y-4 cursor-pointer">
           <motion.h1 
-            className="text-7xl md:text-9xl font-display text-miku-teal text-stroke cursor-pointer"
+            className="text-7xl md:text-9xl font-display text-reze-pink text-stroke cursor-pointer"
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
           >
-            $Miku
+            $REZE
           </motion.h1>
           <motion.p 
-            className="text-2xl md:text-4xl text-miku-pink font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
+            className="text-2xl md:text-4xl text-reze-blue font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
             whileHover={{ scale: 1.1, rotate: 0 }}
           >
-            "THE WORLD IS MINE!"
+            "TEACH ME HOW TO SWIM, DENJI-KUN!"
           </motion.p>
         </div>
 
         {/* MAIN VIDEO PLAYER */}
         <div className="w-full flex flex-col items-center gap-6 cursor-pointer">
           
-          <div className="relative group border-4 border-miku-teal bg-black shadow-[0_0_30px_rgba(57,197,187,0.5)] cursor-pointer inline-block overflow-hidden">
+          <div className="relative group border-4 border-reze-purple bg-black shadow-[0_0_30px_rgba(74,59,82,0.5)] cursor-pointer inline-block overflow-hidden">
             <video 
               ref={videoRef}
-              src={mikuVideo}
+              src={rezeVideo}
               className="h-auto max-h-[75vh] w-auto max-w-full block cursor-pointer scale-[1.02]"
               onClick={togglePlay}
             />
@@ -129,17 +161,17 @@ export default function Home() {
             {/* Custom Controls Overlay */}
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
               <div className="flex gap-4">
-                <button onClick={togglePlay} className="text-white hover:text-miku-teal transition-colors cursor-pointer">
+                <button onClick={togglePlay} className="text-white hover:text-reze-pink transition-colors cursor-pointer">
                   {isPlaying ? <Pause size={24} /> : <Play size={24} />}
                 </button>
-                <button onClick={toggleMute} className="text-white hover:text-miku-teal transition-colors cursor-pointer">
+                <button onClick={toggleMute} className="text-white hover:text-reze-pink transition-colors cursor-pointer">
                   {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
                 </button>
               </div>
               <div className="font-display text-lg tracking-widest text-white animate-pulse cursor-pointer">
-                {isPlaying ? "NOW PLAYING: MIKU" : "PAUSED"}
+                {isPlaying ? "NOW PLAYING: BOMB GIRL" : "PAUSED"}
               </div>
-              <button onClick={goFullscreen} className="text-white hover:text-miku-teal transition-colors cursor-pointer">
+              <button onClick={goFullscreen} className="text-white hover:text-reze-pink transition-colors cursor-pointer">
                 <Maximize2 size={24} />
               </button>
             </div>
@@ -162,7 +194,7 @@ export default function Home() {
 
           {/* CA SECTION */}
           <motion.div 
-            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#39C5BB] cursor-pointer"
+            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#4A3B52] cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.05, y: -5 }}
@@ -176,7 +208,7 @@ export default function Home() {
               <Button 
                 onClick={copyToClipboard}
                 size="sm"
-                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-miku-teal transition-all shrink-0 cursor-pointer"
+                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-reze-purple transition-all shrink-0 cursor-pointer"
               >
                 {copied ? <Check size={16} /> : <Copy size={16} />}
               </Button>
@@ -188,7 +220,7 @@ export default function Home() {
         {/* LINKS SECTION - BELOW IMAGE */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
           <motion.a 
-            href="https://pump.fun/coin/J6YgxqwPp3GFvGMNvxgQNRK8qSmtvvTK2wgfuUs1pump" 
+            href="https://pump.fun/coin/5RncjvjvLkVVHDCaKrPvvSDQofxJmZyhcJaRsmNopump" 
             target="_blank" 
             rel="noopener noreferrer"
             className="cursor-pointer"
@@ -201,7 +233,7 @@ export default function Home() {
           </motion.a>
 
           <motion.a 
-            href="https://dexscreener.com/solana/8g8gtvhh4purrrnykqjstwwxsmbzeyktz1wk9df7fjlf" 
+            href="https://dexscreener.com/solana/8baek5ru3wdrx9lemsa3cs3xzkjapqnhcqkus9ibovsj" 
             target="_blank" 
             rel="noopener noreferrer"
             className="cursor-pointer"
@@ -214,7 +246,7 @@ export default function Home() {
           </motion.a>
 
           <motion.a 
-            href="https://x.com/i/communities/2000096503356920134" 
+            href="https://x.com/i/communities/1999554910652891609" 
             target="_blank" 
             rel="noopener noreferrer"
             className="cursor-pointer"
@@ -229,54 +261,31 @@ export default function Home() {
           </motion.a>
         </div>
 
-        {/* SIDE IMAGES - MOVED BELOW */}
-        <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-24 mt-8 mb-12 cursor-pointer mx-auto">
-          
-          {/* LEFT IMAGE */}
+        {/* VIRAL CONTEXT & VIDEO GALLERY */}
+        <div className="w-full max-w-6xl mt-16 mb-24 cursor-pointer">
           <motion.div 
-            className="flex justify-center cursor-pointer"
-            animate={{
-              y: [0, -10, 0],
-              rotate: [0, 2, -2, 0],
-              transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-            whileHover={{ scale: 1.1, rotate: -5 }}
+            className="text-center mb-12 space-y-4"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#39C5BB] cursor-pointer w-80 h-80 flex items-center justify-center">
-              <img 
-                src={mikuImg1} 
-                alt="Miku Cute"
-                className="w-full h-full object-cover cursor-pointer"
-              />
-            </div>
+            <p className="text-xl md:text-3xl text-white font-bold max-w-4xl mx-auto leading-relaxed italic">
+              "Just literally generating over <span className="text-reze-pink">100 Million views</span>, spawning <span className="text-reze-pink">THREE trending pages</span>, and becoming the <span className="text-reze-pink">most-liked anime tweet</span> of all time. No big deal. 💅"
+            </p>
           </motion.div>
 
-          {/* RIGHT IMAGE */}
-          <motion.div 
-            className="flex justify-center cursor-pointer"
-            animate={{
-              y: [0, 10, 0],
-              rotate: [0, -2, 2, 0],
-              transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
-            }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
-          >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#E5007F] cursor-pointer w-80 h-80 flex items-center justify-center">
-              <img 
-                src={mikuImg2} 
-                alt="Miku Digital"
-                className="w-full h-full object-cover cursor-pointer"
-              />
-            </div>
-          </motion.div>
-
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {galleryVideos.map((video, idx) => (
+              <VideoCard key={idx} src={video} index={idx} />
+            ))}
+          </div>
         </div>
 
       </main>
 
       {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
-      <div className="mt-auto relative z-10 bg-miku-teal cursor-pointer">
-        <Marquee text="$Miku • WORLD IS MINE • VIRTUAL DIVA • HATSUNE MIKU • " speed={30} />
+      <div className="mt-auto relative z-10 bg-reze-purple cursor-pointer">
+        <Marquee text="$REZE • BOMB DEVIL • EXPLOSIVE GAINS • BEST GIRL • " speed={30} />
       </div>
 
     </div>
