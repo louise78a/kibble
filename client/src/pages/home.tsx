@@ -136,8 +136,9 @@ const PfpCreator = () => {
             className="w-full h-14 bg-hamie-orange hover:bg-hamie-brown text-black font-display text-2xl border-2 border-transparent hover:border-white transition-all transform hover:scale-[1.02] active:scale-[0.98]"
           >
             {isGenerating ? (
-              <span className="flex items-center gap-2">
-                GENERATING <span className="animate-pulse">...</span>
+              <span className="flex flex-col items-center gap-1">
+                <span className="flex items-center gap-2">GENERATING <span className="animate-pulse">...</span></span>
+                <span className="text-sm opacity-80">can take 1min</span>
               </span>
             ) : (
               <span className="flex items-center gap-2">
@@ -149,10 +150,16 @@ const PfpCreator = () => {
           {generatedImage && (
             <Button 
               variant="outline"
-              className="w-full border-2 border-white text-black hover:bg-white/20 font-display text-xl h-12"
-              onClick={() => toast({ title: "SAVED!", description: "Image saved to gallery (Mockup)", className: "font-display" })}
+              className="w-full border-2 border-white text-white hover:bg-white/20 font-display text-xl h-12"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = generatedImage;
+                link.download = 'hamie-pfp.png';
+                link.click();
+                toast({ title: "DOWNLOADING!", description: "Your PFP is being saved", className: "font-display" });
+              }}
             >
-              <Download className="w-5 h-5 mr-2" /> DOWNLOAD
+              <Download className="w-5 h-5 mr-2 text-white" /> DOWNLOAD
             </Button>
           )}
         </div>
