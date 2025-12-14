@@ -5,19 +5,18 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-miku-teal: #39C5BB;      /* Signature Miku Teal */
-  --color-miku-dark: #13152C;      /* Dark outfit/cyber background */
-  --color-miku-pink: #E5007F;      /* Accent pink */
-  --color-miku-white: #FFFFFF;
-  --color-miku-blue: #235574;      /* Darker blue accent */
+  --color-meowl-orange: #FF9900;    /* Cat/Owl eyes/beak orange */
+  --color-meowl-brown: #8B4513;     /* Fur brown */
+  --color-meowl-cyan: #00FFFF;      /* Glitch cyan */
+  --color-meowl-magenta: #FF00FF;   /* Glitch magenta */
+  --color-meowl-white: #FFFFFF;
 
-  --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
+  --animate-glitch: glitch 1s linear infinite;
   
-  @keyframes shake {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
+  @keyframes glitch {
+    2%, 64% { transform: translate(2px,0) skew(0deg); }
+    4%, 60% { transform: translate(-2px,0) skew(0deg); }
+    62% { transform: translate(0,0) skew(5deg); }
   }
 }
 
@@ -39,11 +38,11 @@
   background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-miku-teal);
+  background: var(--color-meowl-orange);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-miku-pink);
+  background: var(--color-meowl-cyan);
 }
 
 .marquee-container {

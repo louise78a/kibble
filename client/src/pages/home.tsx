@@ -1,21 +1,21 @@
 import { motion } from "framer-motion";
-import { Copy, Check, Play, Pause, Maximize2, Volume2, VolumeX } from "lucide-react";
-import { useState, useRef } from "react";
+import { Copy, Check } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
-import mikuImg1 from "@assets/1_1765698527521.jpg";
-import mikuImg2 from "@assets/2_1765698527522.jpg";
-import mikuVideo from "@assets/vid_1765698527521.mp4";
-import bgImage from "@assets/background_1765698527522.jpg";
+import meowlImgMain from "@assets/img_1765749808052.jpg";
+import meowlVid1 from "@assets/1_1765749808051.mp4";
+import meowlVid2 from "@assets/2_1765749808051.mp4";
+import bgImage from "@assets/img_1765749808052.jpg"; // Using main image as BG too, blurred
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
 const CA = "J6YgxqwPp3GFvGMNvxgQNRK8qSmtvvTK2wgfuUs1pump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
-    <div className="flex overflow-hidden bg-miku-teal py-2 border-y-4 border-black cursor-pointer">
+    <div className="flex overflow-hidden bg-meowl-orange py-2 border-y-4 border-black cursor-pointer">
       <motion.div
         className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-white font-bold uppercase"
         animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
@@ -35,9 +35,6 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
 export default function Home() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(CA);
@@ -50,49 +47,23 @@ export default function Home() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const goFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      }
-    }
-  };
-
   const hoverEffect = {
     whileHover: { scale: 1.05, transition: { duration: 0.2 } },
     whileTap: { scale: 0.95 }
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col cursor-pointer">
+    <div className="min-h-screen bg-meowl-brown/20 text-white overflow-hidden pb-0 flex flex-col cursor-pointer font-comic">
       
       {/* BACKGROUND IMAGE - Fixed */}
       <div 
-        className="fixed inset-0 z-0 opacity-40 pointer-events-none bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 z-0 opacity-20 pointer-events-none bg-cover bg-center bg-no-repeat blur-sm"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
-        <Marquee text="$Miku • WORLD IS MINE • VIRTUAL DIVA • HATSUNE MIKU • " speed={30} />
+        <Marquee text="$MEOWL • CAT + OWL • BRAINROT • RAREST FIND • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -100,69 +71,42 @@ export default function Home() {
         {/* HERO HEADER */}
         <div className="text-center space-y-4 cursor-pointer">
           <motion.h1 
-            className="text-7xl md:text-9xl font-display text-miku-teal text-stroke cursor-pointer"
-            animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
+            className="text-7xl md:text-9xl font-display text-meowl-orange text-stroke cursor-pointer drop-shadow-[4px_4px_0_rgba(0,255,255,0.5)]"
+            animate={{ 
+              scale: [1, 1.05, 1], 
+              rotate: [0, 2, -2, 0],
+              filter: ["hue-rotate(0deg)", "hue-rotate(90deg)", "hue-rotate(0deg)"]
+            }}
             transition={{ duration: 2, repeat: Infinity }}
             whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
           >
-            $Miku
+            $Meowl
           </motion.h1>
           <motion.p 
-            className="text-2xl md:text-4xl text-miku-pink font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
+            className="text-2xl md:text-4xl text-meowl-cyan font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
             whileHover={{ scale: 1.1, rotate: 0 }}
           >
-            "THE WORLD IS MINE!"
+            "THE RAREST BRAINROT IN STEAL A BRAINROT"
           </motion.p>
         </div>
 
-        {/* MAIN VIDEO PLAYER */}
+        {/* MAIN VISUAL - IMAGE REPLACING VIDEO */}
         <div className="w-full flex flex-col items-center gap-6 cursor-pointer">
           
-          <div className="relative group border-4 border-miku-teal bg-black shadow-[0_0_30px_rgba(57,197,187,0.5)] cursor-pointer inline-block overflow-hidden">
-            <video 
-              ref={videoRef}
-              src={mikuVideo}
-              className="h-auto max-h-[75vh] w-auto max-w-full block cursor-pointer scale-[1.02]"
-              onClick={togglePlay}
+          <div className="relative group border-4 border-meowl-orange bg-black shadow-[0_0_30px_rgba(255,153,0,0.5)] cursor-pointer inline-block overflow-hidden rotate-1 hover:rotate-0 transition-transform duration-300">
+            <img 
+              src={meowlImgMain}
+              alt="Meowl Main"
+              className="h-auto max-h-[60vh] w-auto max-w-full block cursor-pointer scale-[1.02]"
             />
             
-            {/* Custom Controls Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-              <div className="flex gap-4">
-                <button onClick={togglePlay} className="text-white hover:text-miku-teal transition-colors cursor-pointer">
-                  {isPlaying ? <Pause size={24} /> : <Play size={24} />}
-                </button>
-                <button onClick={toggleMute} className="text-white hover:text-miku-teal transition-colors cursor-pointer">
-                  {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
-                </button>
-              </div>
-              <div className="font-display text-lg tracking-widest text-white animate-pulse cursor-pointer">
-                {isPlaying ? "NOW PLAYING: MIKU" : "PAUSED"}
-              </div>
-              <button onClick={goFullscreen} className="text-white hover:text-miku-teal transition-colors cursor-pointer">
-                <Maximize2 size={24} />
-              </button>
-            </div>
-            
-            {/* Play Button Center if paused */}
-            {!isPlaying && (
-              <div 
-                className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black/20"
-                onClick={togglePlay}
-              >
-                <motion.div 
-                  whileHover={{ scale: 1.1 }}
-                  className="bg-black/40 p-3 rounded-full text-white backdrop-blur-sm cursor-pointer"
-                >
-                  <Play size={24} fill="currentColor" />
-                </motion.div>
-              </div>
-            )}
+            {/* Glitch Overlay Effect on Hover */}
+            <div className="absolute inset-0 bg-meowl-cyan/10 opacity-0 group-hover:opacity-100 mix-blend-overlay transition-opacity duration-100 pointer-events-none" />
           </div>
 
           {/* CA SECTION */}
           <motion.div 
-            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#39C5BB] cursor-pointer"
+            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#FF9900] cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.05, y: -5 }}
@@ -176,7 +120,7 @@ export default function Home() {
               <Button 
                 onClick={copyToClipboard}
                 size="sm"
-                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-miku-teal transition-all shrink-0 cursor-pointer"
+                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-meowl-orange transition-all shrink-0 cursor-pointer"
               >
                 {copied ? <Check size={16} /> : <Copy size={16} />}
               </Button>
@@ -229,10 +173,24 @@ export default function Home() {
           </motion.a>
         </div>
 
-        {/* SIDE IMAGES - MOVED BELOW */}
+        {/* LORE TEXT */}
+        <motion.div 
+          className="max-w-3xl text-center bg-black/50 p-6 rounded-xl border-2 border-meowl-orange backdrop-blur-md"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+        >
+          <p className="text-xl md:text-2xl font-bold text-white mb-2 font-display tracking-wide">
+            THE LEGEND OF MEOWL
+          </p>
+          <p className="text-lg text-gray-200">
+            OG Meowl is one of the rarest brainrot's in Steal a Brainrot. Which so happens to be a cat and a owl mixed. And it is based off a real meme, only non ai generated brainrot.
+          </p>
+        </motion.div>
+
+        {/* SIDE VIDEOS - REPLACING IMAGES */}
         <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-24 mt-8 mb-12 cursor-pointer mx-auto">
           
-          {/* LEFT IMAGE */}
+          {/* LEFT VIDEO */}
           <motion.div 
             className="flex justify-center cursor-pointer"
             animate={{
@@ -242,16 +200,19 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: -5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#39C5BB] cursor-pointer w-80 h-80 flex items-center justify-center">
-              <img 
-                src={mikuImg1} 
-                alt="Miku Cute"
+            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#00FFFF] cursor-pointer w-80 h-80 flex items-center justify-center overflow-hidden">
+              <video 
+                src={meowlVid1} 
                 className="w-full h-full object-cover cursor-pointer"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
             </div>
           </motion.div>
 
-          {/* RIGHT IMAGE */}
+          {/* RIGHT VIDEO */}
           <motion.div 
             className="flex justify-center cursor-pointer"
             animate={{
@@ -261,11 +222,14 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#E5007F] cursor-pointer w-80 h-80 flex items-center justify-center">
-              <img 
-                src={mikuImg2} 
-                alt="Miku Digital"
+            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#FF00FF] cursor-pointer w-80 h-80 flex items-center justify-center overflow-hidden">
+              <video 
+                src={meowlVid2} 
                 className="w-full h-full object-cover cursor-pointer"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
             </div>
           </motion.div>
@@ -275,8 +239,8 @@ export default function Home() {
       </main>
 
       {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
-      <div className="mt-auto relative z-10 bg-miku-teal cursor-pointer">
-        <Marquee text="$Miku • WORLD IS MINE • VIRTUAL DIVA • HATSUNE MIKU • " speed={30} />
+      <div className="mt-auto relative z-10 bg-meowl-orange cursor-pointer">
+        <Marquee text="$MEOWL • CAT + OWL • BRAINROT • RAREST FIND • " speed={30} />
       </div>
 
     </div>
