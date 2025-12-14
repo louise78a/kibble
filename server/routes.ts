@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import OpenAI from "openai";
+import OpenAI, { toFile } from "openai";
 import fs from "fs";
 import path from "path";
 
@@ -26,12 +26,11 @@ export async function registerRoutes(
       const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style.`;
 
       const baseImagePath = path.join(process.cwd(), "client/src/assets/hamie_pfp_base.jpg");
-      const imageBuffer = fs.readFileSync(baseImagePath);
-      const base64Image = imageBuffer.toString("base64");
+      const imageFile = await toFile(fs.createReadStream(baseImagePath), "hamie.jpg");
 
       const response = await openai.images.edit({
         model: "gpt-image-1",
-        image: base64Image as any,
+        image: imageFile,
         prompt: fullPrompt,
         size: "1024x1024",
       });
