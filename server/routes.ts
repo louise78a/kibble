@@ -23,28 +23,26 @@ export async function registerRoutes(
         return res.status(400).json({ error: "Prompt is required" });
       }
 
-      // Build the full prompt following the template
-      const fullPrompt = `Edit this image of an hamster kung fu photo. Keep the original image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style.`;
+      const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style.`;
 
-      // Read the base image
       const baseImagePath = path.join(process.cwd(), "client/src/assets/hamie_pfp_base.jpg");
       const imageBuffer = fs.readFileSync(baseImagePath);
-      const imageFile = new File([imageBuffer], "hamie.jpg", { type: "image/jpeg" });
+      const base64Image = imageBuffer.toString("base64");
 
-      // Generate edited image using OpenAI
       const response = await openai.images.edit({
-        image: imageFile,
+        model: "gpt-image-1",
+        image: base64Image as any,
         prompt: fullPrompt,
-        n: 1,
         size: "1024x1024",
       });
 
-      const imageUrl = response.data[0]?.url;
+      const b64Json = response.data?.[0]?.b64_json;
       
-      if (!imageUrl) {
+      if (!b64Json) {
         return res.status(500).json({ error: "Failed to generate image" });
       }
 
+      const imageUrl = `data:image/png;base64,${b64Json}`;
       res.json({ imageUrl });
     } catch (error: any) {
       console.error("Image generation error:", error);
