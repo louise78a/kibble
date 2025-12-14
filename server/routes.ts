@@ -1,13 +1,13 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { GoogleGenAI } from "@google/genai";
+import OpenAI from "openai";
 import fs from "fs";
 import path from "path";
 
-const genAI = new GoogleGenAI({
-  apiKey: process.env.AI_INTEGRATIONS_GEMINI_API_KEY!,
-  httpOptions: { baseUrl: process.env.AI_INTEGRATIONS_GEMINI_BASE_URL },
+const gemini = new OpenAI({
+  apiKey: process.env.AI_INTEGRATIONS_GEMINI_API_KEY,
+  baseURL: process.env.AI_INTEGRATIONS_GEMINI_BASE_URL,
 });
 
 export async function registerRoutes(
@@ -33,44 +33,46 @@ export async function registerRoutes(
       const imageBuffer = fs.readFileSync(baseImagePath);
       const base64Image = imageBuffer.toString("base64");
 
-      console.log("Calling Gemini API...");
+      console.log("Calling Gemini API via OpenAI SDK...");
 
-      const response = await genAI.models.generateContent({
+      const response = await gemini.chat.completions.create({
         model: "gemini-2.5-flash-image",
-        contents: [
+        messages: [
           {
             role: "user",
-            parts: [
+            content: [
               {
-                inlineData: {
-                  mimeType: "image/jpeg",
-                  data: base64Image,
+                type: "image_url",
+                image_url: {
+                  url: `data:image/jpeg;base64,${base64Image}`,
                 },
               },
               {
+                type: "text",
                 text: fullPrompt,
               },
             ],
           },
         ],
-        config: {
-          responseModalities: ["image", "text"],
-        },
       });
 
       console.log("Gemini response received");
 
-      const parts = response.candidates?.[0]?.content?.parts;
-      const imagePart = parts?.find((part: any) => part.inlineData);
+      const content = response.choices[0]?.message?.content;
       
-      if (!imagePart?.inlineData?.data) {
-        console.error("No image in response:", response);
+      if (!content) {
+        console.error("No content in response:", response);
         return res.status(500).json({ error: "Failed to generate image" });
       }
 
-      console.log("Image generated successfully, returning base64 data");
-      const imageUrl = `data:${imagePart.inlineData.mimeType};base64,${imagePart.inlineData.data}`;
-      res.json({ imageUrl });
+      const imageMatch = content.match(/data:image\/[^;]+;base64,[A-Za-z0-9+/=]+/);
+      if (imageMatch) {
+        console.log("Image generated successfully");
+        res.json({ imageUrl: imageMatch[0] });
+      } else {
+        console.log("Response was text, not image:", content.substring(0, 200));
+        return res.status(500).json({ error: "Model did not generate an image" });
+      }
     } catch (error: any) {
       console.error("Image generation error:", error);
       res.status(500).json({ error: error.message || "Failed to generate image" });
