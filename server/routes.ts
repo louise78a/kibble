@@ -25,7 +25,7 @@ export async function registerRoutes(
 
       console.log("Starting image generation with prompt:", prompt);
 
-      const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style.`;
+      const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style. Generate a new image based on this.`;
 
       const baseImagePath = path.join(process.cwd(), "client/src/assets/hamie_pfp_base.jpg");
       console.log("Reading image from:", baseImagePath);
@@ -33,10 +33,10 @@ export async function registerRoutes(
       const imageBuffer = fs.readFileSync(baseImagePath);
       const base64Image = imageBuffer.toString("base64");
 
-      console.log("Calling Gemini 2.5 Flash Image API...");
+      console.log("Calling Gemini 2.5 Flash API...");
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash-preview-05-20",
+        model: "gemini-2.5-flash",
         contents: [
           {
             role: "user",
@@ -59,6 +59,7 @@ export async function registerRoutes(
       });
 
       console.log("Gemini response received");
+      console.log("Full response:", JSON.stringify(response, null, 2).substring(0, 500));
 
       const parts = response.candidates?.[0]?.content?.parts;
       if (!parts) {
@@ -75,8 +76,8 @@ export async function registerRoutes(
       }
 
       const textPart = parts.find((part: any) => part.text);
-      console.log("Response was text only:", textPart?.text?.substring(0, 200));
-      return res.status(500).json({ error: "Model did not generate an image. Try a different prompt." });
+      console.log("Response was text only:", textPart?.text?.substring(0, 500));
+      return res.status(500).json({ error: "Model did not generate an image. Response: " + (textPart?.text?.substring(0, 100) || "No text") });
       
     } catch (error: any) {
       console.error("Image generation error:", error);
