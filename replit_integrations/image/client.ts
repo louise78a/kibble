@@ -5,4 +5,4 @@ export const geminiClient = new GoogleGenAI({
   httpOptions: { baseUrl: process.env.AI_INTEGRATIONS_GEMINI_BASE_URL! },
 });
 
-export const IMAGE_MODEL = "gemini-2.5-flash-image";
+export const IMAGE_MODEL = "gemini-2.5-flash";
