@@ -11,7 +11,7 @@ import meowlVid2 from "@assets/2_1765749808051.mp4";
 import bgImage from "@assets/img_1765749808052.jpg"; // Using main image as BG too, blurred
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
-const CA = "J6YgxqwPp3GFvGMNvxgQNRK8qSmtvvTK2wgfuUs1pump";
+const CA = "BB7sdWwmEfXuFviMKKnCzeFDyEVvX6R55uzpxovfpump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
