@@ -1,9 +1,17 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { geminiClient, IMAGE_MODEL } from "../replit_integrations/image";
+import { GoogleGenAI, Modality } from "@google/genai";
 import fs from "fs";
 import path from "path";
+
+const ai = new GoogleGenAI({
+  apiKey: process.env.AI_INTEGRATIONS_GEMINI_API_KEY!,
+  httpOptions: {
+    apiVersion: "",
+    baseUrl: process.env.AI_INTEGRATIONS_GEMINI_BASE_URL!,
+  },
+});
 
 export async function registerRoutes(
   httpServer: Server,
@@ -20,7 +28,7 @@ export async function registerRoutes(
 
       console.log("Starting image generation with prompt:", prompt);
 
-      const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style. Generate an image.`;
+      const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style.`;
 
       const baseImagePath = path.join(process.cwd(), "client/src/assets/hamie_pfp_base.jpg");
       console.log("Reading image from:", baseImagePath);
@@ -28,50 +36,37 @@ export async function registerRoutes(
       const imageBuffer = fs.readFileSync(baseImagePath);
       const base64Image = imageBuffer.toString("base64");
 
-      console.log("Calling Gemini 2.5 Flash Image via Replit AI Integrations...");
+      console.log("Calling Gemini 2.5 Flash Image...");
 
-      const response = await geminiClient.models.generateContent({
-        model: IMAGE_MODEL,
-        contents: [
-          {
-            role: "user",
-            parts: [
-              {
-                inlineData: {
-                  mimeType: "image/jpeg",
-                  data: base64Image,
-                },
-              },
-              {
-                text: fullPrompt,
-              },
-            ],
-          },
-        ],
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash-image",
+        contents: [{ 
+          role: "user", 
+          parts: [
+            { text: fullPrompt },
+            { inlineData: { mimeType: "image/jpeg", data: base64Image } }
+          ] 
+        }],
         config: {
-          responseModalities: ["IMAGE", "TEXT"],
+          responseModalities: [Modality.TEXT, Modality.IMAGE],
         },
       });
 
       console.log("Gemini response received");
 
-      const parts = response.candidates?.[0]?.content?.parts;
-      if (!parts) {
-        console.error("No parts in response");
-        return res.status(500).json({ error: "Failed to generate image" });
-      }
-
-      const imagePart = parts.find((part: any) => part.inlineData);
+      const candidate = response.candidates?.[0];
+      const imagePart = candidate?.content?.parts?.find((part: any) => part.inlineData);
       
-      if (imagePart?.inlineData?.data) {
-        console.log("Image generated successfully");
-        const imageUrl = `data:${imagePart.inlineData.mimeType || 'image/png'};base64,${imagePart.inlineData.data}`;
-        return res.json({ imageUrl });
+      if (!imagePart?.inlineData?.data) {
+        console.error("No image data in response");
+        return res.status(500).json({ error: "No image data in response" });
       }
 
-      const textPart = parts.find((part: any) => part.text);
-      console.log("Response was text only:", textPart?.text?.substring(0, 500));
-      return res.status(500).json({ error: "Model did not generate an image. Try a different prompt." });
+      const mimeType = imagePart.inlineData.mimeType || "image/png";
+      const imageData = `data:${mimeType};base64,${imagePart.inlineData.data}`;
+      
+      console.log("Image generated successfully");
+      return res.json({ imageUrl: imageData });
       
     } catch (error: any) {
       console.error("Image generation error:", error);
