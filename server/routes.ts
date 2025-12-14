@@ -23,10 +23,15 @@ export async function registerRoutes(
         return res.status(400).json({ error: "Prompt is required" });
       }
 
+      console.log("Starting image generation with prompt:", prompt);
+
       const fullPrompt = `Edit this image of a kung fu hamster photo. Keep the original hamster image exactly the same but add: ${prompt}. Do NOT change the hamster's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style.`;
 
       const baseImagePath = path.join(process.cwd(), "client/src/assets/hamie_pfp_base.jpg");
+      console.log("Reading image from:", baseImagePath);
+      
       const imageFile = await toFile(fs.createReadStream(baseImagePath), "hamie.jpg", { type: "image/jpeg" });
+      console.log("Image file created, calling OpenAI API...");
 
       const response = await openai.images.edit({
         model: "gpt-image-1",
@@ -35,12 +40,16 @@ export async function registerRoutes(
         size: "1024x1024",
       });
 
+      console.log("OpenAI response received");
+
       const b64Json = response.data?.[0]?.b64_json;
       
       if (!b64Json) {
+        console.error("No b64_json in response:", response);
         return res.status(500).json({ error: "Failed to generate image" });
       }
 
+      console.log("Image generated successfully, returning base64 data");
       const imageUrl = `data:image/png;base64,${b64Json}`;
       res.json({ imageUrl });
     } catch (error: any) {
