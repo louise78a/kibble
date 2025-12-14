@@ -119,9 +119,6 @@ const PfpCreator = () => {
               className="bg-white/10 border-2 border-hamie-orange text-white font-body text-lg h-12 placeholder:text-gray-400"
               onKeyDown={(e) => e.key === "Enter" && handleGenerate()}
             />
-            <p className="text-xs text-gray-400 font-mono">
-              *Only adds items, keeps Hamie's face unchanged.
-            </p>
           </div>
 
           <Button 
@@ -209,18 +206,9 @@ export default function Home() {
           </motion.p>
         </div>
 
-        {/* MAIN IMAGE (REPLACES VIDEO) */}
+        {/* PFP CREATOR SECTION (Replaces Main Image) */}
         <div className="w-full flex flex-col items-center gap-6 cursor-pointer">
-          
-          <div className="relative group border-4 border-hamie-orange bg-black shadow-[0_0_30px_rgba(244,164,96,0.5)] cursor-pointer inline-block overflow-hidden rounded-lg">
-            <motion.img 
-              src={hamieMain}
-              alt="Hamie Chan Kung Fu"
-              className="h-auto max-h-[75vh] w-auto max-w-full block cursor-pointer object-contain"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            />
-          </div>
+          <PfpCreator />
 
           {/* CA SECTION */}
           <motion.div 
@@ -246,9 +234,6 @@ export default function Home() {
           </motion.div>
 
         </div>
-
-        {/* PFP CREATOR SECTION */}
-        <PfpCreator />
 
         {/* LINKS SECTION */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
