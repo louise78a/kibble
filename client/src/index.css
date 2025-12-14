@@ -5,10 +5,11 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-hamie-orange: #F4A460;   /* SandyBrown for Hamster Fur */
-  --color-hamie-brown: #8B4513;    /* SaddleBrown for Accents */
-  --color-hamie-cream: #FFF8DC;    /* Cornsilk for Light Areas */
-  --color-hamie-dark: #2D1B0E;     /* Dark Brown/Black for Text */
+  --color-miku-teal: #39C5BB;      /* Signature Miku Teal */
+  --color-miku-dark: #13152C;      /* Dark outfit/cyber background */
+  --color-miku-pink: #E5007F;      /* Accent pink */
+  --color-miku-white: #FFFFFF;
+  --color-miku-blue: #235574;      /* Darker blue accent */
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
   
@@ -38,11 +39,11 @@
   background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-hamie-orange);
+  background: var(--color-miku-teal);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-hamie-brown);
+  background: var(--color-miku-pink);
 }
 
 .marquee-container {
