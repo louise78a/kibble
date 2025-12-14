@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
-import { Copy, Check } from "lucide-react";
-import { useState } from "react";
+import { Copy, Check, Wand2, Download } from "lucide-react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
 import hamieMain from "@assets/basic_1765734286168.jpeg";
-import bgImage from "@assets/background_1765698527522.jpg"; // Keeping previous bg for now as none provided, or maybe we just don't use it or blur it.
+import hamiePfpBase from "../assets/hamie_pfp_base.jpg";
+import bgImage from "@assets/background_1765698527522.jpg"; 
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
 const CA = "J6YgxqwPp3GFvGMNvxgQNRK8qSmtvvTK2wgfuUs1pump";
@@ -27,6 +29,129 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
         ))}
       </motion.div>
     </div>
+  );
+};
+
+const PfpCreator = () => {
+  const { toast } = useToast();
+  const [prompt, setPrompt] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
+
+  const handleGenerate = () => {
+    if (!prompt) {
+      toast({
+        title: "ENTER A PROMPT",
+        description: "Tell us what to add to Hamie-Chan!",
+        variant: "destructive",
+        className: "font-display text-xl"
+      });
+      return;
+    }
+
+    setIsGenerating(true);
+
+    // This is where the actual API call would go.
+    // Prompt template requested:
+    const fullPrompt = `Edit this image of an hamster kung fu photo. Keep the original image exactly the same but add: ${prompt}. Do NOT change the boy's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style.`;
+    
+    console.log("Generating with prompt:", fullPrompt);
+
+    // Simulate generation delay
+    setTimeout(() => {
+      setIsGenerating(false);
+      // In a real app, this would be the URL from the API
+      // For mockup, we just show the base image again but pretend it worked
+      // or we could show a placeholder if we had one.
+      // Let's just re-use the base image for the mockup visuals
+      setGeneratedImage(hamiePfpBase);
+      
+      toast({
+        title: "GENERATED! (MOCKUP)",
+        description: "Imagine Hamie-Chan with your items here! (Backend required for real AI)",
+        className: "bg-hamie-orange text-black border-2 border-black font-display text-xl",
+      });
+    }, 2000);
+  };
+
+  return (
+    <motion.div 
+      className="w-full max-w-4xl mx-auto mt-12 mb-8 bg-black/80 border-4 border-hamie-orange p-6 rounded-xl shadow-[8px_8px_0_0_#8B4513] relative overflow-hidden"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+    >
+      <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-hamie-orange via-hamie-cream to-hamie-orange animate-pulse" />
+      
+      <h2 className="text-4xl md:text-6xl text-center font-display text-hamie-cream text-stroke mb-8">
+        HAMIE PFP CREATOR
+      </h2>
+
+      <div className="flex flex-col md:flex-row gap-8 items-center">
+        {/* Preview Area */}
+        <div className="w-full md:w-1/2 flex justify-center">
+          <div className="relative w-64 h-64 md:w-80 md:h-80 border-4 border-white bg-black shadow-[0_0_20px_rgba(244,164,96,0.3)] rotate-[-2deg]">
+            <img 
+              src={generatedImage || hamiePfpBase} 
+              alt="Hamie PFP Base" 
+              className={`w-full h-full object-cover transition-opacity duration-300 ${isGenerating ? "opacity-50" : "opacity-100"}`}
+            />
+            {isGenerating && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-hamie-orange border-t-transparent rounded-full animate-spin" />
+              </div>
+            )}
+            {!generatedImage && !isGenerating && (
+               <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded font-mono">
+                 ORIGINAL
+               </div>
+            )}
+          </div>
+        </div>
+
+        {/* Controls */}
+        <div className="w-full md:w-1/2 space-y-6">
+          <div className="space-y-2">
+            <label className="font-display text-xl text-hamie-orange">ADD ACCESSORIES:</label>
+            <Input 
+              placeholder="e.g. Laser eyes, Gucci headband, Katana..."
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              className="bg-white/10 border-2 border-hamie-orange text-white font-body text-lg h-12 placeholder:text-gray-400"
+              onKeyDown={(e) => e.key === "Enter" && handleGenerate()}
+            />
+            <p className="text-xs text-gray-400 font-mono">
+              *Only adds items, keeps Hamie's face unchanged.
+            </p>
+          </div>
+
+          <Button 
+            onClick={handleGenerate}
+            disabled={isGenerating}
+            className="w-full h-14 bg-hamie-orange hover:bg-hamie-brown text-black font-display text-2xl border-2 border-transparent hover:border-white transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+          >
+            {isGenerating ? (
+              <span className="flex items-center gap-2">
+                GENERATING <span className="animate-pulse">...</span>
+              </span>
+            ) : (
+              <span className="flex items-center gap-2">
+                <Wand2 className="w-6 h-6" /> GENERATE PFP
+              </span>
+            )}
+          </Button>
+
+          {generatedImage && (
+            <Button 
+              variant="outline"
+              className="w-full border-2 border-white text-black hover:bg-white/20 font-display text-xl h-12"
+              onClick={() => toast({ title: "SAVED!", description: "Image saved to gallery (Mockup)", className: "font-display" })}
+            >
+              <Download className="w-5 h-5 mr-2" /> DOWNLOAD
+            </Button>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 };
 
@@ -121,6 +246,9 @@ export default function Home() {
           </motion.div>
 
         </div>
+
+        {/* PFP CREATOR SECTION */}
+        <PfpCreator />
 
         {/* LINKS SECTION */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
