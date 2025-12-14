@@ -5,25 +5,11 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
+import rezeImg1 from "@assets/1_1765570458845.png";
+import rezeImg2 from "@assets/2_1765570458844.png";
 import rezeVideo from "@assets/vid_1765570458846.mp4";
 import bgImage from "@assets/background_1765570458845.png";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
-
-// Gallery Videos
-import vid1 from "@assets/Enregistrement_2025-12-13_212121_1765658049281.mp4";
-import vid2 from "@assets/Enregistrement_2025-12-13_212000_1765658049282.mp4";
-import vid3 from "@assets/Enregistrement_2025-12-13_211602_1765658049282.mp4";
-import vid4 from "@assets/Enregistrement_2025-12-13_212657_1765658049283.mp4";
-import vid5 from "@assets/Enregistrement_2025-12-13_212610_1765658049283.mp4";
-import vid6 from "@assets/Enregistrement_2025-12-13_212535_1765658049284.mp4";
-import vid7 from "@assets/Enregistrement_2025-12-13_212454_1765658049284.mp4";
-import vid8 from "@assets/Enregistrement_2025-12-13_212418_1765658049285.mp4";
-import vid9 from "@assets/Enregistrement_2025-12-13_212322_1765658049285.mp4";
-import vid10 from "@assets/Enregistrement_2025-12-13_212247_1765658049285.mp4";
-import vid11 from "@assets/Enregistrement_2025-12-13_214650_1765658830805.mp4";
-import vid12 from "@assets/Enregistrement_2025-12-13_214608_1765658830806.mp4";
-
-const galleryVideos = [vid1, vid2, vid3, vid4, vid5, vid6, vid7, vid8, vid9, vid10, vid11, vid12];
 
 const CA = "5RncjvjvLkVVHDCaKrPvvSDQofxJmZyhcJaRsmNopump";
 
@@ -43,24 +29,6 @@ const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?
         ))}
       </motion.div>
     </div>
-  );
-};
-
-const VideoCard = ({ src, index }: { src: string; index: number }) => {
-  return (
-    <motion.div 
-      className="relative group border-4 border-white shadow-[8px_8px_0_0_#4A3B52] cursor-pointer"
-      whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2, zIndex: 10 }}
-    >
-      <video 
-        src={src}
-        className="w-full aspect-square object-cover cursor-pointer"
-        autoPlay
-        muted
-        loop
-        playsInline
-      />
-    </motion.div>
   );
 };
 
@@ -261,24 +229,47 @@ export default function Home() {
           </motion.a>
         </div>
 
-        {/* VIRAL CONTEXT & VIDEO GALLERY */}
-        <div className="w-full max-w-6xl mt-16 mb-24 cursor-pointer">
+        {/* SIDE IMAGES - MOVED BELOW */}
+        <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-24 mt-8 mb-12 cursor-pointer mx-auto">
+          
+          {/* LEFT IMAGE */}
           <motion.div 
-            className="text-center mb-12 space-y-4"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            className="flex justify-center cursor-pointer"
+            animate={{
+              y: [0, -10, 0],
+              rotate: [0, 2, -2, 0],
+              transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+            }}
+            whileHover={{ scale: 1.1, rotate: -5 }}
           >
-            <p className="text-xl md:text-3xl text-white font-bold max-w-4xl mx-auto leading-relaxed italic">
-              "Just literally generating over <span className="text-reze-pink">100 Million views</span>, spawning <span className="text-reze-pink">THREE trending pages</span>, and becoming the <span className="text-reze-pink">most-liked anime tweet</span> of all time. No big deal. 💅"
-            </p>
+            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#F8B4C4] cursor-pointer w-80 h-80 flex items-center justify-center">
+              <img 
+                src={rezeImg1} 
+                alt="Reze Cute"
+                className="w-full h-full object-cover cursor-pointer"
+              />
+            </div>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {galleryVideos.map((video, idx) => (
-              <VideoCard key={idx} src={video} index={idx} />
-            ))}
-          </div>
+          {/* RIGHT IMAGE */}
+          <motion.div 
+            className="flex justify-center cursor-pointer"
+            animate={{
+              y: [0, 10, 0],
+              rotate: [0, -2, 2, 0],
+              transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
+            }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
+          >
+            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#4A3B52] cursor-pointer w-80 h-80 flex items-center justify-center">
+              <img 
+                src={rezeImg2} 
+                alt="Reze Expressions"
+                className="w-full h-full object-cover cursor-pointer"
+              />
+            </div>
+          </motion.div>
+
         </div>
 
       </main>
