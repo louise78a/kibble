@@ -38,7 +38,7 @@ const PfpCreator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     if (!prompt) {
       toast({
         title: "ENTER A PROMPT",
@@ -51,27 +51,36 @@ const PfpCreator = () => {
 
     setIsGenerating(true);
 
-    // This is where the actual API call would go.
-    // Prompt template requested:
-    const fullPrompt = `Edit this image of an hamster kung fu photo. Keep the original image exactly the same but add: ${prompt}. Do NOT change the boy's face or body. Only add items/accessories/effects on top of the existing image. Keep it funny meme style.`;
-    
-    console.log("Generating with prompt:", fullPrompt);
+    try {
+      const response = await fetch("/api/generate-pfp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt }),
+      });
 
-    // Simulate generation delay
-    setTimeout(() => {
-      setIsGenerating(false);
-      // In a real app, this would be the URL from the API
-      // For mockup, we just show the base image again but pretend it worked
-      // or we could show a placeholder if we had one.
-      // Let's just re-use the base image for the mockup visuals
-      setGeneratedImage(hamiePfpBase);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to generate image");
+      }
+
+      setGeneratedImage(data.imageUrl);
       
       toast({
-        title: "GENERATED! (MOCKUP)",
-        description: "Imagine Hamie-Chan with your items here! (Backend required for real AI)",
+        title: "GENERATED!",
+        description: "Your custom Hamie-Chan PFP is ready!",
         className: "bg-hamie-orange text-black border-2 border-black font-display text-xl",
       });
-    }, 2000);
+    } catch (error: any) {
+      toast({
+        title: "ERROR",
+        description: error.message || "Failed to generate image",
+        variant: "destructive",
+        className: "font-display text-xl"
+      });
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
