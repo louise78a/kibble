@@ -138,7 +138,7 @@ const PfpCreator = () => {
             {isGenerating ? (
               <span className="flex flex-col items-center gap-1">
                 <span className="flex items-center gap-2">GENERATING <span className="animate-pulse">...</span></span>
-                <span className="text-sm opacity-80">can take 1min</span>
+                <span className="text-sm opacity-80">can take 30sec</span>
               </span>
             ) : (
               <span className="flex items-center gap-2">
@@ -252,7 +252,7 @@ export default function Home() {
         </div>
 
         {/* LINKS SECTION */}
-        <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
+        <div className="flex flex-wrap justify-center gap-4 w-full mt-8 mb-12 cursor-pointer">
           <motion.a 
             href="https://pump.fun/coin/J6YgxqwPp3GFvGMNvxgQNRK8qSmtvvTK2wgfuUs1pump" 
             target="_blank" 
