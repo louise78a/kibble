@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
-import pepeImg from "@assets/pepe_1765405419577.png";
-import dogeImg from "@assets/doge_1765405419577.png";
-import mainWojakImg from "@assets/wojak_1765405419576.png";
-import bgImage from "@assets/grand_image_1765405419576.png";
+import pepeImg from "@assets/1_1765812532483.jpg";
+import dogeImg from "@assets/2_1765812532480.jpg";
+import mainWojakImg from "@assets/img_1765812532480.png";
+import bgImage from "@assets/background_1765812532484.jpg";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
 const CA = "3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump";
@@ -63,7 +63,7 @@ export default function Home() {
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
-        <Marquee text="$GOYSLO • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
+        <Marquee text="$SLOP • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -76,13 +76,13 @@ export default function Home() {
             transition={{ duration: 2, repeat: Infinity }}
             whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
           >
-            $GOYSLO
+            $SLOP
           </motion.h1>
           <motion.p 
             className="text-2xl md:text-4xl text-slop-yellow font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
             whileHover={{ scale: 1.1, rotate: 0 }}
           >
-            "I LOVE EATING HIGH FRUCTOSE CORN SYRUP AND SEED OILS!"
+            "OFFICIAL MERRIAM-WEBSTER 2025 WORD OF THE YEAR: SLOP. 100% ARTIFICIAL, 0% NUTRITION, ALL ZANY."
           </motion.p>
         </div>
 
@@ -96,7 +96,7 @@ export default function Home() {
           >
             <img 
               src={mainWojakImg}
-              alt="Wojak enjoying Goyslo"
+              alt="Total Slop"
               className="h-auto max-h-[70vh] object-contain cursor-pointer block"
             />
           </motion.div>
@@ -186,7 +186,7 @@ export default function Home() {
             <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#FFC72C] cursor-pointer w-full max-w-sm">
               <img 
                 src={pepeImg} 
-                alt="Pepe eating"
+                alt="Slop 1"
                 className="w-full h-auto object-contain cursor-pointer"
               />
             </div>
@@ -205,7 +205,7 @@ export default function Home() {
             <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#DA291C] cursor-pointer w-full max-w-sm">
               <img 
                 src={dogeImg} 
-                alt="Doge eating"
+                alt="Slop 2"
                 className="w-full h-auto object-contain cursor-pointer"
               />
             </div>
@@ -217,7 +217,7 @@ export default function Home() {
 
       {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
       <div className="mt-auto relative z-10 bg-slop-yellow cursor-pointer">
-        <Marquee text="$GOYSLO • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
+        <Marquee text="$SLOP • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
       </div>
 
     </div>
