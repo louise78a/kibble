@@ -5,10 +5,10 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-slop-red: #DA291C;    /* McDonalds Red */
-  --color-slop-yellow: #FFC72C; /* McDonalds Yellow */
-  --color-slop-orange: #FF8200; /* Burger King Orange */
-  --color-slop-brown: #542300;  /* Burger Meat */
+  --color-slop-red: #FF33CC;    /* Hot Pink */
+  --color-slop-yellow: #CCFF00; /* Toxic Lime Green */
+  --color-slop-orange: #FF9900; /* Vibrant Orange */
+  --color-slop-brown: #6600CC;  /* Vibrant Purple */
   --color-meme-yellow: #FFFF00;
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
