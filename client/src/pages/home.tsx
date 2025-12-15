@@ -63,7 +63,7 @@ export default function Home() {
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
-        <Marquee text="$GOYSLOP • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
+        <Marquee text="$GOYSLO • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -76,7 +76,7 @@ export default function Home() {
             transition={{ duration: 2, repeat: Infinity }}
             whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
           >
-            $GOYSLOP
+            $GOYSLO
           </motion.h1>
           <motion.p 
             className="text-2xl md:text-4xl text-slop-yellow font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
@@ -96,7 +96,7 @@ export default function Home() {
           >
             <img 
               src={mainWojakImg}
-              alt="Wojak enjoying Goyslop"
+              alt="Wojak enjoying Goyslo"
               className="h-auto max-h-[70vh] object-contain cursor-pointer block"
             />
           </motion.div>
@@ -217,7 +217,7 @@ export default function Home() {
 
       {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
       <div className="mt-auto relative z-10 bg-slop-yellow cursor-pointer">
-        <Marquee text="$GOYSLOP • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
+        <Marquee text="$GOYSLO • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
       </div>
 
     </div>
