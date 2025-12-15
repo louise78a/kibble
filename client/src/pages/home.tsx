@@ -63,7 +63,7 @@ export default function Home() {
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
-        <Marquee text="$SLOP • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
+        <Marquee text="$SLOP • 100% AI GENERATED • DEMONSTRABLY FAKE • ZANY CONTENT • MERRIAM-WEBSTER APPROVED • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -82,7 +82,7 @@ export default function Home() {
             className="text-2xl md:text-4xl text-slop-yellow font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
             whileHover={{ scale: 1.1, rotate: 0 }}
           >
-            "OFFICIAL MERRIAM-WEBSTER 2025 WORD OF THE YEAR: SLOP. 100% ARTIFICIAL, 0% NUTRITION, ALL ZANY."
+            "OFFICIAL 2025 WORD OF THE YEAR. CREEPY, ZANY, AND 100% ARTIFICIAL. CONSUME THE CONTENT."
           </motion.p>
         </div>
 
@@ -183,7 +183,7 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: -5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#FFC72C] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#CCFF00] cursor-pointer w-full max-w-sm">
               <img 
                 src={pepeImg} 
                 alt="Slop 1"
@@ -202,7 +202,7 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#DA291C] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#FF33CC] cursor-pointer w-full max-w-sm">
               <img 
                 src={dogeImg} 
                 alt="Slop 2"
@@ -217,7 +217,7 @@ export default function Home() {
 
       {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
       <div className="mt-auto relative z-10 bg-slop-yellow cursor-pointer">
-        <Marquee text="$SLOP • EAT THE BUGS • CONSUME PRODUCT • YUMMY MICROPLASTICS • " speed={30} />
+        <Marquee text="$SLOP • 100% AI GENERATED • DEMONSTRABLY FAKE • ZANY CONTENT • MERRIAM-WEBSTER APPROVED • " speed={30} />
       </div>
 
     </div>
