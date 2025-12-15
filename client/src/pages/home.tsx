@@ -82,7 +82,7 @@ export default function Home() {
             className="text-2xl md:text-4xl text-slop-yellow font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
             whileHover={{ scale: 1.1, rotate: 0 }}
           >
-            "OFFICIAL 2025 WORD OF THE YEAR. CREEPY, ZANY, AND 100% ARTIFICIAL. CONSUME THE CONTENT."
+            "OFFICIAL 2025 WORD OF THE YEAR."
           </motion.p>
         </div>
 
@@ -94,11 +94,13 @@ export default function Home() {
             whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0], transition: { duration: 0.4, repeat: Infinity, repeatType: "reverse" } }}
             whileTap={{ scale: 0.95 }}
           >
-            <img 
-              src={mainWojakImg}
-              alt="Total Slop"
-              className="h-auto max-h-[70vh] object-contain cursor-pointer block"
-            />
+            <div className="border-4 border-white bg-black p-2 rotate-[-2deg] shadow-[8px_8px_0_0_#CCFF00] cursor-pointer w-full max-w-md mx-auto">
+              <img 
+                src={mainWojakImg}
+                alt="Total Slop"
+                className="w-full h-auto object-contain cursor-pointer block"
+              />
+            </div>
           </motion.div>
 
           {/* CA SECTION */}
