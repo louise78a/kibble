@@ -11,7 +11,7 @@ import mainWojakImg from "@assets/img_1765812532480.png";
 import bgImage from "@assets/background_1765812532484.jpg";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
-const CA = "3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump";
+const CA = "A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
@@ -131,8 +131,8 @@ export default function Home() {
         {/* LINKS SECTION - BELOW IMAGE */}
         <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
           <motion.a 
-            href="https://pump.fun/coin/3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump" 
-            target="_blank" 
+            href="https://pump.fun/coin/A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump" 
+            target="_blank"  
             rel="noopener noreferrer"
             className="cursor-pointer"
             {...hoverEffect}
@@ -144,8 +144,8 @@ export default function Home() {
           </motion.a>
 
           <motion.a 
-            href="https://dexscreener.com/solana/3fUhYppEMgvULCfiMu2FNcZzRvp4pGXiMWrX8t8Rpump" 
-            target="_blank" 
+            href="https://dexscreener.com/solana/9pe8bagqdf84u5l3s7thbsgakjbkxm15vep6tiyhypiu" 
+            target="_blank"  
             rel="noopener noreferrer"
             className="cursor-pointer"
             {...hoverEffect}
@@ -157,8 +157,8 @@ export default function Home() {
           </motion.a>
 
           <motion.a 
-            href="https://x.com/i/communities/1998869649987965022" 
-            target="_blank" 
+            href="https://x.com/i/communities/2000557592142070044" 
+            target="_blank"  
             rel="noopener noreferrer"
             className="cursor-pointer"
             {...hoverEffect}
