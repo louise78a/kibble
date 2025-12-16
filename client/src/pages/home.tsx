@@ -172,6 +172,24 @@ export default function Home() {
           </motion.a>
         </div>
 
+        {/* OFFICIAL X BUTTON - BELOW OTHER BUTTONS */}
+        <div className="flex justify-center w-full mt-4 mb-8 cursor-pointer">
+          <motion.a 
+            href="https://x.com/sloponsol_" 
+            target="_blank"  
+            rel="noopener noreferrer"
+            className="cursor-pointer"
+            {...hoverEffect}
+          >
+            <div className="flex items-center gap-2 bg-slop-red hover:bg-[#b01e12] text-white border-2 border-black px-6 py-3 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-xl cursor-pointer">
+              <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
+              OFFICIAL X
+            </div>
+          </motion.a>
+        </div>
+
         {/* SIDE IMAGES - MOVED BELOW */}
         <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-24 mt-8 mb-12 cursor-pointer mx-auto">
           
