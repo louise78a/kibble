@@ -57,7 +57,7 @@ export default function Home() {
       
       {/* BACKGROUND IMAGE - Fixed */}
       <div 
-        className="fixed inset-0 z-0 pointer-events-none bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 z-0 opacity-40 pointer-events-none bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${bgImage})` }}
       />
 
