@@ -8,7 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import pepeImg from "@assets/1_1765812532483.jpg";
 import dogeImg from "@assets/2_1765812532480.jpg";
 import mainWojakImg from "@assets/img_1765812532480.png";
-import bgImage from "@assets/background_1765812532484.jpg";
+import bgImage from "@assets/image_1765879767563.png";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
 const CA = "A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump";
