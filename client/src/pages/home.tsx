@@ -5,17 +5,17 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
-import pepeImg from "@assets/1_1765812532483.jpg";
-import dogeImg from "@assets/2_1765812532480.jpg";
-import mainWojakImg from "@assets/img_1765812532480.png";
-import bgImage from "@assets/image_1765880844255.png";
+import pepeImg from "@assets/1_1765906872698.jpeg";
+import dogeImg from "@assets/2_1765906872698.jpeg";
+import mainWojakImg from "@assets/img_1765906872697.jpeg";
+import bgImage from "@assets/background_1765906872696.jpeg";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
 const CA = "A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump";
 
 const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
   return (
-    <div className="flex overflow-hidden bg-slop-yellow py-2 border-y-4 border-black cursor-pointer">
+    <div className="flex overflow-hidden bg-slop-green py-2 border-y-4 border-black cursor-pointer">
       <motion.div
         className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-black font-bold uppercase"
         animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
@@ -63,7 +63,7 @@ export default function Home() {
 
       {/* MARQUEE TOP */}
       <div className="relative z-10">
-        <Marquee text="$SLOP • 100% AI GENERATED • DEMONSTRABLY FAKE • ZANY CONTENT • MERRIAM-WEBSTER APPROVED • " speed={30} />
+        <Marquee text="$PREDICTOOR • PIVOT TO PREDICTION MARKETS • TRUST ME BRO • 100% ACCURACY • SEND IT • " speed={30} />
       </div>
 
       <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
@@ -71,18 +71,18 @@ export default function Home() {
         {/* HERO HEADER */}
         <div className="text-center space-y-4 cursor-pointer">
           <motion.h1 
-            className="text-7xl md:text-9xl font-display text-slop-red text-stroke cursor-pointer"
+            className="text-6xl md:text-9xl font-display text-slop-green text-stroke cursor-pointer"
             animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
           >
-            $SLOP
+            $PREDICTOOR
           </motion.h1>
           <motion.p 
-            className="text-2xl md:text-4xl text-slop-yellow font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-2xl mx-auto leading-tight"
+            className="text-2xl md:text-4xl text-slop-blue font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-3xl mx-auto leading-tight"
             whileHover={{ scale: 1.1, rotate: 0 }}
           >
-            "OFFICIAL 2025 WORD OF THE YEAR."
+            "EVERYONE IS PIVOTING. I PREDICT THE FUTURE. 99% YES. TIME TO SEND THE $PREDICTOOR."
           </motion.p>
         </div>
 
@@ -94,10 +94,10 @@ export default function Home() {
             whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0], transition: { duration: 0.4, repeat: Infinity, repeatType: "reverse" } }}
             whileTap={{ scale: 0.95 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-2deg] shadow-[8px_8px_0_0_#CCFF00] cursor-pointer w-full max-w-md mx-auto">
+            <div className="border-4 border-white bg-black p-2 rotate-[-2deg] shadow-[8px_8px_0_0_#00D26A] cursor-pointer w-full max-w-md mx-auto">
               <img 
                 src={mainWojakImg}
-                alt="Total Slop"
+                alt="The Predictoor"
                 className="w-full h-auto object-contain cursor-pointer block"
               />
             </div>
@@ -203,10 +203,10 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: -5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#CCFF00] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#00D26A] cursor-pointer w-full max-w-sm">
               <img 
                 src={pepeImg} 
-                alt="Slop 1"
+                alt="Prediction 1"
                 className="w-full h-auto object-contain cursor-pointer"
               />
             </div>
@@ -222,10 +222,10 @@ export default function Home() {
             }}
             whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#FF33CC] cursor-pointer w-full max-w-sm">
+            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#007AFF] cursor-pointer w-full max-w-sm">
               <img 
                 src={dogeImg} 
-                alt="Slop 2"
+                alt="Prediction 2"
                 className="w-full h-auto object-contain cursor-pointer"
               />
             </div>
@@ -236,8 +236,8 @@ export default function Home() {
       </main>
 
       {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
-      <div className="mt-auto relative z-10 bg-slop-yellow cursor-pointer">
-        <Marquee text="$SLOP • 100% AI GENERATED • DEMONSTRABLY FAKE • ZANY CONTENT • MERRIAM-WEBSTER APPROVED • " speed={30} />
+      <div className="mt-auto relative z-10 bg-slop-green cursor-pointer">
+        <Marquee text="$PREDICTOOR • PIVOT TO PREDICTION MARKETS • TRUST ME BRO • 100% ACCURACY • SEND IT • " speed={30} />
       </div>
 
     </div>

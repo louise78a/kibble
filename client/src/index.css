@@ -5,10 +5,10 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-slop-red: #FF33CC;    /* Hot Pink */
-  --color-slop-yellow: #CCFF00; /* Toxic Lime Green */
-  --color-slop-orange: #FF9900; /* Vibrant Orange */
-  --color-slop-brown: #6600CC;  /* Vibrant Purple */
+  --color-slop-red: #F6465D;    /* Chart Red */
+  --color-slop-green: #00D26A;  /* Trading Green */
+  --color-slop-blue: #007AFF;   /* Polymarket Blue */
+  --color-slop-yellow: #FFD700; /* Gold */
   --color-meme-yellow: #FFFF00;
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
