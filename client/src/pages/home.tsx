@@ -103,7 +103,7 @@ export default function Home() {
         </div>
 
         {/* MAIN IMAGE SECTION */}
-        <div className="w-full max-w-5xl space-y-8">
+        <div className="w-full max-w-3xl space-y-8">
           <motion.div 
             className="rounded-2xl border border-[#353945] overflow-hidden bg-[#1C1D22] shadow-2xl shadow-black/50"
             initial={{ opacity: 0, y: 40 }}
