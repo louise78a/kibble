@@ -197,15 +197,6 @@ export default function Home() {
               alt="Rank #1 Proof" 
               className="relative rounded-xl border border-[#353945] shadow-2xl w-full rotate-2 hover:rotate-0 transition-transform duration-500"
             />
-            <div className="absolute -bottom-6 -right-6 bg-[#1C1D22] border border-[#353945] p-4 rounded-lg shadow-xl max-w-xs">
-              <div className="flex items-center gap-2 mb-2">
-                <Info size={16} className="text-[#007AFF]" />
-                <span className="font-bold text-sm">Fact Check</span>
-              </div>
-              <p className="text-xs text-[#808A9D]">
-                This image is legally binding.
-              </p>
-            </div>
           </motion.div>
         </div>
 
