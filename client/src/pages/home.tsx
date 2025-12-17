@@ -48,7 +48,7 @@ export default function Home() {
               $YOURTOKEN
             </h1>
             <p className="text-xl md:text-2xl text-[#808A9D] max-w-2xl mx-auto leading-relaxed">
-              "DexScreener took their time to form a narrative as great as this for us."
+              "Dexscreeners official token as seen on their website"
             </p>
           </motion.div>
 
