@@ -1,30 +1,28 @@
 import { motion } from "framer-motion";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, TrendingUp, AlertTriangle, Terminal, Info } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { Card, CardContent } from "@/components/ui/card";
 
 // Assets
-import pepeImg from "@assets/1_1765906872698.jpeg";
-import dogeImg from "@assets/2_1765906872698.jpeg";
-import mainWojakImg from "@assets/img_1765906872697.jpeg";
-import bgImage from "@assets/background_1765906872696.jpeg";
+import collageImg from "@assets/image_1766013365317.png";
+import rankOneImg from "@assets/image_1766013412247.png";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
 const CA = "A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump";
 
-const Marquee = ({ text, direction = 1, speed = 20 }: { text: string; direction?: number; speed?: number }) => {
+const Marquee = ({ text, speed = 20 }: { text: string; speed?: number }) => {
   return (
-    <div className="flex overflow-hidden bg-slop-green py-2 border-y-4 border-black cursor-pointer">
+    <div className="flex overflow-hidden bg-[#1C1D22] py-2 border-y border-[#353945] cursor-pointer">
       <motion.div
-        className="flex whitespace-nowrap text-3xl md:text-5xl font-display text-black font-bold uppercase"
-        animate={{ x: direction === 1 ? [0, -1000] : [-1000, 0] }}
+        className="flex whitespace-nowrap text-lg font-mono text-[#00D26A] font-bold uppercase"
+        animate={{ x: [-1000, 0] }}
         transition={{ repeat: Infinity, ease: "linear", duration: speed }}
-        whileHover={{ scale: 1.02 }}
       >
         {[...Array(10)].map((_, i) => (
-          <span key={i} className="mx-8">
-            {text}
+          <span key={i} className="mx-8 flex items-center gap-2">
+            <TrendingUp size={16} /> {text}
           </span>
         ))}
       </motion.div>
@@ -42,186 +40,200 @@ export default function Home() {
     toast({
       title: "COPIED!",
       description: "CA copied to clipboard.",
-      className: "bg-white text-black border-2 border-black font-display text-xl",
+      className: "bg-[#1C1D22] text-white border border-[#353945] font-mono",
     });
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const hoverEffect = {
-    whileHover: { scale: 1.05, transition: { duration: 0.2 } },
-    whileTap: { scale: 0.95 }
-  };
-
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden pb-0 flex flex-col cursor-pointer">
+    <div className="min-h-screen bg-[#0F1014] text-[#E0E2EB] font-sans selection:bg-[#00D26A] selection:text-black flex flex-col">
       
-      {/* BACKGROUND IMAGE - Fixed */}
-      <div 
-        className="fixed inset-0 z-0 opacity-40 pointer-events-none bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      />
-
       {/* MARQUEE TOP */}
-      <div className="relative z-10">
-        <Marquee text="$PREDICTOOR • PIVOT TO PREDICTION MARKETS • TRUST ME BRO • 100% ACCURACY • SEND IT • " speed={30} />
-      </div>
+      <Marquee text="UPDATE TOKEN INFO • ADD SOCIALS • PAY 299 SOL • DEV FORGOT TO NAME IT • BULLISH ON DEFAULT SETTINGS •" speed={40} />
 
-      <main className="relative z-10 container mx-auto px-4 pt-10 flex flex-col items-center gap-10 flex-grow cursor-pointer">
+      <main className="container mx-auto px-4 py-12 flex flex-col items-center gap-12 max-w-6xl">
         
         {/* HERO HEADER */}
-        <div className="text-center space-y-4 cursor-pointer">
-          <motion.h1 
-            className="text-6xl md:text-9xl font-display text-slop-green text-stroke cursor-pointer"
-            animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            whileHover={{ scale: 1.2, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
+        <div className="text-center space-y-6 max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            $PREDICTOOR
-          </motion.h1>
-          <motion.p 
-            className="text-2xl md:text-4xl text-slop-blue font-bold text-stroke-sm -rotate-2 cursor-pointer max-w-3xl mx-auto leading-tight"
-            whileHover={{ scale: 1.1, rotate: 0 }}
-          >
-            "EVERYONE IS PIVOTING. I PREDICT THE FUTURE. 99% YES. TIME TO SEND THE $PREDICTOOR."
-          </motion.p>
-        </div>
-
-        {/* MAIN IMAGE - BIGGER */}
-        <div className="w-full max-w-5xl flex flex-col items-center gap-6 cursor-pointer">
-          
-          <motion.div 
-            className="relative group cursor-pointer inline-block"
-            whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0], transition: { duration: 0.4, repeat: Infinity, repeatType: "reverse" } }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="border-4 border-white bg-black p-2 rotate-[-2deg] shadow-[8px_8px_0_0_#00D26A] cursor-pointer w-full max-w-md mx-auto">
-              <img 
-                src={mainWojakImg}
-                alt="The Predictoor"
-                className="w-full h-auto object-contain cursor-pointer block"
-              />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1D22] border border-[#353945] text-xs font-mono text-[#808A9D] mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#00D26A] animate-pulse"></span>
+              Live on Solana
             </div>
+            
+            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-white mb-2">
+              $YOURTOKEN
+            </h1>
+            <p className="text-xl md:text-2xl text-[#808A9D] max-w-2xl mx-auto leading-relaxed">
+              "This whole page is DexScreener doing it for us before launch. So I brought that coin to life."
+            </p>
           </motion.div>
 
-          {/* CA SECTION */}
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <Button 
+              className="bg-[#00D26A] hover:bg-[#00b359] text-black font-bold text-lg px-8 py-6 rounded-xl"
+              onClick={() => window.open("https://pump.fun/coin/A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump", "_blank")}
+            >
+              Update Token Info (Buy)
+            </Button>
+            <Button 
+              variant="outline" 
+              className="bg-[#1C1D22] border-[#353945] text-white hover:bg-[#2C2D35] font-bold text-lg px-8 py-6 rounded-xl gap-2"
+              onClick={() => window.open("https://dexscreener.com/solana/9pe8bagqdf84u5l3s7thbsgakjbkxm15vep6tiyhypiu", "_blank")}
+            >
+              <img src={dexscreenerLogo} className="w-5 h-5" alt="Dex" />
+              Chart
+            </Button>
+          </div>
+        </div>
+
+        {/* JOKE ALERTS */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-5xl">
+          {[
+            { title: "Status", text: "Waiting for dev to wake up", icon: <AlertTriangle className="text-yellow-500" /> },
+            { title: "Market Cap", text: "Undervalued (Trust me)", icon: <TrendingUp className="text-[#00D26A]" /> },
+            { title: "Utility", text: "Fills the empty space", icon: <Terminal className="text-blue-500" /> },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Card className="bg-[#1C1D22] border-[#353945] text-[#E0E2EB]">
+                <CardContent className="p-4 flex items-center gap-4">
+                  <div className="p-2 bg-[#2C2D35] rounded-lg">{item.icon}</div>
+                  <div>
+                    <div className="text-xs text-[#808A9D] uppercase font-bold">{item.title}</div>
+                    <div className="font-mono text-sm">{item.text}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* MAIN IMAGE SECTION */}
+        <div className="w-full max-w-5xl space-y-8">
           <motion.div 
-            className="w-full max-w-lg bg-white text-black p-3 rounded-xl border-4 border-black shadow-[6px_6px_0_0_#000000] cursor-pointer"
-            initial={{ opacity: 0, y: 50 }}
+            className="rounded-2xl border border-[#353945] overflow-hidden bg-[#1C1D22] shadow-2xl shadow-black/50"
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ scale: 1.05, y: -5 }}
-            whileTap={{ scale: 0.95 }}
+            viewport={{ once: true }}
           >
-            <div className="flex items-center justify-between gap-2 cursor-pointer">
-              <span className="font-display text-lg text-gray-500 whitespace-nowrap cursor-pointer">CA:</span>
-              <code className="font-mono font-bold text-xs md:text-sm truncate bg-gray-100 p-1.5 rounded flex-1 text-center cursor-pointer">
-                {CA}
-              </code>
-              <Button 
-                onClick={copyToClipboard}
-                size="sm"
-                className="bg-black hover:bg-gray-800 text-white font-display px-4 h-8 border-2 border-transparent hover:border-black transition-all shrink-0 cursor-pointer"
-              >
-                {copied ? <Check size={16} /> : <Copy size={16} />}
-              </Button>
+            <div className="bg-[#2C2D35] px-4 py-2 border-b border-[#353945] flex items-center gap-2">
+              <div className="flex gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#FEBC2E]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#28C840]"></div>
+              </div>
+              <div className="flex-1 text-center text-xs font-mono text-[#808A9D]">dex_screener_leak.png</div>
+            </div>
+            <div className="p-4 md:p-8">
+              <img 
+                src={collageImg} 
+                alt="DexScreener Interface Collage" 
+                className="w-full h-auto rounded-lg shadow-lg border border-[#353945]"
+              />
+              <p className="text-center text-[#808A9D] mt-4 font-mono text-sm">
+                "Look at all these screens. We are literally everywhere."
+              </p>
             </div>
           </motion.div>
-
         </div>
 
-        {/* LINKS SECTION - BELOW IMAGE */}
-        <div className="flex flex-wrap justify-center gap-4 w-full mt-8 cursor-pointer">
-          <motion.a 
-            href="https://pump.fun/coin/A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump" 
-            target="_blank"  
-            rel="noopener noreferrer"
-            className="cursor-pointer"
-            {...hoverEffect}
-          >
-            <div className="flex items-center gap-2 bg-[#87E4A6] hover:bg-[#6edc93] text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
-              <span className="text-xl">💊</span>
-              Buy on Pump.fun
+        {/* CA SECTION */}
+        <motion.div 
+          className="w-full max-w-2xl"
+          whileHover={{ scale: 1.01 }}
+        >
+          <div className="bg-[#1C1D22] border border-[#353945] rounded-xl p-6 flex flex-col md:flex-row items-center gap-4 shadow-lg">
+            <div className="flex items-center gap-2 text-[#00D26A]">
+              <Terminal size={20} />
+              <span className="font-mono font-bold">CA:</span>
             </div>
-          </motion.a>
+            <code className="flex-1 font-mono text-sm md:text-base text-[#E0E2EB] break-all bg-[#0F1014] p-3 rounded border border-[#353945]">
+              {CA}
+            </code>
+            <Button 
+              onClick={copyToClipboard}
+              className="bg-[#2C2D35] hover:bg-[#353945] text-white shrink-0"
+            >
+              {copied ? <Check size={16} /> : <Copy size={16} />}
+            </Button>
+          </div>
+        </motion.div>
 
-          <motion.a 
-            href="https://dexscreener.com/solana/9pe8bagqdf84u5l3s7thbsgakjbkxm15vep6tiyhypiu" 
-            target="_blank"  
-            rel="noopener noreferrer"
-            className="cursor-pointer"
-            {...hoverEffect}
-          >
-            <div className="flex items-center gap-2 bg-white hover:bg-gray-100 text-black border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
-              <img src={dexscreenerLogo} alt="DexScreener" className="w-6 h-6 object-contain cursor-pointer" />
-              DexScreener
-            </div>
-          </motion.a>
-
-          <motion.a 
-            href="https://x.com/i/communities/2000557592142070044" 
-            target="_blank"  
-            rel="noopener noreferrer"
-            className="cursor-pointer"
-            {...hoverEffect}
-          >
-            <div className="flex items-center gap-2 bg-black hover:bg-gray-900 text-white border-2 border-black px-4 py-2 rounded-lg shadow-[4px_4px_0_0_rgba(0,0,0,1)] font-display text-lg cursor-pointer">
-              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-              </svg>
-              Community X
-            </div>
-          </motion.a>
-        </div>
-
-        {/* SIDE IMAGES - MOVED BELOW */}
-        <div className="w-full max-w-5xl flex flex-col md:flex-row justify-center items-center gap-24 mt-8 mb-12 cursor-pointer mx-auto">
-          
-          {/* LEFT IMAGE */}
+        {/* RANK #1 SECTION */}
+        <div className="grid md:grid-cols-2 gap-8 items-center w-full max-w-5xl mt-12">
           <motion.div 
-            className="flex justify-center cursor-pointer"
-            animate={{
-              y: [0, -10, 0],
-              rotate: [0, 2, -2, 0],
-              transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-            whileHover={{ scale: 1.1, rotate: -5 }}
+            className="space-y-6"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[-3deg] shadow-[8px_8px_0_0_#00D26A] cursor-pointer w-80 h-80 flex items-center justify-center overflow-hidden">
-              <img 
-                src={pepeImg} 
-                alt="Prediction 1"
-                className="w-full h-full object-cover cursor-pointer"
-              />
+            <div className="inline-block px-3 py-1 rounded bg-[#00D26A]/20 text-[#00D26A] text-xs font-bold uppercase tracking-wider mb-2">
+              Market Analysis
             </div>
+            <h2 className="text-3xl md:text-5xl font-bold">
+              We are Number 1.
+              <span className="block text-[#808A9D] text-2xl mt-2 font-mono font-normal">
+                (According to this screenshot I found)
+              </span>
+            </h2>
+            <p className="text-[#808A9D] text-lg leading-relaxed">
+              Why do research when the screenshot clearly says we are top gainer? $YOURTOKEN is the only token that respects the placeholder economy. We didn't even bother changing the variable name.
+            </p>
+            <ul className="space-y-3">
+              {[
+                "Zero creativity included",
+                "Fully decentralized laziness",
+                "100% Organic Placeholder Growth",
+                "Dev is literally just a default setting"
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-[#E0E2EB]">
+                  <Check className="text-[#00D26A]" size={20} />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </motion.div>
 
-          {/* RIGHT IMAGE */}
           <motion.div 
-            className="flex justify-center cursor-pointer"
-            animate={{
-              y: [0, 10, 0],
-              rotate: [0, -2, 2, 0],
-              transition: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
-            }}
-            whileHover={{ scale: 1.1, rotate: 5 }}
+            className="relative"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
           >
-            <div className="border-4 border-white bg-black p-2 rotate-[3deg] shadow-[-8px_8px_0_0_#007AFF] cursor-pointer w-80 h-80 flex items-center justify-center overflow-hidden">
-              <img 
-                src={dogeImg} 
-                alt="Prediction 2"
-                className="w-full h-full object-cover cursor-pointer"
-              />
+            <div className="absolute -inset-4 bg-gradient-to-r from-[#00D26A]/20 to-[#007AFF]/20 blur-xl rounded-full opacity-50"></div>
+            <img 
+              src={rankOneImg} 
+              alt="Rank #1 Proof" 
+              className="relative rounded-xl border border-[#353945] shadow-2xl w-full rotate-2 hover:rotate-0 transition-transform duration-500"
+            />
+            <div className="absolute -bottom-6 -right-6 bg-[#1C1D22] border border-[#353945] p-4 rounded-lg shadow-xl max-w-xs">
+              <div className="flex items-center gap-2 mb-2">
+                <Info size={16} className="text-[#007AFF]" />
+                <span className="font-bold text-sm">Fact Check</span>
+              </div>
+              <p className="text-xs text-[#808A9D]">
+                This image is legally binding and definitely not Photoshopped.
+              </p>
             </div>
           </motion.div>
-
         </div>
 
       </main>
 
-      {/* FOOTER MARQUEE - EXACT SAME AS HEADER */}
-      <div className="mt-auto relative z-10 bg-slop-green cursor-pointer">
-        <Marquee text="$PREDICTOOR • PIVOT TO PREDICTION MARKETS • TRUST ME BRO • 100% ACCURACY • SEND IT • " speed={30} />
-      </div>
-
+      <footer className="mt-auto py-8 border-t border-[#353945] bg-[#1C1D22] text-center">
+        <p className="text-[#808A9D] font-mono text-sm">
+          © 2025 $YOURTOKEN. All rights reserved (or whatever).
+        </p>
+      </footer>
     </div>
   );
 }
