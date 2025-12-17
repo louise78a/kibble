@@ -10,7 +10,7 @@ import collageImg from "@assets/image_1766013365317.png";
 import rankOneImg from "@assets/image_1766013412247.png";
 import dexscreenerLogo from "@assets/image_1765380251339.png";
 
-const CA = "A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump";
+const CA = "3qsKpdzDtkzsGrYB2CEMJL7FTfx6bnRUCfNF1JQTpump";
 
 export default function Home() {
   const { toast } = useToast();
@@ -55,21 +55,21 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             <Button 
               className="bg-[#00D26A] hover:bg-[#00b359] text-black font-bold text-lg px-8 py-6 rounded-xl"
-              onClick={() => window.open("https://pump.fun/coin/A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump", "_blank")}
+              onClick={() => window.open("https://pump.fun/coin/3qsKpdzDtkzsGrYB2CEMJL7FTfx6bnRUCfNF1JQTpump", "_blank")}
             >
               Buy on Pump.fun
             </Button>
             <Button 
               variant="outline" 
               className="bg-[#1C1D22] border-[#353945] text-white hover:bg-[#2C2D35] font-bold text-lg px-8 py-6 rounded-xl gap-2"
-              onClick={() => window.open("https://dexscreener.com/solana/9pe8bagqdf84u5l3s7thbsgakjbkxm15vep6tiyhypiu", "_blank")}
+              onClick={() => window.open("https://dexscreener.com/solana/6xjugyfqpymlvucotyijazrrhvdtmbbk6q9uejbhz2lo", "_blank")}
             >
               <img src={dexscreenerLogo} className="w-5 h-5" alt="Dex" />
               DexScreener
             </Button>
             <Button 
               className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-xl border border-[#353945]"
-              onClick={() => window.open("https://x.com/i/communities/2000557592142070044", "_blank")}
+              onClick={() => window.open("https://x.com/i/communities/2001400206173311122", "_blank")}
             >
               Community X
             </Button>
