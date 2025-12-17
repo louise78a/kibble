@@ -12,24 +12,6 @@ import dexscreenerLogo from "@assets/image_1765380251339.png";
 
 const CA = "A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump";
 
-const Marquee = ({ text, speed = 20 }: { text: string; speed?: number }) => {
-  return (
-    <div className="flex overflow-hidden bg-[#1C1D22] py-2 border-y border-[#353945] cursor-pointer">
-      <motion.div
-        className="flex whitespace-nowrap text-lg font-mono text-[#00D26A] font-bold uppercase"
-        animate={{ x: [-1000, 0] }}
-        transition={{ repeat: Infinity, ease: "linear", duration: speed }}
-      >
-        {[...Array(10)].map((_, i) => (
-          <span key={i} className="mx-8 flex items-center gap-2">
-            <TrendingUp size={16} /> {text}
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
-
 export default function Home() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
@@ -48,9 +30,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#0F1014] text-[#E0E2EB] font-sans selection:bg-[#00D26A] selection:text-black flex flex-col">
       
-      {/* MARQUEE TOP */}
-      <Marquee text="UPDATE TOKEN INFO • ADD SOCIALS • PAY 299 SOL • DEV FORGOT TO NAME IT • BULLISH ON DEFAULT SETTINGS •" speed={40} />
-
       <main className="container mx-auto px-4 py-12 flex flex-col items-center gap-12 max-w-6xl">
         
         {/* HERO HEADER */}
@@ -78,7 +57,7 @@ export default function Home() {
               className="bg-[#00D26A] hover:bg-[#00b359] text-black font-bold text-lg px-8 py-6 rounded-xl"
               onClick={() => window.open("https://pump.fun/coin/A8YFC9X61bz9SCbmLkccitqM7mXqqHKN2hBZx1Y3pump", "_blank")}
             >
-              Update Token Info (Buy)
+              Buy on Pump.fun
             </Button>
             <Button 
               variant="outline" 
@@ -86,7 +65,13 @@ export default function Home() {
               onClick={() => window.open("https://dexscreener.com/solana/9pe8bagqdf84u5l3s7thbsgakjbkxm15vep6tiyhypiu", "_blank")}
             >
               <img src={dexscreenerLogo} className="w-5 h-5" alt="Dex" />
-              Chart
+              DexScreener
+            </Button>
+            <Button 
+              className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-xl border border-[#353945]"
+              onClick={() => window.open("https://x.com/i/communities/2000557592142070044", "_blank")}
+            >
+              Community X
             </Button>
           </div>
         </div>
@@ -94,9 +79,9 @@ export default function Home() {
         {/* JOKE ALERTS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-5xl">
           {[
-            { title: "Status", text: "Waiting for dev to wake up", icon: <AlertTriangle className="text-yellow-500" /> },
-            { title: "Market Cap", text: "Undervalued (Trust me)", icon: <TrendingUp className="text-[#00D26A]" /> },
-            { title: "Utility", text: "Fills the empty space", icon: <Terminal className="text-blue-500" /> },
+            { title: "Status", text: "It's everywhere", icon: <TrendingUp className="text-[#00D26A]" /> },
+            { title: "Market Cap", text: "Up only (Trust me)", icon: <AlertTriangle className="text-yellow-500" /> },
+            { title: "Utility", text: "Pumping your bags", icon: <Terminal className="text-blue-500" /> },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -169,7 +154,7 @@ export default function Home() {
         </motion.div>
 
         {/* RANK #1 SECTION */}
-        <div className="grid md:grid-cols-2 gap-8 items-center w-full max-w-5xl mt-12">
+        <div className="grid md:grid-cols-2 gap-8 items-center w-full max-w-5xl mt-12 pb-20">
           <motion.div 
             className="space-y-6"
             initial={{ opacity: 0, x: -50 }}
@@ -181,19 +166,16 @@ export default function Home() {
             </div>
             <h2 className="text-3xl md:text-5xl font-bold">
               We are Number 1.
-              <span className="block text-[#808A9D] text-2xl mt-2 font-mono font-normal">
-                (According to this screenshot I found)
-              </span>
             </h2>
             <p className="text-[#808A9D] text-lg leading-relaxed">
-              Why do research when the screenshot clearly says we are top gainer? $YOURTOKEN is the only token that respects the placeholder economy. We didn't even bother changing the variable name.
+              We are literally on every screen. The chart is green. The number is 1. What else do you need?
             </p>
             <ul className="space-y-3">
               {[
-                "Zero creativity included",
-                "Fully decentralized laziness",
-                "100% Organic Placeholder Growth",
-                "Dev is literally just a default setting"
+                "It's just math",
+                "Lines go up",
+                "Green is good",
+                "We are everywhere"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-[#E0E2EB]">
                   <Check className="text-[#00D26A]" size={20} />
@@ -221,19 +203,13 @@ export default function Home() {
                 <span className="font-bold text-sm">Fact Check</span>
               </div>
               <p className="text-xs text-[#808A9D]">
-                This image is legally binding and definitely not Photoshopped.
+                This image is legally binding.
               </p>
             </div>
           </motion.div>
         </div>
 
       </main>
-
-      <footer className="mt-auto py-8 border-t border-[#353945] bg-[#1C1D22] text-center">
-        <p className="text-[#808A9D] font-mono text-sm">
-          © 2025 $YOURTOKEN. All rights reserved (or whatever).
-        </p>
-      </footer>
     </div>
   );
 }
