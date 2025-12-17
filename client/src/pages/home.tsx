@@ -54,9 +54,10 @@ export default function Home() {
 
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             <Button 
-              className="bg-[#00D26A] hover:bg-[#00b359] text-black font-bold text-lg px-8 py-6 rounded-xl"
+              className="bg-[#00D26A] hover:bg-[#00b359] text-black font-bold text-lg px-8 py-6 rounded-xl gap-2"
               onClick={() => window.open("https://pump.fun/coin/3qsKpdzDtkzsGrYB2CEMJL7FTfx6bnRUCfNF1JQTpump", "_blank")}
             >
+              <span className="text-xl">💊</span>
               Buy on Pump.fun
             </Button>
             <Button 
@@ -68,9 +69,12 @@ export default function Home() {
               DexScreener
             </Button>
             <Button 
-              className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-xl border border-[#353945]"
+              className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-xl border border-[#353945] gap-2"
               onClick={() => window.open("https://x.com/i/communities/2001400206173311122", "_blank")}
             >
+              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
               Community X
             </Button>
           </div>
