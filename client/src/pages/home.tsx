@@ -122,7 +122,7 @@ export default function Home() {
               <img 
                 src={collageImg} 
                 alt="DexScreener Interface Collage" 
-                className="w-full h-auto rounded-lg shadow-lg border border-[#353945]"
+                className="w-full h-auto max-h-[400px] object-contain mx-auto rounded-lg shadow-lg border border-[#353945]"
               />
               <p className="text-center text-[#808A9D] mt-4 font-mono text-sm">
                 "Look at all these screens. We are literally everywhere."
