@@ -1,16 +1,15 @@
 import { motion } from "framer-motion";
-import { Copy, Check, TrendingUp, AlertTriangle, Terminal, Info } from "lucide-react";
+import { Copy, Check, TrendingUp, ExternalLink, ArrowRight, Info, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Assets
-import collageImg from "@assets/image_1766013365317.png";
-import rankOneImg from "@assets/image_1766013412247.png";
-import dexscreenerLogo from "@assets/image_1765380251339.png";
+import memeLogo from "@assets/img_1766048179020.jpeg";
 
-const CA = "3qsKpdzDtkzsGrYB2CEMJL7FTfx6bnRUCfNF1JQTpump";
+const CA = "DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump";
+const PAIR_ADDRESS = "gmue4n6zngmh3vbxdqreotzsdrjvzm4dzz4k4u2u9ad5"; // Derived from user provided link
 
 export default function Home() {
   const { toast } = useToast();
@@ -20,191 +19,262 @@ export default function Home() {
     navigator.clipboard.writeText(CA);
     setCopied(true);
     toast({
-      title: "COPIED!",
-      description: "CA copied to clipboard.",
-      className: "bg-[#1C1D22] text-white border border-[#353945] font-mono",
+      title: "Address Copied",
+      description: "Contract address copied to clipboard.",
+      className: "bg-[#0052FF] text-white border-none",
     });
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="min-h-screen bg-[#0F1014] text-[#E0E2EB] font-sans selection:bg-[#00D26A] selection:text-black flex flex-col">
+    <div className="min-h-screen bg-white text-[#050B20] font-sans selection:bg-[#0052FF] selection:text-white flex flex-col">
       
-      <main className="container mx-auto px-4 py-12 flex flex-col items-center gap-12 max-w-6xl">
-        
-        {/* HERO HEADER */}
-        <div className="text-center space-y-6 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+      {/* NAVBAR */}
+      <nav className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-6xl">
+          <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
+            <div className="w-8 h-8 rounded-full bg-[#0052FF] flex items-center justify-center text-white">
+              <img src={memeLogo} alt="Logo" className="w-full h-full object-cover rounded-full" />
+            </div>
+            <span>$MEMECOIN</span>
+          </div>
+          <div className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-500">
+            <a href="#about" className="hover:text-[#0052FF] transition-colors">Why this?</a>
+            <a href="#chart" className="hover:text-[#0052FF] transition-colors">Chart</a>
+            <a href="#community" className="hover:text-[#0052FF] transition-colors">Community</a>
+          </div>
+          <Button 
+            className="bg-[#0052FF] hover:bg-[#0040CC] text-white font-medium rounded-full px-6"
+            onClick={() => window.open("https://pump.fun/coin/DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump", "_blank")}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1C1D22] border border-[#353945] text-xs font-mono text-[#808A9D] mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#00D26A] animate-pulse"></span>
-              Live on Solana
+            Buy Now
+          </Button>
+        </div>
+      </nav>
+
+      <main className="flex-1">
+        {/* HERO SECTION */}
+        <section className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="space-y-6"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF4FF] text-[#0052FF] text-sm font-medium">
+                <TrendingUp size={16} />
+                <span>The Only Valid Memecoin</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#050B20] leading-[1.1]">
+                The Perfect <br/>
+                <span className="text-[#0052FF]">Normie Runner</span>
+              </h1>
+              
+              <p className="text-xl text-gray-500 leading-relaxed max-w-lg">
+                Overused memes are out. Coinbase endorsed legends are in. 
+                We're bringing the literal definition of a memecoin to Solana.
+              </p>
+
+              <div className="flex flex-wrap gap-4 pt-4">
+                <Button 
+                  className="bg-[#0052FF] hover:bg-[#0040CC] text-white h-12 px-8 rounded-full text-lg font-medium shadow-lg shadow-blue-500/20"
+                  onClick={() => window.open("https://pump.fun/coin/DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump", "_blank")}
+                >
+                  Buy on Pump.fun
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="border-gray-200 hover:bg-gray-50 h-12 px-8 rounded-full text-lg font-medium text-gray-700"
+                  onClick={() => window.open("https://dexscreener.com/solana/gmue4n6zngmh3vbxdqreotzsdrjvzm4dzz4k4u2u9ad5", "_blank")}
+                >
+                  View Chart
+                </Button>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="aspect-square rounded-[2rem] overflow-hidden bg-[#F5F8FF] border border-[#EEF4FF] shadow-2xl shadow-blue-900/5 relative z-10">
+                <img 
+                  src={memeLogo} 
+                  alt="Meme Logo" 
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Floating Badge */}
+                <motion.div 
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                  className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-white/50 shadow-lg"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#0052FF] flex items-center justify-center text-white font-bold">
+                      Cb
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 font-medium uppercase">Endorsed by Reality</p>
+                      <p className="text-sm font-bold text-[#050B20]">Literally on Coinbase.com</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+              
+              {/* Decorative Blob */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/5 blur-3xl rounded-full -z-10"></div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* STATS / JOKES */}
+        <section className="bg-[#F5F8FF] py-16 border-y border-[#EEF4FF]">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { 
+                  title: "Google It", 
+                  desc: "Search 'what is a memecoin'. Seriously. That's us.",
+                  icon: <ExternalLink className="text-[#0052FF]" />
+                },
+                { 
+                  title: "Coinbase Listed*", 
+                  desc: "*Not the token, just the picture. But that's bullish enough.",
+                  icon: <AlertCircle className="text-[#0052FF]" />
+                },
+                { 
+                  title: "Solana Speed", 
+                  desc: "Coinbase loves Solana now. We love Coinbase. It's fate.",
+                  icon: <TrendingUp className="text-[#0052FF]" />
+                }
+              ].map((item, i) => (
+                <Card key={i} className="border-none shadow-sm hover:shadow-md transition-shadow">
+                  <CardHeader className="pb-2">
+                    <div className="w-10 h-10 rounded-lg bg-[#EEF4FF] flex items-center justify-center mb-3">
+                      {item.icon}
+                    </div>
+                    <CardTitle className="text-xl font-bold">{item.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-500">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CONTEXT SECTION */}
+        <section id="about" className="py-20 container mx-auto px-4 max-w-4xl text-center">
+          <div className="space-y-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-[#050B20]">Why this dog?</h2>
+            <p className="text-xl text-gray-500 leading-relaxed">
+              When you Google <span className="text-[#050B20] font-semibold">"memecoin"</span>, 
+              the first thing you see is this image. It is the literal definition of a memecoin, 
+              chosen by the gods at Coinbase.
+            </p>
+            <div className="p-6 bg-[#EEF4FF] rounded-2xl border border-[#D0E0FF] inline-block text-left">
+              <p className="text-[#0052FF] font-medium mb-2">The Logic is Simple:</p>
+              <ul className="space-y-2 text-[#050B20]">
+                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> Coinbase announced Solana memecoins are tradable</li>
+                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> They use THIS image to explain memecoins</li>
+                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> We simply gave the people what they were promised</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* CHART SECTION */}
+        <section id="chart" className="py-12 bg-gray-50 border-y border-gray-100">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-bold">Live Chart</h2>
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                <span className="text-sm font-medium text-gray-500">Live Trading</span>
+              </div>
             </div>
             
-            <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-white mb-2">
-              $YOURTOKEN
-            </h1>
-            <p className="text-xl md:text-2xl text-[#808A9D] max-w-2xl mx-auto leading-relaxed">
-              "Dexscreeners official token as seen on their website"
-            </p>
-          </motion.div>
-
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <Button 
-              className="bg-[#00D26A] hover:bg-[#00b359] text-black font-bold text-lg px-8 py-6 rounded-xl gap-2"
-              onClick={() => window.open("https://pump.fun/coin/3qsKpdzDtkzsGrYB2CEMJL7FTfx6bnRUCfNF1JQTpump", "_blank")}
-            >
-              <span className="text-xl">💊</span>
-              Buy on Pump.fun
-            </Button>
-            <Button 
-              variant="outline" 
-              className="bg-[#1C1D22] border-[#353945] text-white hover:bg-[#2C2D35] font-bold text-lg px-8 py-6 rounded-xl gap-2"
-              onClick={() => window.open("https://dexscreener.com/solana/6xjugyfqpymlvucotyijazrrhvdtmbbk6q9uejbhz2lo", "_blank")}
-            >
-              <img src={dexscreenerLogo} className="w-5 h-5" alt="Dex" />
-              DexScreener
-            </Button>
-            <Button 
-              className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-xl border border-[#353945] gap-2"
-              onClick={() => window.open("https://x.com/i/communities/2001400206173311122", "_blank")}
-            >
-              <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-              </svg>
-              Community X
-            </Button>
-          </div>
-        </div>
-
-        {/* JOKE ALERTS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-5xl">
-          {[
-            { title: "Status", text: "It's everywhere", icon: <TrendingUp className="text-[#00D26A]" /> },
-            { title: "Market Cap", text: "Up only (Trust me)", icon: <AlertTriangle className="text-yellow-500" /> },
-            { title: "Utility", text: "Pumping your bags", icon: <Terminal className="text-blue-500" /> },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <Card className="bg-[#1C1D22] border-[#353945] text-[#E0E2EB]">
-                <CardContent className="p-4 flex items-center gap-4">
-                  <div className="p-2 bg-[#2C2D35] rounded-lg">{item.icon}</div>
-                  <div>
-                    <div className="text-xs text-[#808A9D] uppercase font-bold">{item.title}</div>
-                    <div className="font-mono text-sm">{item.text}</div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* MAIN IMAGE SECTION */}
-        <div className="w-full max-w-3xl space-y-8">
-          <motion.div 
-            className="rounded-2xl border border-[#353945] overflow-hidden bg-[#1C1D22] shadow-2xl shadow-black/50"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="bg-[#2C2D35] px-4 py-2 border-b border-[#353945] flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
-                <div className="w-3 h-3 rounded-full bg-[#FEBC2E]"></div>
-                <div className="w-3 h-3 rounded-full bg-[#28C840]"></div>
-              </div>
-              <div className="flex-1 text-center text-xs font-mono text-[#808A9D]">dex_screener_leak.png</div>
+            <div className="bg-white p-2 rounded-2xl shadow-xl border border-gray-100 h-[600px] overflow-hidden relative">
+              <iframe 
+                src={`https://dexscreener.com/solana/${PAIR_ADDRESS}?embed=1&theme=light&trades=0&info=0`}
+                className="w-full h-full border-0 rounded-xl"
+                title="DexScreener Chart"
+              ></iframe>
             </div>
-            <div className="p-4 md:p-8">
-              <img 
-                src={collageImg} 
-                alt="DexScreener Interface Collage" 
-                className="w-full h-auto max-h-[400px] object-contain mx-auto rounded-lg shadow-lg border border-[#353945]"
-              />
-              <p className="text-center text-[#808A9D] mt-4 font-mono text-sm">
-                "Look at all these screens. We are literally everywhere."
+          </div>
+        </section>
+
+        {/* COMMUNITY & CA */}
+        <section id="community" className="py-20 container mx-auto px-4 max-w-4xl text-center space-y-12">
+          
+          <div className="bg-[#050B20] text-white rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden relative">
+            <div className="relative z-10 space-y-8">
+              <h2 className="text-3xl md:text-4xl font-bold">Join the Movement</h2>
+              <p className="text-gray-400 max-w-xl mx-auto">
+                Stop buying random animals. Buy the one the professionals use as an example.
               </p>
-            </div>
-          </motion.div>
-        </div>
+              
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button 
+                  className="bg-white text-black hover:bg-gray-200 h-12 px-8 rounded-full text-lg font-bold gap-2"
+                  onClick={() => window.open("https://x.com/i/communities/2001569945902280827/", "_blank")}
+                >
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                  </svg>
+                  Join X Community
+                </Button>
+                <Button 
+                  className="bg-[#0052FF] hover:bg-[#0040CC] text-white h-12 px-8 rounded-full text-lg font-bold"
+                  onClick={() => window.open("https://pump.fun/coin/DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump", "_blank")}
+                >
+                  Pump.fun
+                </Button>
+              </div>
 
-        {/* CA SECTION */}
-        <motion.div 
-          className="w-full max-w-2xl"
-          whileHover={{ scale: 1.01 }}
-        >
-          <div className="bg-[#1C1D22] border border-[#353945] rounded-xl p-6 flex flex-col md:flex-row items-center gap-4 shadow-lg">
-            <div className="flex items-center gap-2 text-[#00D26A]">
-              <Terminal size={20} />
-              <span className="font-mono font-bold">CA:</span>
+              <div className="pt-8 border-t border-gray-800">
+                <p className="text-sm text-gray-400 mb-4 font-mono">CONTRACT ADDRESS</p>
+                <div 
+                  className="flex items-center justify-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10 hover:bg-white/10 transition-colors cursor-pointer group"
+                  onClick={copyToClipboard}
+                >
+                  <code className="font-mono text-sm md:text-base text-[#00D26A] break-all">
+                    {CA}
+                  </code>
+                  <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
+                    {copied ? <Check size={16} /> : <Copy size={16} />}
+                  </div>
+                </div>
+              </div>
             </div>
-            <code className="flex-1 font-mono text-sm md:text-base text-[#E0E2EB] break-all bg-[#0F1014] p-3 rounded border border-[#353945]">
-              {CA}
-            </code>
-            <Button 
-              onClick={copyToClipboard}
-              className="bg-[#2C2D35] hover:bg-[#353945] text-white shrink-0"
-            >
-              {copied ? <Check size={16} /> : <Copy size={16} />}
-            </Button>
+
+            {/* Background Gradient */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#0052FF] blur-[100px] opacity-20 rounded-full"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#00D26A] blur-[100px] opacity-10 rounded-full"></div>
           </div>
-        </motion.div>
 
-        {/* RANK #1 SECTION */}
-        <div className="grid md:grid-cols-2 gap-8 items-center w-full max-w-5xl mt-12 pb-20">
-          <motion.div 
-            className="space-y-6"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="inline-block px-3 py-1 rounded bg-[#00D26A]/20 text-[#00D26A] text-xs font-bold uppercase tracking-wider mb-2">
-              Market Analysis
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold">
-              We are Number 1.
-            </h2>
-            <p className="text-[#808A9D] text-lg leading-relaxed">
-              We are literally on every screen. The chart is green. The number is 1. What else do you need?
-            </p>
-            <ul className="space-y-3">
-              {[
-                "It's just math",
-                "Lines go up",
-                "Green is good",
-                "We are everywhere"
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-[#E0E2EB]">
-                  <Check className="text-[#00D26A]" size={20} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="absolute -inset-4 bg-gradient-to-r from-[#00D26A]/20 to-[#007AFF]/20 blur-xl rounded-full opacity-50"></div>
-            <img 
-              src={rankOneImg} 
-              alt="Rank #1 Proof" 
-              className="relative rounded-xl border border-[#353945] shadow-2xl w-full rotate-2 hover:rotate-0 transition-transform duration-500"
-            />
-          </motion.div>
-        </div>
+        </section>
 
       </main>
+
+      <footer className="bg-white border-t border-gray-100 py-12">
+        <div className="container mx-auto px-4 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4 opacity-50 grayscale hover:grayscale-0 transition-all">
+             <img src={memeLogo} alt="Logo" className="w-6 h-6 rounded-full" />
+             <span className="font-bold">$MEMECOIN</span>
+          </div>
+          <p className="text-gray-400 text-sm">
+            Not financial advice. It's a memecoin. <br/>
+            Specifically, the one from the picture.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
