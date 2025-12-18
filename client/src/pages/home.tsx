@@ -6,10 +6,11 @@ import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Assets
-import memeLogo from "@assets/img_1766048179020.jpeg";
+import memeLogo from "@assets/image_1766048532845.png";
+import dexscreenerLogo from "@assets/image_1765380251339.png"; // Re-importing dexscreener logo if available, or just use text
 
 const CA = "DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump";
-const PAIR_ADDRESS = "gmue4n6zngmh3vbxdqreotzsdrjvzm4dzz4k4u2u9ad5"; // Derived from user provided link
+const PAIR_ADDRESS = "gmue4n6zngmh3vbxdqreotzsdrjvzm4dzz4k4u2u9ad5";
 
 export default function Home() {
   const { toast } = useToast();
@@ -28,13 +29,28 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-[#050B20] font-sans selection:bg-[#0052FF] selection:text-white flex flex-col">
+      <style>{`
+        ::-webkit-scrollbar {
+          width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #0052FF;
+          border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #0040CC;
+        }
+      `}</style>
       
       {/* NAVBAR */}
       <nav className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-6xl">
           <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
-            <div className="w-8 h-8 rounded-full bg-[#0052FF] flex items-center justify-center text-white">
-              <img src={memeLogo} alt="Logo" className="w-full h-full object-cover rounded-full" />
+            <div className="w-8 h-8 rounded-full bg-[#0052FF] flex items-center justify-center text-white overflow-hidden">
+              <img src={memeLogo} alt="Logo" className="w-full h-full object-cover" />
             </div>
             <span>$MEMECOIN</span>
           </div>
@@ -139,17 +155,17 @@ export default function Home() {
               {[
                 { 
                   title: "Google It", 
-                  desc: "Search 'what is a memecoin'. Seriously. That's us.",
+                  desc: "Search 'what is a memecoin'. Use the first image. Deploy.",
                   icon: <ExternalLink className="text-[#0052FF]" />
                 },
                 { 
                   title: "Coinbase Listed*", 
-                  desc: "*Not the token, just the picture. But that's bullish enough.",
+                  desc: "Technically they listed the JPG. We just made it tradable. You're welcome.",
                   icon: <AlertCircle className="text-[#0052FF]" />
                 },
                 { 
                   title: "Solana Speed", 
-                  desc: "Coinbase loves Solana now. We love Coinbase. It's fate.",
+                  desc: "Coinbase loves Solana now. We're just helping them fill the bags.",
                   icon: <TrendingUp className="text-[#0052FF]" />
                 }
               ].map((item, i) => (
@@ -174,16 +190,14 @@ export default function Home() {
           <div className="space-y-6">
             <h2 className="text-3xl md:text-5xl font-bold text-[#050B20]">Why this dog?</h2>
             <p className="text-xl text-gray-500 leading-relaxed">
-              When you Google <span className="text-[#050B20] font-semibold">"memecoin"</span>, 
-              the first thing you see is this image. It is the literal definition of a memecoin, 
-              chosen by the gods at Coinbase.
+              The literal definition of a memecoin. Chosen by Coinbase. Deployed by us. Bought by you.
             </p>
             <div className="p-6 bg-[#EEF4FF] rounded-2xl border border-[#D0E0FF] inline-block text-left">
               <p className="text-[#0052FF] font-medium mb-2">The Logic is Simple:</p>
               <ul className="space-y-2 text-[#050B20]">
-                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> Coinbase announced Solana memecoins are tradable</li>
-                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> They use THIS image to explain memecoins</li>
-                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> We simply gave the people what they were promised</li>
+                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> Coinbase says Solana memes are go.</li>
+                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> They use this specific image.</li>
+                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> We give the people what they want.</li>
               </ul>
             </div>
           </div>
@@ -222,19 +236,29 @@ export default function Home() {
               
               <div className="flex flex-wrap justify-center gap-4">
                 <Button 
-                  className="bg-white text-black hover:bg-gray-200 h-12 px-8 rounded-full text-lg font-bold gap-2"
+                  className="bg-[#00D26A] hover:bg-[#00b359] text-black font-bold text-lg px-8 py-6 rounded-xl gap-2"
+                  onClick={() => window.open("https://pump.fun/coin/DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump", "_blank")}
+                >
+                  <span className="text-xl">💊</span>
+                  Buy on Pump.fun
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="bg-[#1C1D22] border-[#353945] text-white hover:bg-[#2C2D35] font-bold text-lg px-8 py-6 rounded-xl gap-2"
+                  onClick={() => window.open("https://dexscreener.com/solana/gmue4n6zngmh3vbxdqreotzsdrjvzm4dzz4k4u2u9ad5", "_blank")}
+                >
+                  {/* Fallback to text if logo not found, but using generic icon for now if needed, or simple text */}
+                  <TrendingUp className="w-5 h-5" />
+                  DexScreener
+                </Button>
+                <Button 
+                  className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-xl border border-[#353945] gap-2"
                   onClick={() => window.open("https://x.com/i/communities/2001569945902280827/", "_blank")}
                 >
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                   </svg>
-                  Join X Community
-                </Button>
-                <Button 
-                  className="bg-[#0052FF] hover:bg-[#0040CC] text-white h-12 px-8 rounded-full text-lg font-bold"
-                  onClick={() => window.open("https://pump.fun/coin/DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump", "_blank")}
-                >
-                  Pump.fun
+                  Community X
                 </Button>
               </div>
 
@@ -262,19 +286,6 @@ export default function Home() {
         </section>
 
       </main>
-
-      <footer className="bg-white border-t border-gray-100 py-12">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4 opacity-50 grayscale hover:grayscale-0 transition-all">
-             <img src={memeLogo} alt="Logo" className="w-6 h-6 rounded-full" />
-             <span className="font-bold">$MEMECOIN</span>
-          </div>
-          <p className="text-gray-400 text-sm">
-            Not financial advice. It's a memecoin. <br/>
-            Specifically, the one from the picture.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
