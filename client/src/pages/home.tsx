@@ -1,16 +1,15 @@
 import { motion } from "framer-motion";
-import { Copy, Check, TrendingUp, ExternalLink, ArrowRight, Info, AlertCircle } from "lucide-react";
+import { Copy, Check, Terminal, ExternalLink, Globe, BookOpen, Monitor } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 // Assets
-import memeLogo from "@assets/image_1766048532845.png";
-import dexscreenerLogo from "@assets/image_1765380251339.png"; // Re-importing dexscreener logo if available, or just use text
+import mozillaBanner from "@assets/image_1766078232400.png";
 
-const CA = "DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump";
-const PAIR_ADDRESS = "gmue4n6zngmh3vbxdqreotzsdrjvzm4dzz4k4u2u9ad5";
+const CA = "6CRzBXzL5xKf5t8wTEVK4qMiEShtgH3WvbDxv1Nopump";
+const PAIR_ADDRESS = "6wujh2ufvlypvmmm4wfcderqfve3xgzmjr1kbxun1z3c";
 
 export default function Home() {
   const { toast } = useToast();
@@ -22,269 +21,274 @@ export default function Home() {
     toast({
       title: "Address Copied",
       description: "Contract address copied to clipboard.",
-      className: "bg-[#0052FF] text-white border-none",
+      className: "bg-[#009688] text-white border-none font-mono",
     });
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#050B20] font-sans selection:bg-[#0052FF] selection:text-white flex flex-col">
+    <div className="min-h-screen bg-[#E0E0E0] text-[#1A1A1A] font-mono selection:bg-[#009688] selection:text-white flex flex-col">
       <style>{`
         ::-webkit-scrollbar {
-          width: 12px;
+          width: 14px;
         }
         ::-webkit-scrollbar-track {
-          background: #f1f1f1;
+          background: #C0C0C0;
+          border-left: 1px solid #FFFFFF;
         }
         ::-webkit-scrollbar-thumb {
-          background: #0052FF;
-          border-radius: 6px;
+          background: #009688;
+          border: 2px solid #C0C0C0;
+          box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5), inset -1px -1px 0 rgba(0,0,0,0.5);
         }
         ::-webkit-scrollbar-thumb:hover {
-          background: #0040CC;
+          background: #00796B;
+        }
+        .retro-shadow {
+          box-shadow: 4px 4px 0px 0px #000000;
+        }
+        .inset-shadow {
+          box-shadow: inset 2px 2px 0px 0px #808080, inset -2px -2px 0px 0px #FFFFFF;
         }
       `}</style>
       
       {/* NAVBAR */}
-      <nav className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+      <nav className="border-b-2 border-black bg-[#C0C0C0] sticky top-0 z-50">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-6xl">
-          <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
-            <div className="w-8 h-8 rounded-full bg-[#0052FF] flex items-center justify-center text-white overflow-hidden">
-              <img src={memeLogo} alt="Logo" className="w-full h-full object-cover" />
+          <div className="flex items-center gap-2 font-bold text-xl tracking-tighter uppercase">
+            <div className="w-8 h-8 bg-[#009688] flex items-center justify-center text-white border-2 border-black retro-shadow">
+              M
             </div>
-            <span>$MEMECOIN</span>
+            <span>$MOZILLA</span>
           </div>
-          <div className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-500">
-            <a href="#about" className="hover:text-[#0052FF] transition-colors">Why this?</a>
-            <a href="#chart" className="hover:text-[#0052FF] transition-colors">Chart</a>
-            <a href="#community" className="hover:text-[#0052FF] transition-colors">Community</a>
+          <div className="hidden md:flex items-center gap-6 text-sm font-bold text-[#1A1A1A]">
+            <a href="#history" className="hover:text-[#009688] hover:underline decoration-2 underline-offset-4">History</a>
+            <a href="#lore" className="hover:text-[#009688] hover:underline decoration-2 underline-offset-4">Lore</a>
+            <a href="#chart" className="hover:text-[#009688] hover:underline decoration-2 underline-offset-4">Chart</a>
           </div>
           <Button 
-            className="bg-[#0052FF] hover:bg-[#0040CC] text-white font-medium rounded-full px-6"
-            onClick={() => window.open("https://pump.fun/coin/DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump", "_blank")}
+            className="bg-[#009688] hover:bg-[#00796B] text-white font-bold border-2 border-black retro-shadow rounded-none active:translate-y-1 active:shadow-none transition-all"
+            onClick={() => window.open("https://pump.fun/coin/6CRzBXzL5xKf5t8wTEVK4qMiEShtgH3WvbDxv1Nopump", "_blank")}
           >
-            Buy Now
+            BUY TOKEN
           </Button>
         </div>
       </nav>
 
       <main className="flex-1">
         {/* HERO SECTION */}
-        <section className="container mx-auto px-4 py-16 md:py-24 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <section className="container mx-auto px-4 py-12 md:py-20 max-w-6xl">
+          <div className="flex flex-col gap-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-6"
+              className="text-center space-y-6 max-w-4xl mx-auto"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EEF4FF] text-[#0052FF] text-sm font-medium">
-                <TrendingUp size={16} />
-                <span>The Only Valid Memecoin</span>
+              <div className="inline-flex items-center gap-2 px-4 py-1 bg-black text-[#009688] text-sm font-bold uppercase tracking-widest border-2 border-[#009688]">
+                <Monitor size={16} />
+                <span>Est. 1994</span>
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#050B20] leading-[1.1]">
-                The Perfect <br/>
-                <span className="text-[#0052FF]">Normie Runner</span>
+              <h1 className="text-5xl md:text-8xl font-black tracking-tighter text-black uppercase leading-[0.9]">
+                The Internet's <br/>
+                <span className="text-[#009688] text-stroke">First Mascot</span>
               </h1>
               
-              <p className="text-xl text-gray-500 leading-relaxed max-w-lg">
-                Overused memes are out. Coinbase endorsed legends are in. 
-                We're bringing the literal definition of a memecoin to Solana.
+              <p className="text-xl md:text-2xl text-[#4A4A4A] font-bold max-w-2xl mx-auto leading-relaxed">
+                Before Chrome. Before Social Media.<br/>
+                There was <span className="text-[#009688] bg-black px-1">MOZILLA</span>.
               </p>
-
-              <div className="flex flex-wrap gap-4 pt-4">
-                <Button 
-                  className="bg-[#0052FF] hover:bg-[#0040CC] text-white h-12 px-8 rounded-full text-lg font-medium shadow-lg shadow-blue-500/20"
-                  onClick={() => window.open("https://pump.fun/coin/DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump", "_blank")}
-                >
-                  Buy on Pump.fun
-                </Button>
-                <Button 
-                  variant="outline"
-                  className="border-gray-200 hover:bg-gray-50 h-12 px-8 rounded-full text-lg font-medium text-gray-700"
-                  onClick={() => window.open("https://dexscreener.com/solana/gmue4n6zngmh3vbxdqreotzsdrjvzm4dzz4k4u2u9ad5", "_blank")}
-                >
-                  View Chart
-                </Button>
-              </div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative max-w-sm mx-auto"
+              transition={{ delay: 0.2 }}
+              className="relative w-full max-w-4xl mx-auto"
             >
-              <div className="aspect-square rounded-[2rem] overflow-hidden bg-[#F5F8FF] border border-[#EEF4FF] shadow-2xl shadow-blue-900/5 relative z-10">
+              <div className="bg-black p-2 border-4 border-black retro-shadow">
                 <img 
-                  src={memeLogo} 
-                  alt="Meme Logo" 
-                  className="w-full h-full object-cover"
+                  src={mozillaBanner} 
+                  alt="Mozilla History Collage" 
+                  className="w-full h-auto object-contain bg-white"
                 />
-                
-                {/* Floating Badge */}
-                <motion.div 
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6 }}
-                  className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-4 rounded-xl border border-white/50 shadow-lg"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#0052FF] flex items-center justify-center text-white font-bold">
-                      Cb
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500 font-medium uppercase">Endorsed by Reality</p>
-                      <p className="text-sm font-bold text-[#050B20]">Literally on Coinbase.com</p>
-                    </div>
-                  </div>
-                </motion.div>
               </div>
               
-              {/* Decorative Blob */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/5 blur-3xl rounded-full -z-10"></div>
+              {/* Retro UI Bar */}
+              <div className="mt-4 flex flex-col md:flex-row gap-4 justify-center">
+                 <Button 
+                  className="bg-[#009688] text-white font-bold h-12 px-8 border-2 border-black retro-shadow rounded-none hover:bg-[#00796B] text-lg w-full md:w-auto"
+                  onClick={() => window.open("https://pump.fun/coin/6CRzBXzL5xKf5t8wTEVK4qMiEShtgH3WvbDxv1Nopump", "_blank")}
+                >
+                  <Terminal className="mr-2 h-5 w-5" />
+                  INITIATE_BUY_SEQUENCE
+                </Button>
+                <Button 
+                  className="bg-white text-black font-bold h-12 px-8 border-2 border-black retro-shadow rounded-none hover:bg-gray-100 text-lg w-full md:w-auto"
+                  onClick={() => window.open("https://dexscreener.com/solana/6wujh2ufvlypvmmm4wfcderqfve3xgzmjr1kbxun1z3c", "_blank")}
+                >
+                  VIEW_CHART.EXE
+                </Button>
+              </div>
             </motion.div>
           </div>
         </section>
 
-        {/* STATS / JOKES */}
-        <section className="bg-[#F5F8FF] py-16 border-y border-[#EEF4FF]">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { 
-                  title: "Google It", 
-                  desc: "Search 'what is a memecoin'. Use the first image. Deploy.",
-                  icon: <ExternalLink className="text-[#0052FF]" />
-                },
-                { 
-                  title: "Coinbase Listed*", 
-                  desc: "Technically they listed the JPG. We just made it tradable. You're welcome.",
-                  icon: <AlertCircle className="text-[#0052FF]" />
-                },
-                { 
-                  title: "Solana Speed", 
-                  desc: "Coinbase loves Solana now. We're just helping them fill the bags.",
-                  icon: <TrendingUp className="text-[#0052FF]" />
-                }
-              ].map((item, i) => (
-                <Card key={i} className="border-none shadow-sm hover:shadow-md transition-shadow">
-                  <CardHeader className="pb-2">
-                    <div className="w-10 h-10 rounded-lg bg-[#EEF4FF] flex items-center justify-center mb-3">
-                      {item.icon}
-                    </div>
-                    <CardTitle className="text-xl font-bold">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-500">{item.desc}</p>
-                  </CardContent>
-                </Card>
-              ))}
+        {/* LORE SECTION */}
+        <section id="history" className="py-16 bg-[#C0C0C0] border-y-2 border-black">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="bg-[#E0E0E0] p-6 md:p-10 border-2 border-white inset-shadow space-y-8">
+              <h2 className="text-3xl md:text-4xl font-black uppercase border-b-4 border-[#009688] inline-block pb-2 mb-4">
+                System History
+              </h2>
+              
+              <div className="space-y-6 text-lg md:text-xl font-medium leading-relaxed">
+                <p>
+                  Before Google. Before Chrome. Before social media. 
+                  There was <span className="font-bold bg-black text-white px-1">Netscape</span> — the company that introduced the internet to everyday people in the 1990s.
+                </p>
+                <p>
+                  For a moment, Netscape was the internet. Inside Netscape, the browser had a codename: <span className="text-[#009688] font-black">Mozilla</span>.
+                </p>
+                <p>
+                  Mozilla wasn't just a name — it had a mascot. A lizard / dragon / Godzilla-like creature that appeared across internal art, developer docs, stickers, and office murals.
+                </p>
+                
+                <div className="bg-[#009688]/10 p-6 border-l-4 border-[#009688]">
+                  <p className="italic text-base md:text-lg">
+                    "Mozilla symbolised the open web, hacker culture, and rebellion against monopolies. In a PvP, extractive era, Mozilla represents reformation — back to holding, building, and belief. What the internet, and crypto, were meant to be."
+                  </p>
+                </div>
+
+                <p>
+                  What people forget is that there are countless Mozilla memes scattered across the internet. Old forums, hacker jokes, early blogs, Reddit threads, GitHub humour, stickers, parody art — even Godzilla-style edits.
+                </p>
+                
+                <p className="font-bold text-[#009688]">
+                  Mozilla was meme culture before memes were mainstream.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* CONTEXT SECTION */}
-        <section id="about" className="py-20 container mx-auto px-4 max-w-4xl text-center">
-          <div className="space-y-6">
-            <h2 className="text-3xl md:text-5xl font-bold text-[#050B20]">Why this dog?</h2>
-            <p className="text-xl text-gray-500 leading-relaxed">
-              The literal definition of a memecoin. Chosen by Coinbase. Deployed by us. Bought by you.
-            </p>
-            <div className="p-6 bg-[#EEF4FF] rounded-2xl border border-[#D0E0FF] inline-block text-left">
-              <p className="text-[#0052FF] font-medium mb-2">The Logic is Simple:</p>
-              <ul className="space-y-2 text-[#050B20]">
-                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> Coinbase says Solana memes are go.</li>
-                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> They use this specific image.</li>
-                <li className="flex items-center gap-2"><Check size={18} className="text-[#0052FF]" /> We give the people what they want.</li>
-              </ul>
+        {/* READ MORE LINKS */}
+        <section id="lore" className="py-16 bg-[#1A1A1A] text-white">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <h2 className="text-3xl font-black uppercase text-center mb-12 text-[#009688]">
+              Archive Access
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* MOZILLA LORE */}
+              <div className="bg-[#2A2A2A] border-2 border-[#009688] p-6 retro-shadow shadow-[#009688]">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <BookOpen size={24} className="text-[#009688]" />
+                  MOZILLA LORE
+                </h3>
+                <ul className="space-y-3">
+                  <li>
+                    <a href="https://home.snafu.de/tilman/mozilla/index.html" target="_blank" className="flex items-center gap-2 hover:text-[#009688] transition-colors">
+                      <ExternalLink size={16} /> The Book of Mozilla
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://reddit.com/r/netscape/s/tOTuiRDTsE" target="_blank" className="flex items-center gap-2 hover:text-[#009688] transition-colors">
+                      <ExternalLink size={16} /> Reddit Archives
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://dotcomboom.neocities.org/moz/" target="_blank" className="flex items-center gap-2 hover:text-[#009688] transition-colors">
+                      <ExternalLink size={16} /> The Museum of Mozilla
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* NETSCAPE LORE */}
+              <div className="bg-[#2A2A2A] border-2 border-white p-6 retro-shadow shadow-white">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Globe size={24} />
+                  NETSCAPE LORE
+                </h3>
+                <ul className="space-y-3">
+                  <li>
+                    <a href="https://en.wikipedia.org/wiki/Netscape" target="_blank" className="flex items-center gap-2 hover:text-gray-300 transition-colors">
+                      <ExternalLink size={16} /> Netscape History (Wikipedia)
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
 
         {/* CHART SECTION */}
-        <section id="chart" className="py-12 bg-gray-50 border-y border-gray-100">
+        <section id="chart" className="py-12 bg-[#E0E0E0] border-y-2 border-black">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold">Live Chart</h2>
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
-                <span className="text-sm font-medium text-gray-500">Live Trading</span>
+            <div className="bg-[#C0C0C0] p-2 border-4 border-black retro-shadow h-[600px] relative">
+              <div className="absolute top-0 left-0 bg-[#009688] text-white text-xs px-2 py-1 font-bold border-r-2 border-b-2 border-black z-10">
+                TRADING_TERMINAL_V1.0
               </div>
-            </div>
-            
-            <div className="bg-white p-2 rounded-2xl shadow-xl border border-gray-100 h-[600px] overflow-hidden relative">
               <iframe 
-                src={`https://dexscreener.com/solana/${PAIR_ADDRESS}?embed=1&theme=light&trades=0&info=0`}
-                className="w-full h-full border-0 rounded-xl"
+                src={`https://dexscreener.com/solana/${PAIR_ADDRESS}?embed=1&theme=dark&trades=0&info=0`}
+                className="w-full h-full border-2 border-[#808080] bg-black"
                 title="DexScreener Chart"
               ></iframe>
             </div>
           </div>
         </section>
 
-        {/* COMMUNITY & CA */}
-        <section id="community" className="py-20 container mx-auto px-4 max-w-4xl text-center space-y-12">
-          
-          <div className="bg-[#050B20] text-white rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden relative">
-            <div className="relative z-10 space-y-8">
-              <h2 className="text-3xl md:text-4xl font-bold">Join the Movement</h2>
-              <p className="text-gray-400 max-w-xl mx-auto">
-                Stop buying random animals. Buy the one the professionals use as an example.
+        {/* COMMUNITY */}
+        <section className="py-20 bg-[#009688] text-white">
+          <div className="container mx-auto px-4 max-w-4xl text-center space-y-12">
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-6xl font-black uppercase text-stroke shadow-black drop-shadow-lg">
+                Reboot The Web
+              </h2>
+              <p className="text-xl font-bold max-w-2xl mx-auto">
+                Join the rebellion. Return to the source.
               </p>
-              
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button 
-                  className="bg-[#00D26A] hover:bg-[#00b359] text-black font-bold text-lg px-8 py-6 rounded-xl gap-2"
-                  onClick={() => window.open("https://pump.fun/coin/DdfkSAuN8BMsj5sCaLTr4Rs61PANoJ6yCRcQofsZpump", "_blank")}
-                >
-                  <span className="text-xl">💊</span>
-                  Buy on Pump.fun
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="bg-[#1C1D22] border-[#353945] text-white hover:bg-[#2C2D35] font-bold text-lg px-8 py-6 rounded-xl gap-2"
-                  onClick={() => window.open("https://dexscreener.com/solana/gmue4n6zngmh3vbxdqreotzsdrjvzm4dzz4k4u2u9ad5", "_blank")}
-                >
-                  {/* Fallback to text if logo not found, but using generic icon for now if needed, or simple text */}
-                  <TrendingUp className="w-5 h-5" />
-                  DexScreener
-                </Button>
-                <Button 
-                  className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-xl border border-[#353945] gap-2"
-                  onClick={() => window.open("https://x.com/i/communities/2001569945902280827/", "_blank")}
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-                  </svg>
-                  Community X
-                </Button>
-              </div>
-
-              <div className="pt-8 border-t border-gray-800">
-                <p className="text-sm text-gray-400 mb-4 font-mono">CONTRACT ADDRESS</p>
-                <div 
-                  className="flex items-center justify-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10 hover:bg-white/10 transition-colors cursor-pointer group"
-                  onClick={copyToClipboard}
-                >
-                  <code className="font-mono text-sm md:text-base text-[#00D26A] break-all">
-                    {CA}
-                  </code>
-                  <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
-                    {copied ? <Check size={16} /> : <Copy size={16} />}
-                  </div>
-                </div>
-              </div>
             </div>
 
-            {/* Background Gradient */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#0052FF] blur-[100px] opacity-20 rounded-full"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#00D26A] blur-[100px] opacity-10 rounded-full"></div>
-          </div>
+            <div className="flex flex-wrap justify-center gap-6">
+              <Button 
+                className="bg-black hover:bg-gray-900 text-white font-bold h-16 px-8 text-xl border-4 border-white retro-shadow rounded-none"
+                onClick={() => window.open("https://x.com/i/communities/2001701203416154463", "_blank")}
+              >
+                JOIN COMMUNITY
+              </Button>
+              <Button 
+                className="bg-white hover:bg-gray-100 text-black font-bold h-16 px-8 text-xl border-4 border-black retro-shadow rounded-none"
+                onClick={() => window.open("https://pump.fun/coin/6CRzBXzL5xKf5t8wTEVK4qMiEShtgH3WvbDxv1Nopump", "_blank")}
+              >
+                BUY $MOZILLA
+              </Button>
+            </div>
 
+            <div className="max-w-2xl mx-auto bg-black/20 p-6 border-2 border-black/50 backdrop-blur-sm">
+              <p className="text-sm font-bold mb-2 uppercase tracking-widest text-black/60">Contract Address</p>
+              <div 
+                className="flex items-center justify-center gap-3 bg-black text-[#009688] p-4 border-2 border-white/50 cursor-pointer hover:bg-black/90 transition-colors font-mono text-sm md:text-lg break-all shadow-inner"
+                onClick={copyToClipboard}
+              >
+                {CA}
+                {copied ? <Check size={20} /> : <Copy size={20} />}
+              </div>
+            </div>
+          </div>
         </section>
 
+        <footer className="bg-[#1A1A1A] text-gray-500 py-8 border-t-4 border-[#009688]">
+          <div className="container mx-auto px-4 text-center text-sm font-mono">
+            <p>
+              $MOZILLA is a tribute to the open web. Not affiliated with Mozilla Foundation or Netscape.
+            </p>
+            <p className="mt-2 opacity-50">
+              EST. 2025 // REBOOTING...
+            </p>
+          </div>
+        </footer>
       </main>
     </div>
   );
