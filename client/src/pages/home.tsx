@@ -103,6 +103,13 @@ export default function Home() {
                 <Button 
                   variant="outline"
                   className="border-gray-200 hover:bg-gray-50 h-12 px-8 rounded-full text-lg font-medium text-gray-700"
+                  onClick={() => window.open("https://www.davetitus.com/mozilla/", "_blank")}
+                >
+                  Original Lore
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="border-gray-200 hover:bg-gray-50 h-12 px-8 rounded-full text-lg font-medium text-gray-700"
                   onClick={() => window.open("https://dexscreener.com/solana/6wujh2ufvlypvmmm4wfcderqfve3xgzmjr1kbxun1z3c", "_blank")}
                 >
                   View Chart
