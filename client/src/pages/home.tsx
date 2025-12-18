@@ -114,13 +114,13 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative max-w-sm mx-auto"
+              className="relative w-full max-w-lg mx-auto"
             >
-              <div className="aspect-square rounded-[2rem] overflow-hidden bg-[#F5F8FF] border border-[#EEF4FF] shadow-2xl shadow-blue-900/5 relative z-10">
+              <div className="rounded-[2rem] overflow-hidden bg-[#F5F8FF] border border-[#EEF4FF] shadow-2xl shadow-blue-900/5 relative z-10">
                 <img 
                   src={mozillaLogo} 
                   alt="Mozilla Logo" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-contain"
                 />
                 
                 {/* Floating Badge */}
