@@ -167,7 +167,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button 
-                className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-full gap-2 min-w-[240px]"
+                className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-full gap-2 min-w-[240px] border-none"
                 onClick={() => window.open("https://x.com/burgonsol", "_blank")}
               >
                 <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
@@ -176,7 +176,7 @@ export default function Home() {
                 Official
               </Button>
               <Button 
-                className="bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold text-lg px-8 py-6 rounded-full gap-2 min-w-[240px]"
+                className="bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold text-lg px-8 py-6 rounded-full gap-2 min-w-[240px] border-none"
                 onClick={() => window.open("https://t.me/+8zUJ-EkvmqA1NzFk", "_blank")}
               >
                 <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
