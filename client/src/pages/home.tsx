@@ -163,7 +163,7 @@ export default function Home() {
           <div className="container mx-auto px-4 max-w-4xl text-center space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold">Join the Raids</h2>
             <p className="text-[#D97706] text-xl font-medium">
-              We are building an army.
+              We are building an army
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button 
