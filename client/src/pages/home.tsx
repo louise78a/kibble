@@ -174,8 +174,8 @@ export default function Home() {
                   icon: <Utensils className="text-[#D97706]" />
                 },
                 { 
-                  title: "Unknown Origin", 
-                  desc: "Source unknown. Power unlimited. Eat or be eaten.",
+                  title: "The Golem", 
+                  desc: "A miracle of grease. Power unlimited. Eat or be eaten.",
                   icon: <Info className="text-[#D97706]" />
                 }
               ].map((item, i) => (
