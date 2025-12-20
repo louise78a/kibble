@@ -158,11 +158,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-[#FEF3C7] py-16 border-y border-[#FDE68A]">
-          <div className="container mx-auto px-4 max-w-6xl">
-            {/* Stats section removed as requested */}
-          </div>
-        </section>
 
         {/* ORIGINS SECTION */}
         <section id="about" className="py-20 container mx-auto px-4 max-w-5xl">
