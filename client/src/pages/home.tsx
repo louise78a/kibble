@@ -121,7 +121,7 @@ export default function Home() {
                   className="bg-[#229ED9] hover:bg-[#1E88B5] text-white font-medium h-12 px-8 rounded-full text-lg shadow-xl"
                   onClick={() => window.open("https://t.me/+8zUJ-EkvmqA1NzFk", "_blank")}
                 >
-                  Telegram
+                  Telegram Raids
                 </Button>
               </div>
             </motion.div>
