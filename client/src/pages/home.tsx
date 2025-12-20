@@ -205,7 +205,7 @@ export default function Home() {
                   He is not a drawing. He is real food.
                 </p>
                 <p className="text-lg text-[#78350F] leading-relaxed">
-                  We don't know who made him. We just know he is delicious.
+                  His maker is unknown. We just know he is delicious.
                   And he is ready for war.
                 </p>
                 <div className="pt-4">
