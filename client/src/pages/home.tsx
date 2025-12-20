@@ -117,6 +117,12 @@ export default function Home() {
                 >
                   View Chart
                 </Button>
+                <Button 
+                  className="bg-[#229ED9] hover:bg-[#1E88B5] text-white font-medium h-12 px-8 rounded-full text-lg shadow-xl"
+                  onClick={() => window.open("https://t.me/+8zUJ-EkvmqA1NzFk", "_blank")}
+                >
+                  Telegram
+                </Button>
               </div>
             </motion.div>
 
@@ -254,12 +260,21 @@ export default function Home() {
                 </Button>
                 <Button 
                   className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 h-12 rounded-full border border-[#78350F] gap-2"
-                  onClick={() => window.open("https://x.com/i/communities/2002308421933035758", "_blank")}
+                  onClick={() => window.open("https://x.com/burgonsol", "_blank")}
                 >
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                   </svg>
-                  Community X
+                  X Account
+                </Button>
+                <Button 
+                  className="bg-[#229ED9] hover:bg-[#1E88B5] text-white font-bold text-lg px-8 h-12 rounded-full border border-[#78350F] gap-2"
+                  onClick={() => window.open("https://t.me/+8zUJ-EkvmqA1NzFk", "_blank")}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" className="w-5 h-5 fill-current">
+                    <path d="M248,8C111.033,8,0,119.033,0,248S111.033,488,248,488s248-111.033,248-248S384.967,8,248,8ZM362.952,176.66c-3.732,39.215-19.881,134.378-28.1,178.3-3.476,18.313-10.022,22.008-16.411,22.566-13.974,1.216-24.582-7.352-38.124-16.291-21.192-13.987-33.167-22.65-53.724-36.22-23.754-14.15-8.36-21.91,5.187-36.012,3.545-3.687,65.179-59.727,66.366-62.731.148-.372.284-1.776-.677-2.516s-2.38-.261-3.407-.061c-1.427.275-22.864,14.534-64.6,42.71-6.112,4.129-11.666,6.146-16.634,6.035-5.48-.123-16.035-3.1-23.867-5.65-9.6-3.128-17.215-4.78-16.538-10.095.356-2.779,4.276-5.631,11.756-8.589,45.922-19.988,76.662-32.934,127.57-54.113,21.725-9.035,46.126-19.167,53.28-19.262,3.155-.042,10.218.757,14.155,3.957,3.315,2.566,4.232,6.035,4.522,8.472C363.324,169.306,363.224,173.812,362.952,176.66Z"/>
+                  </svg>
+                  Telegram
                 </Button>
               </div>
 
