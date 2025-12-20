@@ -158,40 +158,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* STATS / LORE */}
         <section className="bg-[#FEF3C7] py-16 border-y border-[#FDE68A]">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { 
-                  title: "1.4M Views", 
-                  desc: "Exploded on X within 24 hours. The algorithm craves the burger.",
-                  icon: <TrendingUp className="text-[#D97706]" />
-                },
-                { 
-                  title: "Industrial Golem", 
-                  desc: "Buns, patties, fries, grease. Engineered for meme consumption.",
-                  icon: <Utensils className="text-[#D97706]" />
-                },
-                { 
-                  title: "The Golem", 
-                  desc: "The beef was never identified. The process was never explained. Only BURG remains.",
-                  icon: <Info className="text-[#D97706]" />
-                }
-              ].map((item, i) => (
-                <Card key={i} className="border-none shadow-sm hover:shadow-md transition-shadow bg-[#FFFBEB]">
-                  <CardHeader className="pb-2">
-                    <div className="w-10 h-10 rounded-lg bg-[#FEF3C7] flex items-center justify-center mb-3 text-[#D97706]">
-                      {item.icon}
-                    </div>
-                    <CardTitle className="text-xl font-bold text-[#451A03]">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-[#78350F]">{item.desc}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            {/* Stats section removed as requested */}
           </div>
         </section>
 
