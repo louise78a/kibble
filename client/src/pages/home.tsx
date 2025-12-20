@@ -90,18 +90,18 @@ export default function Home() {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF3C7] text-[#D97706] text-sm font-medium border border-[#FDE68A]">
                 <Utensils size={16} />
-                <span>Processed Golem</span>
+                <span>Beef Unidentified Processed Golem</span>
               </div>
               
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#451A03] leading-[1.1]">
                 Forged from <br/>
-                <span className="text-[#D97706]">Fast Food.</span>
+                <span className="text-[#D97706]">Consumption.</span>
               </h1>
               
               <p className="text-xl text-[#78350F] leading-relaxed max-w-lg">
-                One video. 1.4M views. 
-                A warrior made of burgers. 
-                The internet loved it instantly.
+                What started as a joke turned into something else entirely. 
+                A warrior made solely from burger components — buns, patties, fries, grease.
+                Impossible to ignore.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
@@ -165,17 +165,17 @@ export default function Home() {
               {[
                 { 
                   title: "1.4M Views", 
-                  desc: "One video. 24 hours. Twitter went crazy.",
+                  desc: "Exploded on X within 24 hours. The algorithm craves the burger.",
                   icon: <TrendingUp className="text-[#D97706]" />
                 },
                 { 
-                  title: "100% Processed", 
-                  desc: "Buns. Meat. Grease. Pure American power.",
+                  title: "Industrial Golem", 
+                  desc: "Buns, patties, fries, grease. Engineered for meme consumption.",
                   icon: <Utensils className="text-[#D97706]" />
                 },
                 { 
                   title: "The Golem", 
-                  desc: "A miracle of grease. Power unlimited. Eat or be eaten.",
+                  desc: "The beef was never identified. The process was never explained. Only BURG remains.",
                   icon: <Info className="text-[#D97706]" />
                 }
               ].map((item, i) => (
@@ -201,12 +201,10 @@ export default function Home() {
              <div className="space-y-6">
                 <h2 className="text-3xl md:text-5xl font-bold text-[#451A03]">Born from the grill.</h2>
                 <p className="text-lg text-[#78350F] leading-relaxed">
-                  His name is <strong className="text-[#D97706]">BURG</strong>. 
-                  He is not a drawing. He is real food.
+                  <strong className="text-[#D97706]">BURG</strong> stands for Beef Unidentified Processed Golem — a being forged not from myth or stone, but from industrial food itself.
                 </p>
                 <p className="text-lg text-[#78350F] leading-relaxed">
-                  He just appeared. We just know he is delicious.
-                  And he is ready for war.
+                  The beef was never identified. The process was never explained. Only the result remained: a humanoid figure engineered from consumption.
                 </p>
                 <div className="pt-4">
                   <Button 
