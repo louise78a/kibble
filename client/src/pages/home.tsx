@@ -70,7 +70,7 @@ export default function Home() {
             <a href="#media" className="hover:text-[#D97706] transition-colors">Media</a>
           </div>
           <Button 
-            className="bg-[#D97706] hover:bg-[#B45309] text-white font-medium rounded-full px-6 shadow-lg shadow-orange-500/20"
+            className="bg-[#D97706] hover:bg-[#B45309] text-white font-medium rounded-full px-6 shadow-lg shadow-orange-500/20 border-none"
             onClick={() => window.open("https://pump.fun/coin/BK87JnLYhKUp7nq2qkARQneDMrg6UpVi96WLnaAKpump", "_blank")}
           >
             Buy Now
@@ -106,7 +106,7 @@ export default function Home() {
 
               <div className="flex flex-wrap gap-4 pt-4">
                 <Button 
-                  className="bg-[#D97706] hover:bg-[#B45309] text-white h-12 px-8 rounded-full text-lg font-medium shadow-xl shadow-orange-500/30"
+                  className="bg-[#D97706] hover:bg-[#B45309] text-white h-12 px-8 rounded-full text-lg font-medium shadow-xl shadow-orange-500/30 border-none"
                   onClick={() => window.open("https://pump.fun/coin/BK87JnLYhKUp7nq2qkARQneDMrg6UpVi96WLnaAKpump", "_blank")}
                 >
                   Buy on Pump.fun
@@ -268,7 +268,7 @@ export default function Home() {
               
               <div className="flex flex-wrap justify-center gap-4">
                 <Button 
-                  className="bg-[#D97706] hover:bg-[#B45309] text-white h-12 px-8 rounded-full text-lg font-bold gap-2"
+                  className="bg-[#D97706] hover:bg-[#B45309] text-white h-12 px-8 rounded-full text-lg font-bold gap-2 border-none"
                   onClick={() => window.open("https://pump.fun/coin/BK87JnLYhKUp7nq2qkARQneDMrg6UpVi96WLnaAKpump", "_blank")}
                 >
                   <span className="text-xl">🍔</span>
