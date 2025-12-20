@@ -167,16 +167,16 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button 
-                className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-full border border-[#78350F] gap-2"
+                className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-full gap-2 min-w-[240px]"
                 onClick={() => window.open("https://x.com/burgonsol", "_blank")}
               >
                 <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
                 </svg>
-                X Official
+                Official
               </Button>
               <Button 
-                className="bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold text-lg px-8 py-6 rounded-full gap-2"
+                className="bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold text-lg px-8 py-6 rounded-full gap-2 min-w-[240px]"
                 onClick={() => window.open("https://t.me/+8zUJ-EkvmqA1NzFk", "_blank")}
               >
                 <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
