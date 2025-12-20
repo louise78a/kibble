@@ -90,29 +90,29 @@ export default function Home() {
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF3C7] text-[#D97706] text-sm font-medium border border-[#FDE68A]">
                 <Utensils size={16} />
-                <span>The Processed Golem</span>
+                <span>Processed Golem</span>
               </div>
               
               <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#451A03] leading-[1.1]">
                 Forged from <br/>
-                <span className="text-[#D97706]">Consumption.</span>
+                <span className="text-[#D97706]">Fast Food.</span>
               </h1>
               
               <p className="text-xl text-[#78350F] leading-relaxed max-w-lg">
-                What started as a joke became a warrior. 1.4M views in 24 hours. 
-                Instantly recognisable. Impossible to ignore.
+                One video. 1.4M views. 
+                A warrior made of burgers. 
+                The internet loved it instantly.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
                 <Button 
-                  className="bg-[#D97706] hover:bg-[#B45309] text-white h-12 px-8 rounded-full text-lg font-medium shadow-xl shadow-orange-500/30 transition-transform active:scale-95"
+                  className="bg-[#D97706] hover:bg-[#B45309] text-white h-12 px-8 rounded-full text-lg font-medium shadow-xl shadow-orange-500/30"
                   onClick={() => window.open("https://pump.fun/coin/BK87JnLYhKUp7nq2qkARQneDMrg6UpVi96WLnaAKpump", "_blank")}
                 >
                   Buy on Pump.fun
                 </Button>
                 <Button 
-                  variant="outline"
-                  className="border-[#D97706] text-[#D97706] hover:bg-[#FEF3C7] h-12 px-8 rounded-full text-lg font-medium"
+                  className="bg-[#92400E] hover:bg-[#78350F] text-white h-12 px-8 rounded-full text-lg font-medium border-none"
                   onClick={() => window.open("https://dexscreener.com/solana/efwsuk62yqtf7i8sqmbnx6bntxtuvajhkemza7uzvtdn", "_blank")}
                 >
                   View Chart
@@ -165,17 +165,17 @@ export default function Home() {
               {[
                 { 
                   title: "1.4M Views", 
-                  desc: "Exploded on X within 24 hours. The algorithm craves the burger.",
+                  desc: "One video. 24 hours. Twitter went crazy.",
                   icon: <TrendingUp className="text-[#D97706]" />
                 },
                 { 
-                  title: "Industrial Golem", 
-                  desc: "Buns, patties, fries, grease. Engineered for meme consumption.",
+                  title: "100% Processed", 
+                  desc: "Buns. Meat. Grease. Pure American power.",
                   icon: <Utensils className="text-[#D97706]" />
                 },
                 { 
-                  title: "Identified: None", 
-                  desc: "The beef source is unknown. The process is a mystery. Only BURG remains.",
+                  title: "Just a Burger", 
+                  desc: "No deep lore. No roadmap. Just a burger warrior.",
                   icon: <Info className="text-[#D97706]" />
                 }
               ].map((item, i) => (
@@ -199,14 +199,14 @@ export default function Home() {
         <section id="about" className="py-20 container mx-auto px-4 max-w-5xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
              <div className="space-y-6">
-                <h2 className="text-3xl md:text-5xl font-bold text-[#451A03]">Only the result remained.</h2>
+                <h2 className="text-3xl md:text-5xl font-bold text-[#451A03]">Born from the grill.</h2>
                 <p className="text-lg text-[#78350F] leading-relaxed">
-                  BURG stands for <strong className="text-[#D97706]">Beef Unidentified Processed Golem</strong>. 
-                  A being forged not from myth or stone, but from industrial food itself. 
+                  His name is <strong className="text-[#D97706]">BURG</strong>. 
+                  He is not a drawing. He is real food.
                 </p>
                 <p className="text-lg text-[#78350F] leading-relaxed">
-                  The beef was never identified. The process was never explained. 
-                  Just a humanoid figure engineered from pure consumption.
+                  We don't know who made him. We just know he is delicious.
+                  And he is ready for war.
                 </p>
                 <div className="pt-4">
                   <Button 
@@ -235,16 +235,10 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold mb-12">Witness the Golem</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-black rounded-xl overflow-hidden aspect-video border border-[#78350F] shadow-2xl relative group">
-                <video src={video1} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" controls loop muted playsInline />
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity">
-                   <Play className="w-16 h-16 text-white/50" />
-                </div>
+                <video src={video1} className="w-full h-full object-cover" autoPlay loop muted playsInline />
               </div>
               <div className="bg-black rounded-xl overflow-hidden aspect-video border border-[#78350F] shadow-2xl relative group">
-                <video src={video2} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" controls loop muted playsInline />
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity">
-                   <Play className="w-16 h-16 text-white/50" />
-                </div>
+                <video src={video2} className="w-full h-full object-cover" autoPlay loop muted playsInline />
               </div>
             </div>
           </div>
@@ -290,15 +284,14 @@ export default function Home() {
                   Buy on Pump.fun
                 </Button>
                 <Button 
-                  variant="outline" 
-                  className="bg-[#291001] border-[#78350F] text-[#FFFBEB] hover:bg-[#3D1802] font-bold text-lg px-8 py-6 rounded-xl gap-2 hover:text-white"
+                  className="bg-[#92400E] border-[#78350F] text-white hover:bg-[#78350F] font-bold text-lg px-8 h-12 rounded-full gap-2"
                   onClick={() => window.open("https://dexscreener.com/solana/efwsuk62yqtf7i8sqmbnx6bntxtuvajhkemza7uzvtdn", "_blank")}
                 >
                   <TrendingUp className="w-5 h-5" />
                   DexScreener
                 </Button>
                 <Button 
-                  className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-xl border border-[#78350F] gap-2"
+                  className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 h-12 rounded-full border border-[#78350F] gap-2"
                   onClick={() => window.open("https://x.com/i/communities/2002308421933035758", "_blank")}
                 >
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
