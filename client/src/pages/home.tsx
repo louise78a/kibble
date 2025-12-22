@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Copy, Check, TrendingUp, Brush, Palette } from "lucide-react";
+import { Copy, Check, TrendingUp, Brush, Palette, ExternalLink } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -172,6 +172,14 @@ export default function Home() {
                   <p className="text-lg text-[#4B5563] leading-relaxed border-l-4 border-[#EF4444] pl-4 italic">
                     "I made this with my hands. My soul. My pain. No prompt can replicate the chaos of human emotion."
                   </p>
+                  <div className="pt-4">
+                    <Button 
+                      className="bg-[#111827] hover:bg-[#374151] text-white font-medium rounded-full px-6 shadow-lg shadow-black/10 border-none gap-2"
+                      onClick={() => window.open("https://x.com/search?q=art%20not%20made%20with%20ai&src=typed_query&f=top", "_blank")}
+                    >
+                      Explore the Movement on X <ExternalLink size={16} />
+                    </Button>
+                  </div>
                </div>
                <div className="relative order-1 md:order-2">
                   <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-[#111827] rotate-2 hover:rotate-0 transition-transform duration-500">
