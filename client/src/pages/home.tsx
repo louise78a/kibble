@@ -1,21 +1,20 @@
 import { motion } from "framer-motion";
-import { Copy, Check, TrendingUp, Brush, Palette, Image as ImageIcon, ExternalLink, Skull } from "lucide-react";
+import { Copy, Check, TrendingUp, Brush, Palette } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 // Assets
-import artHero from "@assets/art_hero.jpg";
-import artOrigins from "@assets/art_origins.jpg";
-import gallery1 from "@assets/gallery/1.jpg";
-import gallery2 from "@assets/gallery/2.jpg";
-import gallery3 from "@assets/gallery/3.jpg";
-import gallery4 from "@assets/gallery/4.jpg";
-import gallery5 from "@assets/gallery/5.jpg";
-import gallery6 from "@assets/gallery/6.jpg";
-import gallery7 from "@assets/gallery/7.jpg";
+import artHero from "@/assets/art_hero.jpg";
+import artOrigins from "@/assets/art_origins.jpg";
+import gallery1 from "@/assets/gallery/1.jpg";
+import gallery2 from "@/assets/gallery/2.jpg";
+import gallery3 from "@/assets/gallery/3.jpg";
+import gallery4 from "@/assets/gallery/4.jpg";
+import gallery5 from "@/assets/gallery/5.jpg";
+import gallery6 from "@/assets/gallery/6.jpg";
+import gallery7 from "@/assets/gallery/7.jpg";
 
 const CA = "6SiuEfuYBtQK19XUcYWxz8w4puQ2TNWpNk5SVp1xpump";
 const PAIR_ADDRESS = "bc3qaz9wk1ny6bs4oknvzfjo8cuxsrf85olyj7tmu9jz";
