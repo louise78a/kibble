@@ -6,8 +6,9 @@ import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
 
 // Assets
-import artHero from "@/assets/art_hero.jpg";
-import artOrigins from "@/assets/art_origins.jpg";
+import artHero from "@/assets/hero_swamp.jpg";
+import artOrigins from "@/assets/pushback_bg.jpg";
+import logoNoAi from "@/assets/logo_no_ai.jpeg";
 import gallery1 from "@/assets/gallery/1.jpg";
 import gallery2 from "@/assets/gallery/2.jpg";
 import gallery3 from "@/assets/gallery/3.jpg";
@@ -60,7 +61,7 @@ export default function Home() {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-6xl">
           <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
             <div className="w-10 h-10 rounded-full border-2 border-[#111827] overflow-hidden">
-              <img src={artHero} alt="Logo" className="w-full h-full object-cover" />
+              <img src={logoNoAi} alt="Logo" className="w-full h-full object-cover" />
             </div>
             <span className="text-[#111827]">$ART</span>
           </div>
