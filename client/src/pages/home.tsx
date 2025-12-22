@@ -1,26 +1,26 @@
 import { motion } from "framer-motion";
-import { Copy, Check, TrendingUp, Info, Globe, Play, Utensils, ExternalLink } from "lucide-react";
+import { Copy, Check, TrendingUp, Brush, Palette, Image as ImageIcon, ExternalLink, Skull } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 // Assets
-import kingBurger from "@assets/G8mrEoVXgAA0voI_1766225628331.jpg";
-import burgerArmy from "@assets/G8mq848bMAIEfv6_1766225628329.jpg";
-import video1 from "@assets/1_1766225628330.mp4";
-import video2 from "@assets/2_1766225628330.mp4";
+import artHero from "@assets/art_hero.jpg";
+import artOrigins from "@assets/art_origins.jpg";
+import gallery1 from "@assets/gallery/1.jpg";
+import gallery2 from "@assets/gallery/2.jpg";
+import gallery3 from "@assets/gallery/3.jpg";
+import gallery4 from "@assets/gallery/4.jpg";
+import gallery5 from "@assets/gallery/5.jpg";
+import gallery6 from "@assets/gallery/6.jpg";
+import gallery7 from "@assets/gallery/7.jpg";
 
-const CA = "BK87JnLYhKUp7nq2qkARQneDMrg6UpVi96WLnaAKpump";
-const PAIR_ADDRESS = "efwsuk62yqtf7i8sqmbnx6bntxtuvajhkemza7uzvtdn";
+const CA = "6SiuEfuYBtQK19XUcYWxz8w4puQ2TNWpNk5SVp1xpump";
+const PAIR_ADDRESS = "bc3qaz9wk1ny6bs4oknvzfjo8cuxsrf85olyj7tmu9jz";
 
-const THEME = {
-  primary: "#D97706", // Amber-600 (Burger Bun/Cheese)
-  secondary: "#92400E", // Amber-800 (Patty)
-  accent: "#EF4444", // Red-500 (Ketchup)
-  bg: "#FFFBEB", // Amber-50 (Light Bun)
-  text: "#451A03", // Amber-950 (Dark Brown)
-};
+const galleryImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7];
 
 export default function Home() {
   const { toast } = useToast();
@@ -32,46 +32,47 @@ export default function Home() {
     toast({
       title: "Address Copied",
       description: "Contract address copied to clipboard.",
-      className: "bg-[#D97706] text-white border-none",
+      className: "bg-[#EF4444] text-white border-none",
     });
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFBEB] text-[#451A03] font-sans selection:bg-[#D97706] selection:text-white flex flex-col">
+    <div className="min-h-screen bg-[#F3F4F6] text-[#111827] font-sans selection:bg-[#EF4444] selection:text-white flex flex-col">
       <style>{`
         ::-webkit-scrollbar {
           width: 12px;
         }
         ::-webkit-scrollbar-track {
-          background: #FFFBEB;
+          background: #F3F4F6;
         }
         ::-webkit-scrollbar-thumb {
-          background: #D97706;
+          background: #111827;
           border-radius: 6px;
+          border: 2px solid #F3F4F6;
         }
         ::-webkit-scrollbar-thumb:hover {
-          background: #B45309;
+          background: #3B82F6;
         }
       `}</style>
       
       {/* NAVBAR */}
-      <nav className="border-b border-[#FDE68A] bg-[#FFFBEB]/80 backdrop-blur-md sticky top-0 z-50">
+      <nav className="border-b border-[#E5E7EB] bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-6xl">
           <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
-            <div className="w-10 h-10 rounded-full border-2 border-[#D97706] overflow-hidden">
-              <img src={kingBurger} alt="Logo" className="w-full h-full object-cover" />
+            <div className="w-10 h-10 rounded-full border-2 border-[#111827] overflow-hidden">
+              <img src={artHero} alt="Logo" className="w-full h-full object-cover" />
             </div>
-            <span className="text-[#92400E]">$BURG</span>
+            <span className="text-[#111827]">$ART</span>
           </div>
-          <div className="hidden md:flex items-center gap-6 text-sm font-medium text-[#78350F]">
-            <a href="#about" className="hover:text-[#D97706] transition-colors">Origins</a>
-            <a href="#chart" className="hover:text-[#D97706] transition-colors">Chart</a>
-            <a href="#media" className="hover:text-[#D97706] transition-colors">Media</a>
+          <div className="hidden md:flex items-center gap-6 text-sm font-medium text-[#4B5563]">
+            <a href="#about" className="hover:text-[#EF4444] transition-colors">Manifesto</a>
+            <a href="#gallery" className="hover:text-[#EF4444] transition-colors">Gallery</a>
+            <a href="#chart" className="hover:text-[#EF4444] transition-colors">Chart</a>
           </div>
           <Button 
-            className="bg-[#D97706] hover:bg-[#B45309] text-white font-medium rounded-full px-6 shadow-lg shadow-orange-500/20 border-none"
-            onClick={() => window.open("https://pump.fun/coin/BK87JnLYhKUp7nq2qkARQneDMrg6UpVi96WLnaAKpump", "_blank")}
+            className="bg-[#111827] hover:bg-[#374151] text-white font-medium rounded-full px-6 shadow-lg shadow-black/10 border-none"
+            onClick={() => window.open("https://pump.fun/coin/6SiuEfuYBtQK19XUcYWxz8w4puQ2TNWpNk5SVp1xpump", "_blank")}
           >
             Buy Now
           </Button>
@@ -88,32 +89,32 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="space-y-6"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FEF3C7] text-[#D97706] text-sm font-medium border border-[#FDE68A]">
-                <Utensils size={16} />
-                <span>Beef Unidentified Reinforced Golem</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5E7EB] text-[#111827] text-sm font-medium border border-[#D1D5DB]">
+                <Brush size={16} />
+                <span>The Human Art Revolution</span>
               </div>
               
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#451A03] leading-[1.1]">
-                Forged from <br/>
-                <span className="text-[#D97706]">Consumption.</span>
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-[#111827] leading-[1.1]">
+                Real Art. <br/>
+                <span className="text-[#EF4444] underline decoration-4 underline-offset-4 decoration-wavy">No AI.</span>
               </h1>
               
-              <p className="text-xl text-[#78350F] leading-relaxed max-w-lg">
-                What started as a joke turned into something else entirely. 
-                A warrior made solely from burger components — buns, patties, fries, grease.
-                Impossible to ignore.
+              <p className="text-xl text-[#4B5563] leading-relaxed max-w-lg">
+                AI-generated slop is everywhere, and real artists are pushing back — hard.
+                A revolution in real time. Proudly hand-drawn, human-made work.
+                Explicitly: <span className="font-bold text-[#111827]">no AI involved.</span>
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
                 <Button 
-                  className="bg-[#D97706] hover:bg-[#B45309] text-white h-12 px-8 rounded-full text-lg font-medium shadow-xl shadow-orange-500/30 border-none"
-                  onClick={() => window.open("https://pump.fun/coin/BK87JnLYhKUp7nq2qkARQneDMrg6UpVi96WLnaAKpump", "_blank")}
+                  className="bg-[#EF4444] hover:bg-[#DC2626] text-white h-12 px-8 rounded-full text-lg font-medium shadow-xl shadow-red-500/30 border-none"
+                  onClick={() => window.open("https://pump.fun/coin/6SiuEfuYBtQK19XUcYWxz8w4puQ2TNWpNk5SVp1xpump", "_blank")}
                 >
-                  Buy on Pump.fun
+                  Join the Revolution
                 </Button>
                 <Button 
-                  className="bg-[#92400E] hover:bg-[#78350F] text-white h-12 px-8 rounded-full text-lg font-medium border-none"
-                  onClick={() => window.open("https://dexscreener.com/solana/efwsuk62yqtf7i8sqmbnx6bntxtuvajhkemza7uzvtdn", "_blank")}
+                  className="bg-[#1F2937] hover:bg-[#111827] text-white h-12 px-8 rounded-full text-lg font-medium border-none"
+                  onClick={() => window.open("https://dexscreener.com/solana/bc3qaz9wk1ny6bs4oknvzfjo8cuxsrf85olyj7tmu9jz", "_blank")}
                 >
                   View Chart
                 </Button>
@@ -126,10 +127,10 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="relative w-full max-w-lg mx-auto"
             >
-              <div className="rounded-[2rem] overflow-hidden bg-[#FEF3C7] border-4 border-[#FDE68A] shadow-2xl shadow-orange-900/10 relative z-10">
+              <div className="rounded-[2rem] overflow-hidden bg-white border-4 border-[#111827] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative z-10 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                 <img 
-                  src={kingBurger} 
-                  alt="King Burger" 
+                  src={artHero} 
+                  alt="Human Art" 
                   className="w-full h-auto object-contain"
                 />
                 
@@ -138,124 +139,81 @@ export default function Home() {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.6 }}
-                  className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl border border-[#FDE68A] shadow-lg"
+                  className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl border-2 border-[#111827] shadow-lg"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#D97706] flex items-center justify-center text-white font-bold">
-                      B
+                    <div className="w-10 h-10 rounded-full bg-[#EF4444] flex items-center justify-center text-white font-bold">
+                      <Palette size={20} />
                     </div>
                     <div>
-                      <p className="text-xs text-[#78350F] font-medium uppercase">Origin</p>
-                      <p className="text-sm font-bold text-[#451A03]">Beef Unidentified Reinforced Golem</p>
+                      <p className="text-xs text-[#4B5563] font-medium uppercase">Movement</p>
+                      <p className="text-sm font-bold text-[#111827]">Human Creativity Unleashed</p>
                     </div>
                   </div>
                 </motion.div>
               </div>
               
-              {/* Decorative Blob */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#D97706] blur-[100px] rounded-full opacity-20 -z-10"></div>
+              {/* Decorative Splash */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-[#3B82F6] blur-[100px] rounded-full opacity-20 -z-10"></div>
             </motion.div>
           </div>
         </section>
 
-        {/* RAID SECTION */}
-        <section className="bg-[#451A03] text-[#FFFBEB] py-12 border-y border-[#78350F]">
-          <div className="container mx-auto px-4 max-w-4xl text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Join the Raids</h2>
-            <p className="text-[#D97706] text-xl font-medium">
-              We are building an army
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button 
-                className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 py-6 rounded-full gap-2 min-w-[240px] border-none"
-                onClick={() => window.open("https://x.com/burgonsol", "_blank")}
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-                </svg>
-                Official
-              </Button>
-              <Button 
-                className="bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold text-lg px-8 py-6 rounded-full gap-2 min-w-[240px] border-none"
-                onClick={() => window.open("https://t.me/burgsolana", "_blank")}
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.176 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path>
-                </svg>
-                Official Telegram
-              </Button>
-              <Button 
-                className="bg-[#0088cc] hover:bg-[#0077b5] text-white font-bold text-lg px-8 py-6 rounded-full gap-2 min-w-[240px] border-none"
-                onClick={() => window.open("https://t.me/+8zUJ-EkvmqA1NzFk", "_blank")}
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.176 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"></path>
-                </svg>
-                Telegram Raids
-              </Button>
+        {/* ORIGINS SECTION */}
+        <section id="about" className="py-20 bg-white border-y border-[#E5E7EB]">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+               <div className="space-y-6 order-2 md:order-1">
+                  <h2 className="text-3xl md:text-5xl font-bold text-[#111827]">The Push Back.</h2>
+                  <p className="text-lg text-[#4B5563] leading-relaxed">
+                    A recent post showcasing art made without AI exploded to 5.2M views. The engagement is insane. 
+                    What we’re watching feels like an art revolution in real time.
+                  </p>
+                  <p className="text-lg text-[#4B5563] leading-relaxed border-l-4 border-[#EF4444] pl-4 italic">
+                    "I made this with my hands. My soul. My pain. No prompt can replicate the chaos of human emotion."
+                  </p>
+               </div>
+               <div className="relative order-1 md:order-2">
+                  <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-[#111827] rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <img src={artOrigins} alt="Art Revolution" className="w-full h-auto" />
+                  </div>
+               </div>
             </div>
           </div>
         </section>
 
-        {/* ORIGINS SECTION */}
-        <section id="about" className="py-20 container mx-auto px-4 max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-             <div className="space-y-6">
-                <h2 className="text-3xl md:text-5xl font-bold text-[#451A03]">Born from the grill.</h2>
-                <p className="text-lg text-[#78350F] leading-relaxed">
-                  <strong className="text-[#D97706]">BURG</strong> stands for Beef Unidentified Reinforced Golem — a being forged not from myth or stone, but from industrial food itself.
-                </p>
-                <p className="text-lg text-[#78350F] leading-relaxed">
-                  The beef was never identified. The process was never explained. Only the result remained: a humanoid figure engineered from consumption.
-                </p>
-                <div className="pt-4">
-                  <Button 
-                    variant="outline" 
-                    className="gap-2 border-[#D97706] text-[#D97706] hover:bg-[#FEF3C7]"
-                    onClick={() => window.open("https://x.com/einzelkampfen/status/2001905678466871685?s=46", "_blank")}
-                  >
-                    View Original Tweet <ExternalLink size={16} />
-                  </Button>
-                </div>
-             </div>
-             <div className="relative">
-                <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-[#FDE68A] rotate-2 hover:rotate-0 transition-transform duration-500">
-                  <img src={burgerArmy} alt="Burger Army" className="w-full h-auto" />
-                </div>
-                <div className="absolute -bottom-6 -right-6 bg-[#D97706] text-white p-4 rounded-xl shadow-lg max-w-xs text-sm font-medium">
-                  "It instantly became impossible to ignore."
-                </div>
-             </div>
-          </div>
-        </section>
-
-        {/* MEDIA GRID */}
-        <section id="media" className="py-20 bg-[#451A03] text-[#FFFBEB]">
-          <div className="container mx-auto px-4 max-w-6xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12">Witness the Golem</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-black rounded-xl overflow-hidden aspect-video border border-[#78350F] shadow-2xl relative group">
-                <video src={video1} className="w-full h-full object-cover" autoPlay loop muted playsInline />
-              </div>
-              <div className="bg-black rounded-xl overflow-hidden aspect-video border border-[#78350F] shadow-2xl relative group">
-                <video src={video2} className="w-full h-full object-cover" autoPlay loop muted playsInline />
-              </div>
+        {/* GALLERY GRID */}
+        <section id="gallery" className="py-20 bg-[#111827] text-white">
+          <div className="container mx-auto px-4 max-w-7xl text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Art Without AI</h2>
+            <p className="text-gray-400 mb-12 text-lg">A curated chaos of human expression.</p>
+            
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+              {galleryImages.map((img, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.02 }}
+                  className="break-inside-avoid rounded-xl overflow-hidden border-2 border-[#374151] hover:border-[#EF4444] transition-colors shadow-2xl bg-black"
+                >
+                  <img src={img} alt={`Gallery Art ${index + 1}`} className="w-full h-auto" loading="lazy" />
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* CHART SECTION */}
-        <section id="chart" className="py-12 bg-[#FEF3C7] border-y border-[#FDE68A]">
+        <section id="chart" className="py-12 bg-[#F3F4F6] border-y border-[#E5E7EB]">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold text-[#451A03]">Live Chart</h2>
+              <h2 className="text-3xl font-bold text-[#111827]">Market Canvas</h2>
               <div className="flex gap-2 items-center">
-                <div className="w-3 h-3 rounded-full bg-[#D97706] animate-pulse"></div>
-                <span className="text-sm font-medium text-[#78350F]">Live Trading</span>
+                <div className="w-3 h-3 rounded-full bg-[#22C55E] animate-pulse"></div>
+                <span className="text-sm font-medium text-[#4B5563]">Live Trading</span>
               </div>
             </div>
             
-            <div className="bg-white p-2 rounded-2xl shadow-xl border border-[#FDE68A] h-[600px] overflow-hidden relative">
+            <div className="bg-white p-2 rounded-2xl shadow-xl border border-[#E5E7EB] h-[600px] overflow-hidden relative">
               <iframe 
                 src={`https://dexscreener.com/solana/${PAIR_ADDRESS}?embed=1&theme=light&trades=0&info=0`}
                 className="w-full h-full border-0 rounded-xl"
@@ -268,31 +226,31 @@ export default function Home() {
         {/* COMMUNITY & CA */}
         <section id="community" className="py-20 container mx-auto px-4 max-w-4xl text-center space-y-12">
           
-          <div className="bg-[#451A03] text-[#FFFBEB] rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden relative">
+          <div className="bg-white text-[#111827] rounded-3xl p-8 md:p-12 shadow-xl border border-[#E5E7EB] relative overflow-hidden">
             <div className="relative z-10 space-y-8">
-              <h2 className="text-3xl md:text-4xl font-bold">Join the Feast</h2>
-              <p className="text-[#D97706] max-w-xl mx-auto font-medium">
-                The Golem grows with every transaction.
+              <h2 className="text-3xl md:text-4xl font-bold">Join the Movement</h2>
+              <p className="text-[#4B5563] max-w-xl mx-auto font-medium text-lg">
+                Support real artists. Reject the slop.
               </p>
               
               <div className="flex flex-wrap justify-center gap-4">
                 <Button 
-                  className="bg-[#D97706] hover:bg-[#B45309] text-white h-12 px-8 rounded-full text-lg font-bold gap-2 border-none"
-                  onClick={() => window.open("https://pump.fun/coin/BK87JnLYhKUp7nq2qkARQneDMrg6UpVi96WLnaAKpump", "_blank")}
+                  className="bg-[#111827] hover:bg-[#374151] text-white h-12 px-8 rounded-full text-lg font-bold gap-2 border-none"
+                  onClick={() => window.open("https://pump.fun/coin/6SiuEfuYBtQK19XUcYWxz8w4puQ2TNWpNk5SVp1xpump", "_blank")}
                 >
-                  <span className="text-xl">🍔</span>
+                  <Palette className="w-5 h-5" />
                   Buy on Pump.fun
                 </Button>
                 <Button 
-                  className="bg-[#92400E] border-[#78350F] text-white hover:bg-[#78350F] font-bold text-lg px-8 h-12 rounded-full gap-2"
-                  onClick={() => window.open("https://dexscreener.com/solana/efwsuk62yqtf7i8sqmbnx6bntxtuvajhkemza7uzvtdn", "_blank")}
+                  className="bg-white border-2 border-[#111827] text-[#111827] hover:bg-gray-100 font-bold text-lg px-8 h-12 rounded-full gap-2"
+                  onClick={() => window.open("https://dexscreener.com/solana/bc3qaz9wk1ny6bs4oknvzfjo8cuxsrf85olyj7tmu9jz", "_blank")}
                 >
                   <TrendingUp className="w-5 h-5" />
                   DexScreener
                 </Button>
                 <Button 
-                  className="bg-black hover:bg-gray-900 text-white font-bold text-lg px-8 h-12 rounded-full border border-[#78350F] gap-2"
-                  onClick={() => window.open("https://x.com/i/communities/2002308421933035758", "_blank")}
+                  className="bg-[#EF4444] hover:bg-[#DC2626] text-white font-bold text-lg px-8 h-12 rounded-full border-none gap-2"
+                  onClick={() => window.open("https://x.com/i/communities/2003078941213426158", "_blank")}
                 >
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" aria-hidden="true">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
@@ -301,25 +259,25 @@ export default function Home() {
                 </Button>
               </div>
 
-              <div className="pt-8 border-t border-[#78350F]">
-                <p className="text-sm text-[#D97706] mb-4 font-mono font-bold">CONTRACT ADDRESS</p>
+              <div className="pt-8 border-t border-[#E5E7EB]">
+                <p className="text-sm text-[#4B5563] mb-4 font-mono font-bold">CONTRACT ADDRESS</p>
                 <div 
-                  className="flex items-center justify-center gap-3 bg-black/20 p-4 rounded-xl border border-[#78350F] hover:bg-black/30 transition-colors cursor-pointer group"
+                  className="flex items-center justify-center gap-3 bg-[#F3F4F6] p-4 rounded-xl border border-[#D1D5DB] hover:bg-[#E5E7EB] transition-colors cursor-pointer group"
                   onClick={copyToClipboard}
                 >
-                  <code className="font-mono text-sm md:text-base text-[#FFFBEB] break-all">
+                  <code className="font-mono text-sm md:text-base text-[#111827] break-all">
                     {CA}
                   </code>
-                  <div className="p-2 bg-white/10 rounded-lg group-hover:bg-white/20 transition-colors">
-                    {copied ? <Check size={16} /> : <Copy size={16} />}
+                  <div className="p-2 bg-white rounded-lg shadow-sm group-hover:bg-white transition-colors">
+                    {copied ? <Check size={16} className="text-green-600" /> : <Copy size={16} />}
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Background Gradient */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#D97706] blur-[100px] opacity-20 rounded-full"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#92400E] blur-[100px] opacity-30 rounded-full"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#EF4444] blur-[100px] opacity-10 rounded-full"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#3B82F6] blur-[100px] opacity-10 rounded-full"></div>
           </div>
 
         </section>

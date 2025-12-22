@@ -5,11 +5,11 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-slop-red: #F6465D;    /* Chart Red */
-  --color-slop-green: #00D26A;  /* Trading Green */
-  --color-slop-blue: #007AFF;   /* Polymarket Blue */
-  --color-slop-yellow: #FFD700; /* Gold */
-  --color-meme-yellow: #FFFF00;
+  --color-slop-red: #EF4444;    /* Vivid Red */
+  --color-slop-green: #22C55E;  /* Paint Green */
+  --color-slop-blue: #3B82F6;   /* Artistic Blue */
+  --color-slop-yellow: #EAB308; /* Paint Yellow */
+  --color-meme-yellow: #FEF08A;
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
   
