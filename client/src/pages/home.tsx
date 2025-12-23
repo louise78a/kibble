@@ -6,7 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 
 // Assets
 import logoNo8 from "@/assets/logo_no8.jpeg";
-import heroVideo from "@/assets/hero_video_1.mp4";
+import heroBanner from "@/assets/hero_banner.png";
 import section2Video from "@/assets/section_2_video.mp4";
 import gVideo1 from "@/assets/gallery/v1.mp4";
 import gVideo2 from "@/assets/gallery/v2.mp4";
@@ -123,13 +123,10 @@ export default function Home() {
               className="relative w-full max-w-lg mx-auto"
             >
               <div className="rounded-[2rem] overflow-hidden bg-black border-4 border-[#2D1B4E] shadow-[8px_8px_0px_0px_rgba(45,27,78,1)] relative z-10 transform -rotate-2 hover:rotate-0 transition-transform duration-500 isolation-auto">
-                <video 
-                  src={heroVideo} 
+                <img 
+                  src={heroBanner} 
+                  alt="Santa's Little Helper"
                   className="w-full h-auto object-cover block"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
                 />
                 
                 {/* Floating Badge */}
