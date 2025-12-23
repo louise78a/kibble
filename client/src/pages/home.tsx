@@ -122,10 +122,10 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="relative w-full max-w-lg mx-auto"
             >
-              <div className="rounded-[2rem] overflow-hidden bg-black border-4 border-[#2D1B4E] shadow-[8px_8px_0px_0px_rgba(45,27,78,1)] relative z-10 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+              <div className="rounded-[2rem] overflow-hidden bg-black border-4 border-[#2D1B4E] shadow-[8px_8px_0px_0px_rgba(45,27,78,1)] relative z-10 transform -rotate-2 hover:rotate-0 transition-transform duration-500 isolation-auto">
                 <video 
                   src={heroVideo} 
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover block"
                   autoPlay
                   loop
                   muted
@@ -211,9 +211,10 @@ export default function Home() {
                   <video 
                     src={vid} 
                     className="w-full h-full object-cover" 
-                    controls
+                    autoPlay
+                    loop
+                    muted
                     playsInline
-                    preload="metadata"
                   />
                 </motion.div>
               ))}
@@ -257,7 +258,6 @@ export default function Home() {
                   className="bg-[#D97728] hover:bg-[#B55D1B] text-white h-12 px-8 rounded-full text-lg font-bold gap-2 border-none"
                   onClick={() => window.open("https://pump.fun/coin/536YassmBdyKduioNNpNfDp2d7bV4bb6nXp2UHN3pump", "_blank")}
                 >
-                  <Heart className="w-5 h-5 fill-current" />
                   Buy on Pump.fun
                 </Button>
                 <Button 
