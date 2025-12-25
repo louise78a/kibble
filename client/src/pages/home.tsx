@@ -15,6 +15,7 @@ import gallery2 from "@/assets/gallery/zazu_2.jpg";
 import gallery3 from "@/assets/gallery/zazu_3.jpg";
 import gallery4 from "@/assets/gallery/zazu_4.jpg";
 import gallery5 from "@/assets/gallery/zazu_5.jpg";
+import zazuLoop from "@/assets/gallery/zazu_loop.mp4";
 
 const CA = "F6DPfEyBseHCag8kpbhz71wYaGUBH2763zjL7j6Spump";
 const PAIR_ADDRESS = "afw8cl7c5sdfbc1acwl4yztmmevdjrsjwzc1mjxxduvp";
@@ -107,7 +108,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-3xl overflow-hidden shadow-2xl"
+              className="relative w-full max-w-lg mx-auto aspect-square md:h-auto rounded-3xl overflow-hidden shadow-2xl"
             >
                <img 
                   src={heroZazu} 
@@ -167,11 +168,26 @@ export default function Home() {
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+              {/* Featured Video */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden bg-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 relative group"
+              >
+                <video 
+                  src={zazuLoop} 
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+              </motion.div>
+
               {galleryImages.map((img, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
-                  className={`rounded-2xl overflow-hidden bg-gray-100 aspect-square shadow-sm hover:shadow-xl transition-all duration-300 ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}
+                  className="rounded-2xl overflow-hidden bg-gray-100 aspect-square shadow-sm hover:shadow-xl transition-all duration-300"
                 >
                   <img 
                     src={img} 
@@ -254,7 +270,6 @@ export default function Home() {
             </div>
             
             <div className="pt-20 text-xs text-gray-400">
-              <p>© 2025 ZAZU. All rights reserved.</p>
             </div>
           </div>
         </section>
