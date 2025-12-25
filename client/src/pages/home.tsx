@@ -137,7 +137,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-xs text-[#6B5B45] font-bold uppercase">Mission</p>
-                      <p className="text-sm font-black text-[#4A3B28]">To The Moon (Real this time)</p>
+                      <p className="text-sm font-black text-[#4A3B28]">To The Moon</p>
                     </div>
                   </div>
                 </motion.div>
@@ -205,9 +205,6 @@ export default function Home() {
              </div>
 
              <div className="mt-16 text-center space-y-6">
-                <p className="text-2xl font-black text-[#4A3B28]">
-                  If $BEPE can hit 3M, how high can <span className="text-[#E6C15C] underline">$BOGE</span> go?
-                </p>
                 <Button 
                   className="bg-[#E6C15C] hover:bg-[#D4A017] text-black h-14 px-10 rounded-full text-xl font-black shadow-xl shadow-yellow-500/30 border-none uppercase"
                   onClick={() => window.open(TWITTER_COMMUNITY, "_blank")}
