@@ -1,25 +1,62 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@theme inline {
+  --font-display: 'Bangers', cursive;
+  --font-body: 'Comic Neue', cursive;
+  
+  --color-slop-red: #FF4444;    /* Vivid Red */
+  --color-slop-green: #22C55E;  /* Paint Green */
+  --color-slop-blue: #3B82F6;   /* Artistic Blue */
+  --color-slop-yellow: #E6C15C; /* Boge Gold */
+  --color-meme-yellow: #FFF8E7;
+
+  --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
+  
+  @keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+  }
+}
 
 @layer base {
   body {
-    @apply bg-white text-black font-sans antialiased selection:bg-black selection:text-white;
+    @apply font-body bg-[#FFF8E7] text-[#4A3B28] overflow-x-hidden;
   }
+  
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight;
+    @apply font-display tracking-wider;
   }
 }
 
-/* Clean Minimal Scrollbar */
+/* Custom Scrollbar for meme vibes */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #FFF8E7;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 4px;
+  background: var(--color-slop-yellow);
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #D4A017;
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 2px black;
+  text-shadow: 4px 4px 0px rgba(0,0,0,1);
+}
+
+.text-stroke-sm {
+  -webkit-text-stroke: 1px black;
+  text-shadow: 2px 2px 0px rgba(0,0,0,1);
 }
