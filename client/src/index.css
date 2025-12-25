@@ -5,11 +5,11 @@
   --font-display: 'Bangers', cursive;
   --font-body: 'Comic Neue', cursive;
   
-  --color-slop-red: #FF4444;    /* Vivid Red */
+  --color-slop-red: #EF4444;    /* Vivid Red */
   --color-slop-green: #22C55E;  /* Paint Green */
   --color-slop-blue: #3B82F6;   /* Artistic Blue */
-  --color-slop-yellow: #E6C15C; /* Boge Gold */
-  --color-meme-yellow: #FFF8E7;
+  --color-slop-yellow: #EAB308; /* Paint Yellow */
+  --color-meme-yellow: #FEF08A;
 
   --animate-shake: shake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
   
@@ -23,7 +23,7 @@
 
 @layer base {
   body {
-    @apply font-body bg-[#FFF8E7] text-[#4A3B28] overflow-x-hidden;
+    @apply font-body bg-black text-white overflow-x-hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -36,14 +36,14 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFF8E7;
+  background: #000;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-slop-yellow);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D4A017;
+  background: var(--color-slop-red);
 }
 
 .marquee-container {
