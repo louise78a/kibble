@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 // Assets
-import bogeImg from "@/assets/boge.jpg";
+import bogeImg from "@/assets/boge.png";
 import dogeImg from "@/assets/doge.jpg";
 
 const CA = "AKPj6TGNGjHwFZUb6jA6BPMRCVBaFLzYnfW2YpmCpump";
