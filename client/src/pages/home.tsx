@@ -8,10 +8,10 @@ import { useToast } from "@/hooks/use-toast";
 import bogeImg from "@/assets/boge.jpg";
 import dogeImg from "@/assets/doge.jpg";
 
-const CA = "64x9UaSvpxKVRzJTRRZEZGSMTCJEefXdBVnT9ZDDpump";
-const PAIR_ADDRESS = "6ei47egf7bjuvhetihdxn9l9tvjra9suk9zlhcst44bo";
-const PUMP_URL = "https://pump.fun/coin/64x9UaSvpxKVRzJTRRZEZGSMTCJEefXdBVnT9ZDDpump";
-const TWITTER_COMMUNITY = "https://x.com/i/communities/2004155300929261588";
+const CA = "AKPj6TGNGjHwFZUb6jA6BPMRCVBaFLzYnfW2YpmCpump";
+const PAIR_ADDRESS = "nfhfav8wylbpmx7skkgffdampqjcbckn1sz94wc1hqm";
+const PUMP_URL = "https://pump.fun/coin/AKPj6TGNGjHwFZUb6jA6BPMRCVBaFLzYnfW2YpmCpump";
+const TWITTER_COMMUNITY = "https://x.com/i/communities/2004228317927587880";
 
 export default function Home() {
   const { toast } = useToast();
