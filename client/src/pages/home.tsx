@@ -83,10 +83,10 @@ export default function Home() {
               
               <div className="text-xl md:text-2xl text-gray-500 leading-relaxed font-light max-w-lg space-y-4">
                 <p>
-                  Sonic has been part of internet culture for over 30 years, constantly resurfacing through memes, edits, and nostalgia cycles. From early forums and YouTube parodies to modern TikTok brainrot, <span className="text-black font-medium">Sonic never really leaves — he just evolves.</span>
+                  <span className="text-black font-medium">Sonic never leaves — he just evolves.</span> From forums to TikTok, he represents speed as an identity.
                 </p>
                 <p>
-                  He represents speed as an identity: moving fast, breaking rules, and staying ahead. That’s why the internet keeps reusing him. Sonic exists in both nostalgia and irony at the same time, making him endlessly memeable across generations.
+                  Sonic exists in both nostalgia and irony, making him endlessly memeable.
                 </p>
                 <p className="text-black font-bold">
                   Some characters fade. Sonic just keeps running. 💨
@@ -234,11 +234,11 @@ export default function Home() {
         </section>
 
         {/* FOOTER & CA */}
-        <section className="py-20 bg-white border-t border-gray-100">
-          <div className="container mx-auto px-4 max-w-4xl text-center space-y-12">
+        <section className="py-12 bg-white border-t border-gray-100">
+          <div className="container mx-auto px-4 max-w-4xl text-center space-y-8">
             
-            <div className="space-y-8">
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-blue-600">$SONIC</h2>
+            <div className="space-y-6">
+              <h2 className="text-4xl md:text-6xl font-black tracking-tighter text-blue-600">$SONIC</h2>
               
               <div className="flex flex-wrap justify-center gap-4">
                 <Button 
@@ -265,8 +265,8 @@ export default function Home() {
                 </Button>
               </div>
 
-              <div className="pt-12">
-                <p className="text-xs text-gray-400 mb-4 font-mono uppercase tracking-widest">Contract Address</p>
+              <div className="pt-8">
+                <p className="text-xs text-gray-400 mb-2 font-mono uppercase tracking-widest">Contract Address</p>
                 <div 
                   className="inline-flex items-center justify-center gap-3 bg-gray-50 px-6 py-4 rounded-2xl border border-gray-100 hover:border-blue-200 transition-all cursor-pointer group"
                   onClick={copyToClipboard}
@@ -279,9 +279,6 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="pt-20 text-xs text-gray-400">
             </div>
           </div>
         </section>
