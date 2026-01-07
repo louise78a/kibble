@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Copy, Check, TrendingUp, ExternalLink, Anchor, Twitter } from "lucide-react";
+import { Copy, Check, TrendingUp, ExternalLink, Anchor, Twitter, BookOpen } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -142,12 +142,19 @@ export default function Home() {
                       "The best and most illustrious of his race."
                     </p>
                   </div>
-                  <div className="pt-4 font-sans">
+                  <div className="pt-4 font-sans flex flex-wrap gap-4">
                     <Button 
                       className="bg-slate-900 hover:bg-slate-800 text-white rounded-full px-8 h-12 gap-2"
                       onClick={() => window.open("https://x.com/i/communities/2008919244109475907", "_blank")}
                     >
                       Join the Community <ExternalLink size={16} />
+                    </Button>
+                    <Button 
+                      variant="outline"
+                      className="bg-white text-slate-900 border-2 border-slate-200 hover:bg-slate-50 font-bold rounded-full px-8 h-12 gap-2"
+                      onClick={() => window.open("https://www.purr-n-fur.org.uk/famous/trim.html", "_blank")}
+                    >
+                      Read the Lore <BookOpen size={16} />
                     </Button>
                   </div>
                </div>
