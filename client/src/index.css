@@ -2,14 +2,13 @@
 
 @layer base {
   body {
-    @apply bg-white text-black font-sans antialiased selection:bg-black selection:text-white;
+    @apply bg-white text-black font-sans antialiased selection:bg-orange-500 selection:text-white;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight;
   }
 }
 
-/* Clean Minimal Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -17,9 +16,9 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #fed7aa;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #fb923c;
 }
