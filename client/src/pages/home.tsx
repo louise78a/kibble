@@ -197,7 +197,10 @@ export default function Home() {
               >
                 <video 
                   src={videoYontama}
-                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-full object-cover"
                   poster={gallery2}
                 />
