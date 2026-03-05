@@ -4,16 +4,18 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
-import heroImg from "@/assets/pikachu/hero.jpg";
-import sectionImg from "@/assets/pikachu/section.jpg";
-import gallery1 from "@/assets/pikachu/gallery1.jpg";
-import gallery2 from "@/assets/pikachu/gallery2.png";
-import videoFile from "@/assets/pikachu/video.mp4";
+import heroImg from "@/assets/pikachu/1.jpg";
+import sectionImg from "@/assets/pikachu/2.jpg";
+import gallery1 from "@/assets/pikachu/imagesdsqd.jpg";
+import gallery2 from "@/assets/pikachu/dazdza.jpg";
+import gallery3 from "@/assets/pikachu/o2wkcznd323b1.jpg";
+import gallery4 from "@/assets/pikachu/626613cab9c8c43f0a8f9adb26ab00ef.jpg";
+import videoFile from "@/assets/pikachu/aeds.mp4";
 
 const CA = "";
 const PAIR_ADDRESS = "4ch64a5jeenwzbkutyphymv3u4fm3fdr7f7fwzgwnhxb";
 
-const galleryImages = [gallery1, gallery2];
+const galleryImages = [gallery1, gallery2, gallery3, gallery4];
 
 export default function Home() {
   const { toast } = useToast();
