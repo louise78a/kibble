@@ -195,14 +195,16 @@ export default function Home() {
                 whileHover={{ y: -5 }}
                 className="md:col-span-2 rounded-xl overflow-hidden bg-yellow-900 shadow-xl hover:shadow-2xl transition-all duration-300 border-4 border-yellow-400"
               >
-                <video 
-                  src={videoFile}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
+                <div className="w-full h-full relative overflow-hidden flex items-center justify-center bg-yellow-900 aspect-[4/3] md:aspect-auto">
+                  <video 
+                    src={videoFile}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover scale-[1.35] origin-top"
+                  />
+                </div>
               </motion.div>
               
               {galleryImages.map((img, index) => (
