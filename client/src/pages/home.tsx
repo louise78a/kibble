@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 import heroImg from "@/assets/pikachu/1.jpg";
-import sectionImg from "@/assets/pikachu/2.jpg";
+import sectionImg from "@/assets/pikachu/dazdza.jpg";
 import gallery1 from "@/assets/pikachu/imagesdsqd.jpg";
-import gallery2 from "@/assets/pikachu/dazdza.jpg";
+import gallery2 from "@/assets/pikachu/2.jpg";
 import gallery3 from "@/assets/pikachu/o2wkcznd323b1.jpg";
 import gallery4 from "@/assets/pikachu/626613cab9c8c43f0a8f9adb26ab00ef.jpg";
 import videoFile from "@/assets/pikachu/aeds.mp4";
