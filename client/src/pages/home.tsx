@@ -12,8 +12,8 @@ import gallery3 from "@/assets/pikachu/o2wkcznd323b1.jpg";
 import gallery4 from "@/assets/pikachu/626613cab9c8c43f0a8f9adb26ab00ef.jpg";
 import videoFile from "@/assets/pikachu/aeds.mp4";
 
-const CA = "";
-const PAIR_ADDRESS = "4ch64a5jeenwzbkutyphymv3u4fm3fdr7f7fwzgwnhxb";
+const CA = "TD6khqfxEdzeUDcAamcRuWKfn2PRZvjSgqHTPKKpump";
+const PAIR_ADDRESS = "ehvwh3ilqfqcitswom1fkexdtxgtwcmsosow2tk5n17l";
 
 const galleryImages = [gallery1, gallery2, gallery3, gallery4];
 
@@ -50,7 +50,7 @@ export default function Home() {
           </div>
           <Button 
             className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full px-6 h-10 transition-all shadow-lg shadow-yellow-500/20"
-            onClick={(e) => e.preventDefault()}
+            onClick={() => window.open("https://pump.fun/coin/TD6khqfxEdzeUDcAamcRuWKfn2PRZvjSgqHTPKKpump", "_blank")}
           >
             Buy $PIKACHU
           </Button>
@@ -109,14 +109,14 @@ export default function Home() {
               <div className="flex flex-wrap gap-4 pt-4 font-sans">
                 <Button 
                   className="bg-yellow-500 hover:bg-yellow-600 text-black h-14 px-8 rounded-full text-lg font-bold transition-all shadow-xl shadow-yellow-500/30"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={() => window.open("https://pump.fun/coin/TD6khqfxEdzeUDcAamcRuWKfn2PRZvjSgqHTPKKpump", "_blank")}
                 >
                   Buy Now
                 </Button>
                 <Button 
                   variant="outline"
                   className="bg-yellow-50 hover:bg-yellow-100 text-yellow-900 border-2 border-yellow-300 h-14 px-8 rounded-full text-lg font-bold"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={() => window.open("https://dexscreener.com/solana/ehvwh3ilqfqcitswom1fkexdtxgtwcmsosow2tk5n17l", "_blank")}
                 >
                   View Chart
                 </Button>
@@ -157,16 +157,16 @@ export default function Home() {
                   <div className="pt-4 font-sans flex flex-wrap gap-4">
                     <Button 
                       className="bg-yellow-900 hover:bg-yellow-800 text-yellow-50 rounded-full px-8 h-12 gap-2"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={() => window.open("https://x.com/i/communities/2029625182474609164", "_blank")}
                     >
                       Join the Community <ExternalLink size={16} />
                     </Button>
                     <Button 
                       variant="outline"
                       className="bg-yellow-50 text-yellow-900 border-2 border-yellow-300 hover:bg-yellow-100 font-bold rounded-full px-8 h-12 gap-2"
-                      onClick={(e) => e.preventDefault()}
+                      onClick={() => window.open("https://x.com/pikachu_solana0?s=21", "_blank")}
                     >
-                      Read the Lore <BookOpen size={16} />
+                      Official X <Twitter size={16} />
                     </Button>
                   </div>
                </div>
@@ -253,14 +253,14 @@ export default function Home() {
               <div className="flex flex-wrap justify-center gap-4 font-sans">
                 <Button 
                   className="bg-yellow-500 hover:bg-yellow-600 text-black h-12 px-8 rounded-full text-lg font-bold gap-2 shadow-lg shadow-yellow-500/20"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={() => window.open("https://pump.fun/coin/TD6khqfxEdzeUDcAamcRuWKfn2PRZvjSgqHTPKKpump", "_blank")}
                 >
                   Pump.fun
                 </Button>
                 <Button 
                   variant="outline"
                   className="bg-yellow-50 text-yellow-900 border-2 border-yellow-300 hover:bg-yellow-100 font-bold text-lg px-8 h-12 rounded-full gap-2"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={() => window.open("https://dexscreener.com/solana/ehvwh3ilqfqcitswom1fkexdtxgtwcmsosow2tk5n17l", "_blank")}
                 >
                   <TrendingUp className="w-5 h-5" />
                   DexScreener
@@ -268,7 +268,15 @@ export default function Home() {
                 <Button 
                   variant="outline"
                   className="bg-yellow-50 text-yellow-900 border-2 border-yellow-300 hover:bg-yellow-100 font-bold text-lg px-8 h-12 rounded-full gap-2"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={() => window.open("https://x.com/pikachu_solana0?s=21", "_blank")}
+                >
+                  <Twitter className="w-5 h-5" />
+                  Official X
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="bg-yellow-50 text-yellow-900 border-2 border-yellow-300 hover:bg-yellow-100 font-bold text-lg px-8 h-12 rounded-full gap-2"
+                  onClick={() => window.open("https://x.com/i/communities/2029625182474609164", "_blank")}
                 >
                   <Twitter className="w-5 h-5" />
                   Community
