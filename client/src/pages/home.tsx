@@ -166,7 +166,7 @@ export default function Home() {
                       className="bg-yellow-50 text-yellow-900 border-2 border-yellow-300 hover:bg-yellow-100 font-bold rounded-full px-8 h-12 gap-2"
                       onClick={() => window.open("https://x.com/pikachu_solana0?s=21", "_blank")}
                     >
-                      Official X <Twitter size={16} />
+                      Official X <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                     </Button>
                   </div>
                </div>
@@ -270,7 +270,7 @@ export default function Home() {
                   className="bg-yellow-50 text-yellow-900 border-2 border-yellow-300 hover:bg-yellow-100 font-bold text-lg px-8 h-12 rounded-full gap-2"
                   onClick={() => window.open("https://x.com/pikachu_solana0?s=21", "_blank")}
                 >
-                  <Twitter className="w-5 h-5" />
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                   Official X
                 </Button>
                 <Button 
@@ -278,7 +278,7 @@ export default function Home() {
                   className="bg-yellow-50 text-yellow-900 border-2 border-yellow-300 hover:bg-yellow-100 font-bold text-lg px-8 h-12 rounded-full gap-2"
                   onClick={() => window.open("https://x.com/i/communities/2029625182474609164", "_blank")}
                 >
-                  <Twitter className="w-5 h-5" />
+                  <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                   Community
                 </Button>
               </div>
