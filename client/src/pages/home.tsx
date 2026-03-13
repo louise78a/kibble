@@ -6,7 +6,6 @@ import { useToast } from "@/hooks/use-toast";
 
 import heroImg from "@/assets/kao/1_1773405470131.jpg";
 import sectionImg from "@/assets/kao/2_1773405470130.jpg";
-import gallery1 from "@/assets/kao/HDSl9a0aEAAdd97_1773405470129.jpg";
 import gallery2 from "@/assets/kao/HDSmcPmboAANCL6_1773405470129.jpg";
 import gallery3 from "@/assets/kao/HDSnMdUbIAABR6T_1773405470130.jpg";
 import gallery4 from "@/assets/kao/HDSnSgQXkAA3n9L_1773405470130.jpg";
@@ -17,7 +16,7 @@ import gallery7 from "@/assets/kao/HDSn8KzXQAAMfXv_1773405470131.jpg";
 const CA = "GMtRLBv7pBHmNo6B3gnVGib23NzbByJ79ZGJ6Zywpump";
 const PAIR_ADDRESS = "6bfzukvcgarbrminhzbmuesmfqfekhp5joghcy24nwzt";
 
-const galleryImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7];
+const galleryImages = [gallery2, gallery3, gallery4, gallery5, gallery6, gallery7];
 
 export default function Home() {
   const { toast } = useToast();
