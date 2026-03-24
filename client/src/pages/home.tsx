@@ -215,7 +215,7 @@ export default function Home() {
             
             <div className="bg-stone-50 p-1 rounded-2xl shadow-lg border border-stone-300 h-[600px] overflow-hidden relative">
               <iframe 
-                src={`https://dexscreener.com/solana/${PAIR_ADDRESS}?embed=1&theme=light&trades=0&info=0`}
+                src={`https://dexscreener.com/solana/${CA}?embed=1&theme=light&trades=0&info=0`}
                 className="w-full h-full border-0 rounded-xl"
                 title="DexScreener Chart"
               ></iframe>
