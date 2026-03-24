@@ -215,7 +215,7 @@ export default function Home() {
             
             <div className="bg-stone-50 p-1 rounded-2xl shadow-lg border border-stone-300 h-[600px] overflow-hidden relative">
               <iframe 
-                src={`https://birdeye.so/tv-widget/${CA}?chain=solana&viewMode=pair&chartInterval=15&chartType=C&chartTimezone=Europe%2FBerlin&chartLeftToolbar=show&theme=light`}
+                src={`https://birdeye.so/tv-widget/${CA}?chain=solana&viewMode=pair&chartInterval=15&chartType=candlestick&chartTimezone=Europe%2FBerlin&chartLeftToolbar=show&theme=dark`}
                 className="w-full h-full border-0 rounded-xl"
                 title="Birdeye Chart"
               ></iframe>
