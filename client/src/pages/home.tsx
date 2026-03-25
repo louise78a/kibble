@@ -136,7 +136,7 @@ export default function Home() {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-900 text-orange-50 text-sm font-semibold hover:bg-orange-800 transition-colors"
                     >
                       <ExternalLink size={14} className="text-orange-400" />
-                      CNS1952
+                      Read more
                     </a>
                     <a 
                       href="https://x.com/XHNews/status/2036708647871582600?s=20" 
@@ -145,7 +145,7 @@ export default function Home() {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-900 text-orange-50 text-sm font-semibold hover:bg-orange-800 transition-colors"
                     >
                       <ExternalLink size={14} className="text-orange-400" />
-                      XHNews
+                      Read more
                     </a>
                   </div>
                 </div>
