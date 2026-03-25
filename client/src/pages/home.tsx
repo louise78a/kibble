@@ -135,11 +135,11 @@ export default function Home() {
                   loop 
                   muted={isMuted}
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover pointer-events-none"
                 />
                 <button 
                   onClick={() => setIsMuted(!isMuted)}
-                  className="absolute bottom-4 right-4 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all opacity-70 hover:opacity-100"
+                  className="absolute bottom-4 right-4 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all opacity-70 hover:opacity-100 z-10 cursor-pointer"
                   aria-label={isMuted ? "Unmute video" : "Mute video"}
                 >
                   {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
@@ -175,7 +175,7 @@ export default function Home() {
                     <img 
                       src={sectionImg} 
                       alt="Chuqi"
-                      className="w-full h-full object-cover object-[80%_center] hover:scale-105 transition-all duration-700"
+                      className="w-full h-full object-cover object-[100%_center] hover:scale-105 transition-all duration-700"
                     />
                   </div>
                </div>
@@ -190,17 +190,17 @@ export default function Home() {
               <p className="text-orange-800 text-lg italic">The brightest golden star.</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="columns-1 md:columns-2 gap-8 space-y-8">
               {galleryImages.map((img, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
-                  className="rounded-xl overflow-hidden bg-orange-100 shadow-sm hover:shadow-xl transition-all duration-300 border-4 border-orange-300"
+                  className="rounded-xl overflow-hidden bg-orange-100 shadow-sm hover:shadow-xl transition-all duration-300 border-4 border-orange-300 break-inside-avoid"
                 >
                   <img 
                     src={img} 
                     alt={`Chuqi Gallery ${index + 1}`}
-                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" 
+                    className="w-full h-auto hover:scale-105 transition-transform duration-500" 
                   />
                 </motion.div>
               ))}
@@ -220,7 +220,7 @@ export default function Home() {
             
             <div className="bg-orange-50 p-1 rounded-2xl shadow-lg border border-orange-300 h-[700px] overflow-hidden relative">
               <iframe 
-                src={`https://dexscreener.com/solana/${PAIR_ADDRESS}?embed=1&theme=dark`}
+                src={`https://dexscreener.com/solana/${PAIR_ADDRESS}?embed=1&theme=dark&chartType=marketCap&interval=1s`}
                 className="w-full h-full border-0 rounded-xl"
                 title="Dexscreener Chart"
               ></iframe>
