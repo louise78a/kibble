@@ -39,7 +39,7 @@ export async function registerRoutes(
       const imgBase64 = imgBuffer.toString("base64");
       const mimeType = baseImage === "1" ? "image/png" : "image/jpeg";
 
-      const fullPrompt = `You are a meme creator. Based on this image of Chuqi (a rare golden-orange baby dusky langur monkey), create a funny and creative meme image. ${prompt}. Keep Chuqi as the main character. Make it visually engaging and meme-style.`;
+      const fullPrompt = `You are a meme creator. Based on this image of Chuqi (a rare golden-orange baby dusky langur monkey), create a funny and creative meme image. ${prompt}. Keep Chuqi as the main character. Make it visually engaging and meme-style. Do NOT add any text, captions, or writing on the image.`;
 
       const response = await ai.models.generateContent({
         model: "gemini-2.5-flash-image",

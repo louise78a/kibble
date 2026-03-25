@@ -126,20 +126,34 @@ export default function Home() {
               </div>
 
               <div className="flex flex-wrap gap-3 pt-2">
-                <a 
-                  href="https://x.com/CNS1952/status/2036135640232874329?s=20" 
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-900 text-orange-50 text-sm font-semibold hover:bg-orange-800 transition-colors"
-                >
-                  <ExternalLink size={14} className="text-orange-400" />
-                  500K followers Chinese News Page
-                </a>
+                <div className="flex flex-col gap-2">
+                  <p className="text-orange-700 text-xs font-semibold uppercase tracking-widest">Chinese Article</p>
+                  <div className="flex flex-wrap gap-2">
+                    <a 
+                      href="https://x.com/CNS1952/status/2036135640232874329?s=20" 
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-900 text-orange-50 text-sm font-semibold hover:bg-orange-800 transition-colors"
+                    >
+                      <ExternalLink size={14} className="text-orange-400" />
+                      CNS1952
+                    </a>
+                    <a 
+                      href="https://x.com/XHNews/status/2036708647871582600?s=20" 
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-900 text-orange-50 text-sm font-semibold hover:bg-orange-800 transition-colors"
+                    >
+                      <ExternalLink size={14} className="text-orange-400" />
+                      XHNews
+                    </a>
+                  </div>
+                </div>
                 <a 
                   href="https://www.facebook.com/100067811160264/posts/a-golden-little-star-arrives-in-guangzhou-a-newborn-francois-langur-named-chuqi-/1261048186165542/" 
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-900 text-sm font-semibold hover:bg-orange-200 transition-colors border border-orange-300"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-900 text-sm font-semibold hover:bg-orange-200 transition-colors border border-orange-300 self-end"
                 >
                   <Facebook size={14} />
                   Facebook News
@@ -185,12 +199,7 @@ export default function Home() {
         <section id="meme-generator" className="py-24 bg-gradient-to-b from-orange-900 to-orange-950 border-t border-orange-800">
           <div className="container mx-auto px-4 max-w-4xl">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-700/50 text-orange-200 text-sm font-semibold border border-orange-600 mb-4">
-                <Sparkles size={16} className="text-orange-400" />
-                <span>AI Powered</span>
-              </div>
               <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">Meme Generator</h2>
-              <p className="text-orange-300 text-lg">Create your own Chuqi meme with AI</p>
             </div>
 
             <div className="bg-orange-900/40 rounded-2xl border border-orange-700 p-8 space-y-8">
