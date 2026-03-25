@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Copy, Check, TrendingUp, ExternalLink, Flame, Search, BookOpen, Facebook } from "lucide-react";
+import { Copy, Check, TrendingUp, ExternalLink, Flame, Search, BookOpen, Facebook, Volume2, VolumeX } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -20,6 +20,7 @@ const galleryImages = [gallery1, gallery2, gallery3, gallery4];
 export default function Home() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(CA);
@@ -132,10 +133,17 @@ export default function Home() {
                   src={heroVideo} 
                   autoPlay 
                   loop 
-                  controls 
-                  controlsList="nofullscreen"
+                  muted={isMuted}
+                  playsInline
                   className="w-full h-full object-cover"
                 />
+                <button 
+                  onClick={() => setIsMuted(!isMuted)}
+                  className="absolute bottom-4 right-4 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all opacity-70 hover:opacity-100"
+                  aria-label={isMuted ? "Unmute video" : "Mute video"}
+                >
+                  {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                </button>
             </motion.div>
           </div>
         </section>
@@ -167,7 +175,7 @@ export default function Home() {
                     <img 
                       src={sectionImg} 
                       alt="Chuqi"
-                      className="w-full h-full object-cover hover:scale-105 transition-all duration-700"
+                      className="w-full h-full object-cover object-[80%_center] hover:scale-105 transition-all duration-700"
                     />
                   </div>
                </div>
@@ -182,17 +190,17 @@ export default function Home() {
               <p className="text-orange-800 text-lg italic">The brightest golden star.</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {galleryImages.map((img, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
-                  className={`rounded-xl overflow-hidden bg-orange-100 shadow-sm hover:shadow-xl transition-all duration-300 border-4 border-orange-300 aspect-square`}
+                  className="rounded-xl overflow-hidden bg-orange-100 shadow-sm hover:shadow-xl transition-all duration-300 border-4 border-orange-300"
                 >
                   <img 
                     src={img} 
                     alt={`Chuqi Gallery ${index + 1}`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" 
                   />
                 </motion.div>
               ))}
@@ -210,11 +218,11 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="bg-orange-50 p-1 rounded-2xl shadow-lg border border-orange-300 h-[600px] overflow-hidden relative">
+            <div className="bg-orange-50 p-1 rounded-2xl shadow-lg border border-orange-300 h-[700px] overflow-hidden relative">
               <iframe 
-                src={`https://birdeye.so/tv-widget/${CA}?chain=solana&viewMode=pair&chartInterval=15&chartType=candlestick&chartTimezone=Europe%2FBerlin&chartLeftToolbar=show&theme=dark`}
+                src={`https://dexscreener.com/solana/${PAIR_ADDRESS}?embed=1&theme=dark`}
                 className="w-full h-full border-0 rounded-xl"
-                title="Birdeye Chart"
+                title="Dexscreener Chart"
               ></iframe>
             </div>
           </div>
