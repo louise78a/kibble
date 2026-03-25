@@ -167,7 +167,7 @@ export default function Home() {
                     <img 
                       src={sectionImg} 
                       alt="Chuqi"
-                      className="w-full h-full object-cover hover:scale-105 transition-all duration-700"
+                      className="w-full h-full object-cover hover:scale-105 transition-all duration-700 object-[60%_center] scale-[1.05]"
                     />
                   </div>
                </div>
@@ -182,17 +182,17 @@ export default function Home() {
               <p className="text-orange-800 text-lg italic">The brightest golden star.</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
               {galleryImages.map((img, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
-                  className={`rounded-xl overflow-hidden bg-orange-100 shadow-sm hover:shadow-xl transition-all duration-300 border-4 border-orange-300 aspect-square`}
+                  className={`rounded-xl overflow-hidden bg-orange-100 shadow-sm hover:shadow-xl transition-all duration-300 border-4 border-orange-300`}
                 >
                   <img 
                     src={img} 
                     alt={`Chuqi Gallery ${index + 1}`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                    className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" 
                   />
                 </motion.div>
               ))}
