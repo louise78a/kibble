@@ -30,7 +30,9 @@ export async function registerRoutes(
         return res.status(400).json({ error: "baseImage must be '1' or '2'" });
       }
 
-      const publicDir = path.join(process.cwd(), "client", "public");
+      const publicDir = process.env.NODE_ENV === "production"
+        ? path.join(process.cwd(), "dist", "public")
+        : path.join(process.cwd(), "client", "public");
       const imgPath = baseImage === "1"
         ? path.join(publicDir, "meme-base-1.png")
         : path.join(publicDir, "meme-base-2.jpg");
