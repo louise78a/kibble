@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Copy, Check, TrendingUp, ExternalLink, Flame, Search, BookOpen, Facebook } from "lucide-react";
+import { Copy, Check, TrendingUp, ExternalLink, Flame, BookOpen, Facebook, Sparkles, Download, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -11,6 +11,8 @@ import gallery1 from "@/assets/chuqi/HEPmiBkbYAATbzU_1774429569594.jpg";
 import gallery2 from "@/assets/chuqi/HEPoWlPbcAA726-_1774429569594.jpg";
 import gallery3 from "@/assets/chuqi/HEPpZZ4aQAAFs1T_1774429569595.jpg";
 import gallery4 from "@/assets/chuqi/HEPqZFrWMAA4ef1_1774429569595.jpg";
+import memeBase1 from "@/assets/chuqi/img_1774433067800.png";
+import memeBase2 from "@/assets/chuqi/2_1774433067800.jpg";
 
 const CA = "7vaeMtseiCiVNcam61BqgwjKGMh86tShR5aYe1aPpump";
 const PAIR_ADDRESS = "5eewypsql7nvmjbznvnigmig6khnrz91qb2fwm8b2kcu";
@@ -20,6 +22,44 @@ const galleryImages = [gallery1, gallery2, gallery3, gallery4];
 export default function Home() {
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
+
+  // Meme generator state
+  const [memeBase, setMemeBase] = useState<"1" | "2">("1");
+  const [memePrompt, setMemePrompt] = useState("");
+  const [memeGenerating, setMemeGenerating] = useState(false);
+  const [memeResult, setMemeResult] = useState<{ b64_json: string; mimeType: string } | null>(null);
+
+  const generateMeme = async () => {
+    if (!memePrompt.trim()) return;
+    setMemeGenerating(true);
+    setMemeResult(null);
+    try {
+      const res = await fetch("/api/generate-meme", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: memePrompt, baseImage: memeBase }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Generation failed");
+      setMemeResult(data);
+    } catch (err: any) {
+      toast({
+        title: "Error",
+        description: err.message || "Failed to generate meme",
+        className: "bg-red-900 text-white border-none",
+      });
+    } finally {
+      setMemeGenerating(false);
+    }
+  };
+
+  const downloadMeme = () => {
+    if (!memeResult) return;
+    const link = document.createElement("a");
+    link.href = `data:${memeResult.mimeType};base64,${memeResult.b64_json}`;
+    link.download = "chuqi-meme.png";
+    link.click();
+  };
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(CA);
@@ -45,6 +85,7 @@ export default function Home() {
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-orange-800">
             <a href="#about" className="hover:text-orange-600 transition-colors">Story</a>
+            <a href="#meme-generator" className="hover:text-orange-600 transition-colors flex items-center gap-1"><Sparkles size={13} />Memes</a>
             <a href="#gallery" className="hover:text-orange-600 transition-colors">Gallery</a>
             <a href="#chart" className="hover:text-orange-600 transition-colors">Chart</a>
           </div>
@@ -137,6 +178,118 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
             </motion.div>
+          </div>
+        </section>
+
+        {/* MEME GENERATOR */}
+        <section id="meme-generator" className="py-24 bg-gradient-to-b from-orange-900 to-orange-950 border-t border-orange-800">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-700/50 text-orange-200 text-sm font-semibold border border-orange-600 mb-4">
+                <Sparkles size={16} className="text-orange-400" />
+                <span>AI Powered</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">Meme Generator</h2>
+              <p className="text-orange-300 text-lg">Create your own Chuqi meme with AI</p>
+            </div>
+
+            <div className="bg-orange-900/40 rounded-2xl border border-orange-700 p-8 space-y-8">
+              {/* Base image selection */}
+              <div>
+                <p className="text-orange-200 font-semibold mb-4 text-sm uppercase tracking-widest">1. Choose a base image</p>
+                <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+                  {[
+                    { id: "1", img: memeBase1, label: "Chuqi & Mom" },
+                    { id: "2", img: memeBase2, label: "Chuqi in Nature" },
+                  ].map(({ id, img, label }) => (
+                    <button
+                      key={id}
+                      data-testid={`meme-base-${id}`}
+                      onClick={() => { setMemeBase(id as "1" | "2"); setMemeResult(null); }}
+                      className={`rounded-xl overflow-hidden border-4 transition-all duration-200 cursor-pointer ${
+                        memeBase === id
+                          ? "border-orange-400 shadow-lg shadow-orange-500/30 scale-105"
+                          : "border-orange-700/50 hover:border-orange-500 opacity-70 hover:opacity-100"
+                      }`}
+                    >
+                      <img src={img} alt={label} className="w-full h-40 object-cover" />
+                      <div className={`py-2 px-3 text-sm font-semibold text-center ${memeBase === id ? "bg-orange-500 text-white" : "bg-orange-800/50 text-orange-300"}`}>
+                        {label}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Prompt input */}
+              <div>
+                <p className="text-orange-200 font-semibold mb-4 text-sm uppercase tracking-widest">2. Describe your meme</p>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    data-testid="input-meme-prompt"
+                    type="text"
+                    value={memePrompt}
+                    onChange={(e) => setMemePrompt(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && !memeGenerating && generateMeme()}
+                    placeholder="e.g. Chuqi moonwalking on the moon with rockets..."
+                    className="flex-1 px-5 py-3 rounded-xl bg-orange-950/60 border border-orange-700 text-white placeholder-orange-500 focus:outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 font-medium"
+                  />
+                  <Button
+                    data-testid="button-generate-meme"
+                    onClick={generateMeme}
+                    disabled={memeGenerating || !memePrompt.trim()}
+                    className="bg-orange-500 hover:bg-orange-400 text-white font-bold px-8 py-3 rounded-xl h-auto gap-2 disabled:opacity-50 whitespace-nowrap"
+                  >
+                    {memeGenerating ? (
+                      <><Loader2 size={18} className="animate-spin" /> Generating…</>
+                    ) : (
+                      <><Sparkles size={18} /> Generate</>
+                    )}
+                  </Button>
+                </div>
+                {memeGenerating && (
+                  <p className="text-orange-400 text-sm mt-3 text-center animate-pulse">
+                    Chuqi is cooking your meme… this takes a few seconds 🐒
+                  </p>
+                )}
+              </div>
+
+              {/* Result */}
+              {memeResult && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className="space-y-4"
+                >
+                  <p className="text-orange-200 font-semibold text-sm uppercase tracking-widest">Your Meme</p>
+                  <div className="rounded-xl overflow-hidden border-4 border-orange-500 shadow-2xl shadow-orange-500/20 max-w-xl mx-auto">
+                    <img
+                      data-testid="img-meme-result"
+                      src={`data:${memeResult.mimeType};base64,${memeResult.b64_json}`}
+                      alt="Generated meme"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  <div className="flex justify-center gap-3">
+                    <Button
+                      data-testid="button-download-meme"
+                      onClick={downloadMeme}
+                      className="bg-orange-500 hover:bg-orange-400 text-white font-bold rounded-xl px-6 h-11 gap-2"
+                    >
+                      <Download size={16} /> Download
+                    </Button>
+                    <Button
+                      variant="outline"
+                      onClick={() => { setMemeResult(null); setMemePrompt(""); }}
+                      className="border-orange-600 text-orange-300 hover:bg-orange-800 rounded-xl px-6 h-11"
+                    >
+                      Generate Another
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+            </div>
           </div>
         </section>
 
