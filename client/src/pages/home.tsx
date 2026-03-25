@@ -182,7 +182,7 @@ export default function Home() {
               <p className="text-orange-800 text-lg italic">The brightest golden star.</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
               {galleryImages.map((img, index) => (
                 <motion.div
                   key={index}
