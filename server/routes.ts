@@ -68,7 +68,7 @@ export async function registerRoutes(
       );
 
       if (!imagePart?.inlineData?.data) {
-        return res.status(500).json({ error: "No image generated. Try a different prompt." });
+        return res.status(500).json({ error: "Try again." });
       }
 
       const outMimeType = imagePart.inlineData.mimeType || "image/png";
