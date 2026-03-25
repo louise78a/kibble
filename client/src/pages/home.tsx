@@ -145,7 +145,7 @@ export default function Home() {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-900 text-orange-50 text-sm font-semibold hover:bg-orange-800 transition-colors"
                     >
                       <ExternalLink size={14} className="text-orange-400" />
-                      Read more
+                      Watch it
                     </a>
                   </div>
                 </div>
