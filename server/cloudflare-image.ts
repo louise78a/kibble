@@ -17,6 +17,15 @@ if (!process.env.CLOUDFLARE_ACCOUNT_ID || !process.env.CLOUDFLARE_API_TOKEN) {
 }
 
 /**
+ * Construit le prompt "Kibble" envoyé au modèle, à partir de la description
+ * de l'utilisateur. Partagé entre le serveur Express (dev local) et la
+ * fonction serverless Vercel (prod) pour éviter toute divergence.
+ */
+export function buildMemePrompt(userPrompt: string): string {
+  return `Using the reference image (image 0) of Kibble, a tiny grey-and-white kitten with a cute plump belly, create a funny and creative meme image: ${userPrompt}. Keep the exact same kitten as the main subject. Make it visually engaging and meme-style. Do NOT add any text, captions, or writing on the image.`;
+}
+
+/**
  * Génère une image à partir d'un prompt et d'une image de référence.
  * Renvoie l'image générée en base64 (sans préfixe data URL).
  */

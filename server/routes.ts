@@ -1,7 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { generateMemeImage } from "./cloudflare-image";
+import { generateMemeImage, buildMemePrompt } from "./cloudflare-image";
 import fs from "fs";
 import path from "path";
 
@@ -26,9 +26,7 @@ export async function registerRoutes(
       const imgBuffer = fs.readFileSync(imgPath);
       const mimeType = "image/jpeg";
 
-      const fullPrompt = `Using the reference image (image 0) of Kibble, a tiny grey-and-white kitten with a cute plump belly, create a funny and creative meme image: ${prompt}. Keep the exact same kitten as the main subject. Make it visually engaging and meme-style. Do NOT add any text, captions, or writing on the image.`;
-
-      const b64 = await generateMemeImage(fullPrompt, imgBuffer, mimeType);
+      const b64 = await generateMemeImage(buildMemePrompt(prompt), imgBuffer, mimeType);
 
       res.json({
         b64_json: b64,
