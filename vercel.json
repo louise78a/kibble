@@ -3,8 +3,7 @@
   "outputDirectory": "dist/public",
   "functions": {
     "api/generate-meme.ts": {
-      "maxDuration": 60,
-      "includeFiles": "client/public/meme-ref.jpg"
+      "maxDuration": 60
     }
   }
 }
