@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
@@ -89,7 +90,9 @@ app.use((req, res, next) => {
     {
       port,
       host: "0.0.0.0",
-      reusePort: true,
+      // reusePort n'est pas supporté sous Windows (ENOTSUP) — activé uniquement
+      // sur les plateformes type Linux (Replit).
+      reusePort: process.platform !== "win32",
     },
     () => {
       log(`serving on port ${port}`);
