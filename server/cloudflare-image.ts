@@ -45,9 +45,10 @@ export async function generateMemeImage(
 
   const form = new FormData();
   form.append("prompt", prompt);
-  form.append("width", "1024");
-  form.append("height", "1024");
-  form.append("steps", "25");
+  // Résolution + steps réduits pour économiser le quota gratuit Cloudflare (neurons).
+  form.append("width", "512");
+  form.append("height", "512");
+  form.append("steps", "8");
   // Image de référence : doit être nommée input_image_0 (jusqu'à 4 supportées).
   form.append(
     "input_image_0",

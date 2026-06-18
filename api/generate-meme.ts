@@ -40,9 +40,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Appel Cloudflare Workers AI (multipart/form-data, image en input_image_0).
     const form = new FormData();
     form.append("prompt", buildMemePrompt(prompt));
-    form.append("width", "1024");
-    form.append("height", "1024");
-    form.append("steps", "25");
+    // Résolution + steps réduits pour économiser le quota gratuit Cloudflare (neurons).
+    form.append("width", "512");
+    form.append("height", "512");
+    form.append("steps", "8");
     form.append("input_image_0", new Blob([imageBuffer], { type: "image/jpeg" }), "reference");
 
     const cfRes = await fetch(
